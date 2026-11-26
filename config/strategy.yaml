@@ -1,0 +1,33 @@
+# 视频框架参数（1.6/1.7/1.8/1.10 节）——集中在这里调，不要散在代码里。
+# 仓位与风控是建议值，最终下单由人在券商 App 里决定。
+
+# 成本模型：A 股往返约 0.96%
+cost_round_trip_pct: 0.96
+
+# 半凯利仓位：f* = 0.5 * (b*p - q) / b
+# p = 胜率，q = 1-p，b = 平均盈利 / 平均亏损（盈亏比）
+kelly:
+  default_win_rate: 0.45      # 没有历史胜率时用的先验值
+  default_payoff_ratio: 1.0   # 平均盈利 / 平均亏损
+  half_kelly: 0.5
+  max_single_stock_pct: 5.0   # 单只 <5%
+  max_single_trade_pct: 2.0   # 单笔 ≤2%
+
+# 风控硬线（视频 1.7 节）
+risk:
+  stop_loss_pct: 8.0           # 止损 8%
+  account_drawdown_pct: 15.0   # 账户回撤 15%
+  daily_loss_pct: 2.0          # 日内亏损 2%
+  single_stock_max_loss_pct: 5.0  # 单只最大亏损 5%
+  trailing_take_profit_pct: 5.0   # 跟随止盈 5%
+
+# 因子检验（视频 1.10 节）
+factors:
+  ic_usable: 0.03     # |IC| > 0.03 可用
+  icir_reliable: 0.5  # ICIR > 0.5 可靠
+  min_observations: 20  # 样本少于这个数不下结论
+
+# 信号层：规则信号为主，LLM 只做解释和风险提示；两者不一致时以规则为准
+signals:
+  rule_primary: true
+  llm_is_second_opinion: true
