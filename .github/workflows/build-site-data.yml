@@ -1,0 +1,64 @@
+# 重建前端数据：每天 19:15 跑离线层（视频框架的回测/归因/因子检验），
+# 汇总成前端要读的 latest.json / history.json。
+#
+# 这一层不产生新信号，只复盘历史：
+#   - evaluate_track.py：T+5/T+10/T+20 跟踪验收汇总
+#   - position.py：半凯利仓位
+#   - risk.py：风控线（止损价位 + 账户级检查清单）
+#   - factors.py：因子 IC/ICIR 检验
+#   - backtest.py：选股历史简单回测（扣 0.96% 往返成本）
+#   - merge_data.py：最后合并刷新 generated_at 和 history 索引
+#
+# 不需要任何 Secret，纯标准库，不调大模型。
+name: 重建前端数据
+
+on:
+  schedule:
+    # 周一到周五 19:15 北京时间（两个每日 job 之后）
+    - cron: '15 11 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: quant-platform-data
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: 检出本仓库
+        uses: actions/checkout@v4
+
+      - name: 设置 Python 3.12（只用标准库）
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 今天（北京时间）
+        id: date
+        run: echo "date=$(TZ=Asia/Shanghai date +%F)" >> "$GITHUB_OUTPUT"
+
+      - name: 跟踪验收 + 仓位 + 风控 + 因子检验 + 回测
+        run: |
+          python scripts/evaluate_track.py --date "${{ steps.date.outputs.date }}"
+          python scripts/position.py --date "${{ steps.date.outputs.date }}"
+          python scripts/risk.py --date "${{ steps.date.outputs.date }}"
+          python scripts/factors.py --date "${{ steps.date.outputs.date }}"
+          python scripts/backtest.py --date "${{ steps.date.outputs.date }}"
+
+      - name: 合并刷新
+        run: python scripts/merge_data.py --date "${{ steps.date.outputs.date }}"
+
+      - name: 提交数据更新
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data
+          if git diff --cached --quiet; then echo "没有数据变化"; exit 0; fi
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git commit -m "data(site): ${{ steps.date.outputs.date }} 前端数据重建"
+          git push origin "HEAD:${GITHUB_REF_NAME}" || { git pull --rebase origin "${GITHUB_REF_NAME}"; git push origin "HEAD:${GITHUB_REF_NAME}"; }

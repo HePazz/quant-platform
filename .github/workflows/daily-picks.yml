@@ -1,0 +1,168 @@
+# 每日选股（AlphaSift）：每天收盘后筛全市场 A 股，写进 docs/data/。
+#
+# 上游做法的改动点（相对 ZhuLinsen/alphasift 的 track-record.yml）：
+#   - 只跑 cn 市场（A 股 only），不跑 hk/jp/kr/tw/in/us；
+#   - 账本不写 track-record 分支，写 main 分支的 docs/data/picks/<日期>/；
+#   - daily-report 不加 --push，不配任何推送 Secret（本平台没有推送）；
+#   - 不发布 AlphaSift 自己的看板；前端是本仓库 docs/ 里统一的页面。
+#
+# 需要的 Secret：GEMINI_API_KEY（可选；没有就纯规则模式，有就加 AI 复核）。
+# 绝不要加 NOTIFY_URLS / EMAIL_* / SERVERCHAN_* 等推送类 Secret。
+name: 每日选股（AlphaSift）
+
+on:
+  schedule:
+    # 周一到周五 18:30 北京时间（Asia 会话，A 股收盘后）
+    - cron: '30 10 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      markets:
+        description: '市场（默认只跑 cn；改这个之前先确认 A 股 only 的边界）'
+        required: false
+        default: 'cn'
+      force_run:
+        description: '强制运行（跳过交易日检查，节假日调试用）'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+# 两个每日 job 都往 main 分支提交数据，串行跑，避免 push 冲突
+concurrency:
+  group: quant-platform-data
+  cancel-in-progress: false
+
+env:
+  ALPHASIFT_SHA: '6b779f23797773d28b6a960d853f81bf8451eecd' # 见 config/upstream.json
+
+jobs:
+  picks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: 检出本仓库
+        uses: actions/checkout@v4
+
+      - name: 检出上游 AlphaSift（pin 的 SHA，不 Fork）
+        uses: actions/checkout@v4
+        with:
+          repository: ZhuLinsen/alphasift
+          ref: ${{ env.ALPHASIFT_SHA }}
+          path: vendor/alphasift
+
+      - name: 设置 Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: vendor/alphasift/pyproject.toml
+
+      - name: 安装 AlphaSift
+        run: python -m pip install -e vendor/alphasift
+
+      - name: 今天（北京时间）
+        id: date
+        run: echo "date=$(TZ=Asia/Shanghai date +%F)" >> "$GITHUB_OUTPUT"
+
+      - name: 恢复 A 股数据包缓存
+        uses: actions/cache/restore@v4
+        with:
+          path: pack
+          key: cn-daily-pack-${{ github.run_id }}
+          restore-keys: |
+            cn-daily-pack-
+
+      - name: 构建 A 股数据包（250 日，没有缓存时才全量构建）
+        run: |
+          if [ ! -f pack/manifest.json ]; then
+            alphasift pack build --days 250 --pack-dir pack || echo "::warning::数据包构建失败，本次改走逐只拉取"
+          else
+            alphasift pack info --pack-dir pack || echo "::warning::数据包校验失败"
+          fi
+
+      - name: 保存数据包缓存
+        uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: pack
+          key: cn-daily-pack-${{ github.run_id }}
+
+      - name: 把已提交的 run 历史拷进 track 工作目录
+        run: python scripts/sync_runs.py seed --data-dir docs/data --track-dir track
+
+      - name: 筛选（只跑 cn；有 Key 就加 AI 复核，没有就纯规则）
+        working-directory: vendor/alphasift
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          LITELLM_MODEL: ${{ vars.LITELLM_MODEL || 'gemini/gemini-3.8-flash' }}
+          LITELLM_FALLBACK_MODELS: ${{ vars.LITELLM_FALLBACK_MODELS || 'gemini/gemini-4-hydrogen' }}
+          LLM_CANDIDATE_CONTEXT_ENABLED: 'true'
+          ALPHASIFT_PACK_DIR: ${{ github.workspace }}/pack
+        run: |
+          mkdir -p "${{ github.workspace }}/track/data/runs" "${{ github.workspace }}/track/data/logs" "${{ github.workspace }}/track/site"
+          python scripts/track_record.py screen \
+            --track "${{ github.workspace }}/track" \
+            --session asia --markets "${{ inputs.markets || 'cn' }}" \
+            --pack-dir "${{ github.workspace }}/pack" \
+            || echo "::warning::本次没有策略保存 run（可能是节假日）"
+
+      - name: T+N 验收（给旧入选股算已实现收益）
+        working-directory: vendor/alphasift
+        env:
+          ALPHASIFT_PACK_DIR: ${{ github.workspace }}/pack
+        run: |
+          python scripts/track_record.py evaluate \
+            --track "${{ github.workspace }}/track" \
+            --markets "${{ inputs.markets || 'cn' }}" \
+            --pack-dir "${{ github.workspace }}/pack" \
+            || echo "::warning::T+N 验收失败（刚起步没有历史时属正常）"
+
+      - name: 生成日报 JSON/HTML（不推送）
+        working-directory: vendor/alphasift
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          LITELLM_MODEL: ${{ vars.LITELLM_MODEL || 'gemini/gemini-3.8-flash' }}
+          LITELLM_FALLBACK_MODELS: ${{ vars.LITELLM_FALLBACK_MODELS || 'gemini/gemini-4-hydrogen' }}
+        run: |
+          # 注意：这里故意不加 --push，也没有 NOTIFY_URLS / EMAIL_* 等变量。
+          # 本平台没有推送，报告只写进仓库，前端页面上看。
+          alphasift daily-report \
+            --pack-dir "${{ github.workspace }}/pack" \
+            --runs-dir "${{ github.workspace }}/track/data/runs" \
+            --output-json "${{ github.workspace }}/track/site/report.json" \
+            --output-html "${{ github.workspace }}/track/site/daily_report.html" \
+            --ai-brief auto --explain \
+            || echo "::warning::daily-report 跳过"
+
+      - name: 生成站点摘要
+        working-directory: vendor/alphasift
+        run: |
+          python scripts/track_record.py build --track "${{ github.workspace }}/track" \
+            || echo "::warning::站点摘要生成失败"
+
+      - name: 把产物拷进 docs/data/picks/<日期>/
+        run: |
+          set -e
+          DATE="${{ steps.date.outputs.date }}"
+          DEST="docs/data/picks/$DATE"
+          mkdir -p "$DEST/runs"
+          [ -f track/site/report.json ] && cp track/site/report.json "$DEST/report.json"
+          [ -f track/site/summary.json ] && cp track/site/summary.json "$DEST/summary.json"
+          [ -f track/site/daily_report.html ] && cp track/site/daily_report.html "$DEST/daily_report.html"
+          python scripts/sync_runs.py sync --data-dir docs/data --track-dir track --date "$DATE"
+          ls -la "$DEST"
+
+      - name: 合并前端数据
+        run: python scripts/merge_data.py --date "${{ steps.date.outputs.date }}"
+
+      - name: 提交数据更新
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data
+          if git diff --cached --quiet; then echo "没有数据变化"; exit 0; fi
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git commit -m "data(picks): ${{ steps.date.outputs.date }} 选股更新"
+          git push origin "HEAD:${GITHUB_REF_NAME}" || { git pull --rebase origin "${GITHUB_REF_NAME}"; git push origin "HEAD:${GITHUB_REF_NAME}"; }
