@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>量化平台 · 每日选股与研报</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div>
+    <h1>量化平台</h1>
+    <p class="sub">A 股 · 只出买卖建议，不自动交易 · 数据每天收盘后更新</p>
+  </div>
+  <div class="top-right">
+    <span id="data-status" class="status">加载中…</span>
+    <button id="btn-refresh" type="button">刷新</button>
+    <button id="btn-settings" type="button">设置</button>
+  </div>
+</header>
+
+<div id="sample-banner" class="banner" hidden>当前是示例数据：仓库还没跑过一次，跑完第一次定时任务后这里会显示真实数据。</div>
+<div id="error-banner" class="banner error" hidden></div>
+
+<main>
+  <section class="card" id="sec-picks">
+    <h2>今日选股 <span class="muted" id="picks-date"></span></h2>
+    <p class="muted" id="picks-note">AlphaSift 盘后筛全市场 A 股（规则打分主、AI 复核副），供次日参考，不是 09:26 竞价选股。</p>
+    <div id="ai-brief" class="brief" hidden></div>
+    <div id="picks-list"></div>
+    <div id="announcement-risks" hidden>
+      <h3>公告排雷</h3>
+      <ul id="risks-list"></ul>
+    </div>
+  </section>
+
+  <section class="card" id="sec-reports">
+    <h2>自选股研报 <span class="muted" id="reports-date"></span></h2>
+    <p class="muted">DSA 对自选股的深度研报（Gemini）。点标题看完整 HTML 报告。</p>
+    <div id="reports-list"></div>
+  </section>
+
+  <section class="card" id="sec-track">
+    <h2>T+5 / T+10 / T+20 跟踪</h2>
+    <p class="muted">按 AlphaSift 口径验收：次日开盘价入场，扣除一字涨停；没到期的记待验收。</p>
+    <div id="track-list"></div>
+    <div id="strategy-stats"></div>
+  </section>
+
+  <section class="card" id="sec-market">
+    <h2>大盘复盘</h2>
+    <div id="market-review" class="brief">暂无</div>
+  </section>
+
+  <section class="card" id="sec-position">
+    <h2>仓位与风控</h2>
+    <p class="muted">半凯利仓位（单只 &lt;5%、单笔 ≤2%）与风控线（止损 8%、跟随止盈 5%）。只是建议，下单由你在券商 App 里决定。</p>
+    <div id="position-list"></div>
+    <div id="risk-checks"></div>
+  </section>
+
+  <section class="card" id="sec-backtest">
+    <h2>回测与因子</h2>
+    <div id="backtest-box"></div>
+    <div id="factors-box"></div>
+  </section>
+
+  <section class="card" id="sec-watchlist">
+    <h2>自选股管理</h2>
+    <p class="muted">下面是最近一次分析用的自选股。改完点“保存到仓库”，会写回仓库的 STOCK_LIST Secret，下次定时运行生效。要改需要先在设置里贴 GitHub 令牌（只存在你自己浏览器里）。</p>
+    <div id="watchlist-list"></div>
+    <div class="row">
+      <input id="new-code" type="text" inputmode="numeric" placeholder="加一只：6 位代码，如 000001" maxlength="6">
+      <button id="btn-add-code" type="button">加入</button>
+    </div>
+    <div class="row">
+      <button id="btn-save-watchlist" type="button" class="primary">保存到仓库</button>
+      <button id="btn-run-analysis" type="button">手动跑一次分析</button>
+      <button id="btn-run-picks" type="button">手动跑一次选股</button>
+    </div>
+    <p id="watchlist-msg" class="muted"></p>
+  </section>
+
+  <section class="card" id="sec-history">
+    <h2>历史</h2>
+    <div class="row">
+      <label for="history-select">看哪一天：</label>
+      <select id="history-select"></select>
+    </div>
+  </section>
+</main>
+
+<dialog id="settings-dialog">
+  <form method="dialog">
+    <h2>设置</h2>
+    <label>仓库 owner
+      <input id="set-owner" type="text" value="HePazz">
+    </label>
+    <label>仓库名
+      <input id="set-repo" type="text" value="quant-platform">
+    </label>
+    <label>GitHub 令牌（PAT）
+      <input id="set-pat" type="password" placeholder="只存在你自己浏览器里，不会发到别处">
+    </label>
+    <p class="muted small">
+      令牌用来改自选股和手动触发运行。建法：GitHub → 头像 → Settings →
+      最底下 Developer settings → Personal access tokens → Tokens (classic) →
+      Generate new token (classic)，Note 填 quant-platform，Expiration 选 No expiration，
+      勾选 repo，点 Generate。令牌只显示一次，复制后贴在这里。
+      没有令牌也能看数据，只是不能改自选股、不能手动触发。
+    </p>
+    <p id="settings-msg" class="muted"></p>
+    <div class="row">
+      <button id="btn-test-pat" type="button">测试令牌</button>
+      <button id="btn-clear-pat" type="button">清除令牌</button>
+      <button id="btn-save-settings" type="button" class="primary">保存设置</button>
+      <button id="btn-close-settings" type="button">关闭</button>
+    </div>
+  </form>
+</dialog>
+
+<footer class="foot">
+  <p class="muted small">本平台只出买卖建议，不自动交易。选股与研报来自 AlphaSift 与 daily_stock_analysis（上游开源项目），数据以仓库定时运行的产物为准；历史战绩不代表未来收益。</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/libsodium-wrappers@0.7.15/dist/modules/libsodium-wrappers.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
