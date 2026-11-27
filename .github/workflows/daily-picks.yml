@@ -14,8 +14,8 @@ name: 每日选股（AlphaSift）
 
 on:
   schedule:
-    # 周一到周五 18:30 北京时间（Asia 会话，A 股收盘后）
-    - cron: '30 10 * * 1-5'
+    # 周一到周五 18:37 北京时间（Asia 会话，A 股收盘后；避开整点/半点高峰）
+    - cron: '37 10 * * 1-5'
   workflow_dispatch:
     inputs:
       markets:

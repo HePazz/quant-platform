@@ -1,4 +1,4 @@
-# 每日分析（DSA）：工作日 18:00 分析自选股，写进 docs/data/。
+# 每日分析（DSA）：工作日 18:07 分析自选股，写进 docs/data/。
 #
 # 上游做法的改动点（相对 ZhuLinsen/daily_stock_analysis 的 00-daily-analysis.yml）：
 #   - 只传本平台要用的几个变量（STOCK_LIST、DEEPSEEK_API_KEY 等），
@@ -22,8 +22,8 @@ name: 每日分析（DSA）
 
 on:
   schedule:
-    # 周一到周五 18:00 北京时间
-    - cron: '0 10 * * 1-5'
+    # 周一到周五 18:07 北京时间（避开整点：GitHub 定时任务在整点高负载时会被延迟或直接丢弃）
+    - cron: '7 10 * * 1-5'
   workflow_dispatch:
     inputs:
       mode:
