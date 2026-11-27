@@ -19,6 +19,7 @@ DSA 的 main.py 把报告写到 reports/（HTML 为主，文件名和内部结�
 from __future__ import annotations
 
 import argparse
+import html as html_lib
 import re
 import shutil
 from pathlib import Path
@@ -166,6 +167,208 @@ def _md_to_text(text: str) -> str:
     return "\n".join(lines).strip()
 
 
+def _split_stock_sections(text: str) -> dict[str, tuple[str, str]]:
+    """按 ## 小节切分 report_*.md，返回 {code: (name, 正文)}。
+
+    正文不含标题行本身（`⚪ 九阳股份 (002242)` 这类标题由页面
+    头部单独渲染），含小节内全部内容，直到下一个 ## 小节或文件尾。
+    只认标题末尾带 (6 位代码) 的小节；“分析结果摘要”小节没有
+    代码，不会进来。
+    """
+    sections: dict[str, tuple[str, str]] = {}
+    for chunk in re.split(r"(?m)^##\s+", text):
+        head, sep, body = chunk.partition("\n")
+        m = re.match(r"(?:\S+\s+)?(.+?)\s*\((\d{6})\)\s*$", head.strip())
+        if not m:
+            continue
+        name, code = m.group(1).strip(), m.group(2)
+        sections[code] = (name, body.strip("\n"))
+    return sections
+
+
+# 行内 Markdown：先转义 HTML，再套格式（顺序：代码 → 链接 → 加粗 → 斜体；
+# 斜体正则排除 <>，不会横跨前面生成的标签）。
+_INLINE_CODE_RE = re.compile(r"`([^`\n]+)`")
+_INLINE_LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
+_INLINE_BOLD_RE = re.compile(r"\*\*([^*]+)\*\*")
+_INLINE_ITALIC_RE = re.compile(r"(?<![*\w])\*([^*\n<>]+)\*(?![*\w])")
+
+
+def _inline_md(text: str) -> str:
+    """一行内的 Markdown → HTML（**加粗** / *斜体* / `代码` / [链接](url)）。"""
+    out = html_lib.escape(text, quote=False)
+    out = _INLINE_CODE_RE.sub(lambda m: "<code>" + m.group(1) + "</code>", out)
+    out = _INLINE_LINK_RE.sub(
+        lambda m: '<a href="' + html_lib.escape(m.group(2), quote=True) + '">'
+        + m.group(1) + "</a>",
+        out,
+    )
+    out = _INLINE_BOLD_RE.sub(r"<strong>\1</strong>", out)
+    out = _INLINE_ITALIC_RE.sub(r"<em>\1</em>", out)
+    return out
+
+
+def _table_to_html(rows: list[str]) -> str:
+    """GFM 表格 → <table>。第二行是分隔行时第一行当表头。"""
+    def cells(row: str) -> list[str]:
+        return [c.strip() for c in row.strip().strip("|").split("|")]
+
+    def is_sep(row: list[str]) -> bool:
+        return bool(row) and all(re.fullmatch(r":?-{2,}:?", c) for c in row)
+
+    def align(cell: str) -> str:
+        if cell.startswith(":") and cell.endswith(":"):
+            return ' style="text-align:center"'
+        if cell.endswith(":"):
+            return ' style="text-align:right"'
+        return ""
+
+    header = None
+    aligns: list[str] = []
+    body_rows = rows
+    if len(rows) >= 2 and is_sep(cells(rows[1])):
+        header = cells(rows[0])
+        aligns = [align(c) for c in cells(rows[1])]
+        body_rows = rows[2:]
+    parts = ["<table>"]
+    if header is not None:
+        parts.append("<thead><tr>" + "".join(
+            f"<th{aligns[k] if k < len(aligns) else ''}>" + _inline_md(c) + "</th>"
+            for k, c in enumerate(header)) + "</tr></thead>")
+    parts.append("<tbody>")
+    for row in body_rows:
+        cs = cells(row)
+        parts.append("<tr>" + "".join(
+            f"<td>{_inline_md(c)}</td>" for c in cs) + "</tr>")
+    parts.append("</tbody></table>")
+    return "".join(parts)
+
+
+def _md_section_to_html(body: str) -> str:
+    """把一只股的小节 Markdown 转成 HTML 片段（不含 <html> 外壳）。
+
+    支持 DSA 实际用到的结构：### 标题、> 引用、- 无序列表、
+    1. 有序列表、GFM 表格、--- 分隔线、段落；行内支持
+    **加粗** / *斜体* / `代码` / [链接](url)。
+    """
+    lines = body.splitlines()
+    out: list[str] = []
+    para: list[str] = []
+
+    def flush_para() -> None:
+        if para:
+            out.append("<p>" + " ".join(_inline_md(l) for l in para) + "</p>")
+            para.clear()
+
+    i, n = 0, len(lines)
+    while i < n:
+        line = lines[i].strip()
+        if not line:
+            flush_para()
+            i += 1
+            continue
+        if re.fullmatch(r"---+|___+|\*\*\*+", line):  # 分隔线
+            flush_para()
+            out.append("<hr>")
+            i += 1
+            continue
+        m = re.match(r"(#{1,6})\s+(.*)$", line)  # 标题
+        if m:
+            flush_para()
+            level = len(m.group(1))
+            out.append(f"<h{level}>" + _inline_md(m.group(2).strip()) + f"</h{level}>")
+            i += 1
+            continue
+        if line.startswith(">"):  # 引用：连续的 > 行合成一个 blockquote
+            flush_para()
+            quotes = []
+            while i < n and lines[i].strip().startswith(">"):
+                quotes.append(lines[i].strip()[1:].strip())
+                i += 1
+            out.append("<blockquote>" + "<br>".join(_inline_md(q) for q in quotes) + "</blockquote>")
+            continue
+        if line.startswith("|"):  # 表格：连续的 | 行
+            flush_para()
+            rows = []
+            while i < n and lines[i].strip().startswith("|"):
+                rows.append(lines[i].strip())
+                i += 1
+            out.append(_table_to_html(rows))
+            continue
+        if line.startswith("- ") or line.startswith("* "):  # 无序列表
+            flush_para()
+            items = []
+            while i < n:
+                l = lines[i].strip()
+                if l.startswith("- ") or l.startswith("* "):
+                    items.append(l[2:].strip())
+                else:
+                    break
+                i += 1
+            out.append("<ul>" + "".join("<li>" + _inline_md(t) + "</li>" for t in items) + "</ul>")
+            continue
+        m = re.match(r"\d+[.)]\s+(.*)$", line)  # 有序列表
+        if m:
+            flush_para()
+            items = []
+            while i < n:
+                m2 = re.match(r"\d+[.)]\s+(.*)$", lines[i].strip())
+                if not m2:
+                    break
+                items.append(m2.group(1).strip())
+                i += 1
+            out.append("<ol>" + "".join("<li>" + _inline_md(t) + "</li>" for t in items) + "</ol>")
+            continue
+        para.append(line)
+        i += 1
+    flush_para()
+    return "\n".join(out)
+
+
+_HTML_CSS = """
+body{margin:0;background:#f4f4f2;color:#222;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}
+main{max-width:860px;margin:24px auto;background:#fff;padding:28px 32px;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+h1{font-size:24px;margin:0 0 4px}
+h2{font-size:20px;margin:28px 0 10px;border-bottom:1px solid #eee;padding-bottom:6px}
+h3{font-size:17px;margin:22px 0 8px}
+p{margin:8px 0}
+.meta{color:#666;font-size:14px;margin:0 0 8px}
+blockquote{margin:12px 0;padding:10px 14px;border-left:4px solid #2f7de1;background:#f2f7fe;color:#333}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px}
+th,td{border:1px solid #ddd;padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#f7f7f7}
+ul,ol{margin:8px 0;padding-left:22px}
+li{margin:4px 0}
+hr{border:none;border-top:1px solid #e5e5e5;margin:24px 0}
+code{background:#f1f1f1;padding:1px 5px;border-radius:3px;font-size:.9em}
+footer{margin-top:28px;padding-top:12px;border-top:1px solid #eee;color:#999;font-size:13px}
+"""
+
+
+def _stock_html_page(code: str, name: str, date: str,
+                     entry: dict | None, body_html: str) -> str:
+    """单只股研报的完整独立 HTML 页（内联样式，无外部资源）。"""
+    meta = []
+    if entry is not None:
+        if entry.get("score") is not None:
+            meta.append(f"评分 {entry['score']}")
+        if entry.get("advice"):
+            meta.append(f"建议：{entry['advice']}")
+    meta.append(date)
+    title = f"{name} ({code})"
+    return (
+        "<!DOCTYPE html>\n<html lang=\"zh-CN\">\n<head>\n<meta charset=\"utf-8\">\n"
+        "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
+        f"<title>{html_lib.escape(title)} 研报 · {html_lib.escape(date)}</title>\n"
+        f"<style>{_HTML_CSS}</style>\n</head>\n<body>\n<main>\n"
+        f"<h1>{html_lib.escape(title)}</h1>\n"
+        f"<p class=\"meta\">{html_lib.escape(' · '.join(meta))}</p>\n"
+        f"{body_html}\n"
+        f"<footer>由 quant-platform 从 DSA 研报生成 · {html_lib.escape(date)}</footer>\n"
+        "</main>\n</body>\n</html>\n"
+    )
+
+
 def extract(reports_dir: Path, out_dir: Path, watchlist: list[str]) -> dict:
     """拷贝 + 解析，返回要写进 dsa.json 的内容。"""
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -219,6 +422,18 @@ def extract(reports_dir: Path, out_dir: Path, watchlist: list[str]) -> dict:
                 else:
                     reports[code] = parsed
                     md_source[code] = path.stem
+            # 每只股的小节单独写成 HTML 页，前端“看完整报告”链过去；
+            # html 字段直接写 data/reports/<日期>/<代码>.html。
+            sections = _split_stock_sections(text)
+            for code, (name, body) in sections.items():
+                entry = reports.get(code)
+                page = _stock_html_page(code, name, out_dir.name, entry,
+                                        _md_section_to_html(body))
+                (out_dir / f"{code}.html").write_text(page, encoding="utf-8")
+                if entry is not None:
+                    entry["html"] = f"data/reports/{out_dir.name}/{code}.html"
+            if sections:
+                log.info("已生成 %d 个单股 HTML 研报（%s）", len(sections), path.name)
         # 给每只研报找同名 HTML（有就链过去）
         htmls = {p.stem: p.name for p in out_dir.glob("*.html")}
         for code, item in reports.items():
