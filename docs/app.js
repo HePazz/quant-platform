@@ -12,6 +12,7 @@
   // 刚在页面上保存过的自选股：数据文件只在定时运行后才更新，刷新后仍按
   // 保存的这份显示，避免看起来像没保存成功。等数据追上后自动作废。
   var LS_WATCHLIST = 'qp_saved_watchlist';
+  var LS_WATCHLIST_NAMES = 'qp_saved_watchlist_names';
 
   /* 策略英文 key → 中文名（取自上游 AlphaSift strategies/README.md 的官方名称；
    * 新策略不在表里时回退显示原 key）。 */
@@ -74,6 +75,15 @@
         else state.watchlist = saved;
       }
     } catch (e) { /* 本地记录坏了就按数据里的名单显示 */ }
+    // 之前查到的名字先合并进来（数据里的优先），刷新后在数据追上之前也显示得出。
+    try {
+      var savedNames = JSON.parse(localStorage.getItem(LS_WATCHLIST_NAMES) || 'null');
+      if (savedNames && typeof savedNames === 'object') {
+        Object.keys(savedNames).forEach(function (c) {
+          if (!state.watchlistNames[c] && typeof savedNames[c] === 'string') state.watchlistNames[c] = savedNames[c];
+        });
+      }
+    } catch (e) {}
     $('sample-banner').hidden = !data.sample;
     var gen = data.generated_at ? new Date(data.generated_at) : null;
     setStatus(
@@ -280,9 +290,13 @@
 
   /* ---------------- 自选股管理 ---------------- */
 
-  /* 新加的代码在数据里还没有中文名：直接向新浪行情拉名字（JSONP 方式，
-   * script 标签不受跨域限制；返回是 GBK 编码，必须标 charset，否则名字乱码）。
-   * 拉不到就保持只显示代码，不报错。 */
+  /* 新加的代码在数据里还没有中文名，分三层补：
+   * 1. 本页已有数据（今日选股、研报）里找，不用联网，立刻就有；
+   * 2. 行情接口链：新浪 → 腾讯 → 东财（script 标签 JSONP，不受跨域限制，
+   *    都是 GBK 编码，必须标 charset，否则名字乱码）。新浪在他浏览器上
+   *    返回 Forbidden，所以只靠新浪不够；三家依次试，哪个通了用哪个。
+   * 3. 查到的名字记到 localStorage，刷新后在数据追上之前也显示得出。
+   * 哪个都拉不到就保持只显示代码，不报错。 */
   function marketPrefix(code) {
     var first = code.charAt(0);
     if (first === '6') return 'sh';
@@ -290,32 +304,112 @@
     return 'sz';
   }
 
+  function emSecid(code) {
+    var first = code.charAt(0);
+    if (first === '6') return '1.' + code;
+    if (code.slice(0, 2) === '43' || code.slice(0, 2) === '92') return '116.' + code;
+    return '0.' + code;
+  }
+
+  function saveWatchlistNames() {
+    try {
+      var keep = {};
+      state.watchlist.forEach(function (c) {
+        if (state.watchlistNames[c]) keep[c] = state.watchlistNames[c];
+      });
+      localStorage.setItem(LS_WATCHLIST_NAMES, JSON.stringify(keep));
+    } catch (e) {}
+  }
+
   function resolveWatchlistNames() {
     var missing = state.watchlist.filter(function (c) { return !state.watchlistNames[c]; });
     if (!missing.length) return;
-    var list = missing.map(function (c) { return marketPrefix(c) + c; }).join(',');
-    var script = document.createElement('script');
-    var done = false;
-    function finish() {
-      if (done) return;
-      done = true;
-      var changed = false;
-      missing.forEach(function (c) {
-        var raw = window['hq_str_' + marketPrefix(c) + c];
-        if (typeof raw === 'string') {
-          var name = raw.split(',')[0];
-          if (name) { state.watchlistNames[c] = name; changed = true; }
-        }
-      });
-      if (script.parentNode) script.parentNode.removeChild(script);
-      if (changed) renderWatchlist();
+    // 1. 本地数据：研报 + 今日选股
+    var changed = false;
+    missing = missing.filter(function (c) {
+      var name = '';
+      if (state.data && state.data.reports && state.data.reports[c]) name = state.data.reports[c].name || '';
+      if (!name && state.data && state.data.picks && state.data.picks.strategies) {
+        state.data.picks.strategies.some(function (s) {
+          return (s.picks || []).some(function (p) {
+            if (p.code === c) { name = p.name || ''; return true; }
+            return false;
+          });
+        });
+      }
+      if (name) { state.watchlistNames[c] = name; changed = true; return false; }
+      return true;
+    });
+    if (changed) { renderWatchlist(); saveWatchlistNames(); }
+    if (!missing.length) return;
+    // 2. 行情接口链：新浪（批量）→ 腾讯（批量）→ 东财（逐只）
+    var queue = missing.slice();
+    var attempt = 0;
+    function tryNext() {
+      if (!queue.length) return;
+      var source = attempt++;
+      if (source > 2) return;
+      if (source === 2) { tryEastmoney(0); return; }
+      var list = queue.slice();
+      var script = document.createElement('script');
+      var done = false;
+      function finish() {
+        if (done) return;
+        done = true;
+        if (script.parentNode) script.parentNode.removeChild(script);
+        var got = false;
+        list.forEach(function (c) {
+          var name = '';
+          if (source === 0) {
+            var raw = window['hq_str_' + marketPrefix(c) + c];
+            if (typeof raw === 'string') name = raw.split(',')[0];
+          } else {
+            var v = window['v_' + marketPrefix(c) + c];
+            if (typeof v === 'string') name = v.split('~')[1] || '';
+          }
+          if (name) { state.watchlistNames[c] = name; got = true; }
+        });
+        queue = queue.filter(function (c) { return !state.watchlistNames[c]; });
+        if (got) { renderWatchlist(); saveWatchlistNames(); }
+        if (queue.length) tryNext();
+      }
+      script.charset = 'gbk';
+      if (source === 0) {
+        script.src = 'https://hq.sinajs.cn/list=' + list.map(function (c) { return marketPrefix(c) + c; }).join(',');
+      } else {
+        script.src = 'https://qt.gtimg.cn/q=' + list.map(function (c) { return marketPrefix(c) + c; }).join(',');
+      }
+      script.onload = finish;
+      script.onerror = finish;
+      document.head.appendChild(script);
+      setTimeout(finish, 5000);
     }
-    script.charset = 'gbk';
-    script.src = 'https://hq.sinajs.cn/list=' + list;
-    script.onload = finish;
-    script.onerror = finish;
-    document.head.appendChild(script);
-    setTimeout(finish, 5000);
+    function tryEastmoney(i) {
+      if (i >= queue.length) return;
+      var c = queue[i];
+      var key = '__emcb_' + c;
+      var script = document.createElement('script');
+      var done = false;
+      window[key] = function (d) {
+        if (d && d.data && d.data.f58) state.watchlistNames[c] = d.data.f58;
+      };
+      function finish() {
+        if (done) return;
+        done = true;
+        if (script.parentNode) script.parentNode.removeChild(script);
+        try { delete window[key]; } catch (e) { window[key] = undefined; }
+        var got = !!state.watchlistNames[c];
+        if (got) { renderWatchlist(); saveWatchlistNames(); }
+        tryEastmoney(i + 1);
+      }
+      script.charset = 'gbk';
+      script.src = 'https://push2.eastmoney.com/api/qt/stock/get?secid=' + emSecid(c) + '&fields=f58,f57&cb=' + key;
+      script.onload = finish;
+      script.onerror = finish;
+      document.head.appendChild(script);
+      setTimeout(finish, 5000);
+    }
+    tryNext();
   }
 
   function renderWatchlist() {
