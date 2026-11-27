@@ -89,6 +89,7 @@
     renderPosition(data.position, data.risk);
     renderBacktest(data.backtest, data.factors);
     renderWatchlist();
+    resolveWatchlistNames();
   }
 
   function renderPicks(picks) {
@@ -279,6 +280,44 @@
 
   /* ---------------- 自选股管理 ---------------- */
 
+  /* 新加的代码在数据里还没有中文名：直接向新浪行情拉名字（JSONP 方式，
+   * script 标签不受跨域限制；返回是 GBK 编码，必须标 charset，否则名字乱码）。
+   * 拉不到就保持只显示代码，不报错。 */
+  function marketPrefix(code) {
+    var first = code.charAt(0);
+    if (first === '6') return 'sh';
+    if (first === '8' || first === '4') return 'bj';
+    return 'sz';
+  }
+
+  function resolveWatchlistNames() {
+    var missing = state.watchlist.filter(function (c) { return !state.watchlistNames[c]; });
+    if (!missing.length) return;
+    var list = missing.map(function (c) { return marketPrefix(c) + c; }).join(',');
+    var script = document.createElement('script');
+    var done = false;
+    function finish() {
+      if (done) return;
+      done = true;
+      var changed = false;
+      missing.forEach(function (c) {
+        var raw = window['hq_str_' + marketPrefix(c) + c];
+        if (typeof raw === 'string') {
+          var name = raw.split(',')[0];
+          if (name) { state.watchlistNames[c] = name; changed = true; }
+        }
+      });
+      if (script.parentNode) script.parentNode.removeChild(script);
+      if (changed) renderWatchlist();
+    }
+    script.charset = 'gbk';
+    script.src = 'https://hq.sinajs.cn/list=' + list;
+    script.onload = finish;
+    script.onerror = finish;
+    document.head.appendChild(script);
+    setTimeout(finish, 5000);
+  }
+
   function renderWatchlist() {
     var box = $('watchlist-list');
     box.innerHTML = state.watchlist.length
@@ -440,6 +479,7 @@
     if (state.watchlist.indexOf(code) === -1) state.watchlist.push(code);
     input.value = '';
     renderWatchlist();
+    resolveWatchlistNames();
   });
   $('btn-save-watchlist').addEventListener('click', saveWatchlist);
   $('btn-run-analysis').addEventListener('click', function () {
