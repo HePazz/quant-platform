@@ -269,12 +269,10 @@ def _summarise_summary(summary: dict | None, trade_date_fallback: str) -> dict |
         return None
     strategies = []
     trade_date = None
-    any_llm = False
     for run in runs:
         if not trade_date:
             trade_date = run.get("date") or None
         llm = bool(run.get("llm_ranked"))
-        any_llm = any_llm or llm
         picks = []
         for p in (run.get("picks") or []):
             if not isinstance(p, dict):
@@ -312,14 +310,16 @@ def _summarise_summary(summary: dict | None, trade_date_fallback: str) -> dict |
         return None
     artifacts = summary.get("artifacts") or {}
     reason = (artifacts.get("report") or {}).get("reason", "")
-    ai_brief = ""
-    if not any_llm:
-        ai_brief = "纯规则选股：本次未做 AI 复核"
-        if reason == "cn_daily_pack_unavailable":
-            ai_brief += "（每日数据包不可用）。"
-        else:
-            ai_brief += "。"
-        ai_brief += "风险与入选理由为规则版，AI 复核后会被覆盖。"
+    # summary 路径只在没有 report.json 时走，说明 AI 复核报告没产出，
+    # 简报必须写规则版原因，不能留空：llm_ranked 只表示筛选时 LLM
+    # 排过部分策略，它不产出简报和理由（今晚 6/16 个策略 llm_ranked
+    # 为真，ai_brief 却留空，就是这个条件写错了）。
+    ai_brief = "纯规则选股：AI 复核报告未产出"
+    if reason == "cn_daily_pack_unavailable":
+        ai_brief += "（每日数据包不可用）。"
+    else:
+        ai_brief += "。"
+    ai_brief += "风险与入选理由为规则版，AI 复核后会被覆盖。"
     return {
         "trade_date": trade_date or trade_date_fallback,
         "stale": False,
