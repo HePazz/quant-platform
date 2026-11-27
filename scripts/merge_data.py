@@ -3,6 +3,7 @@
 
 输入（由两个每日 job 写到 docs/data/ 下）：
   docs/data/picks/<YYYY-MM-DD>/report.json   AlphaSift daily-report 的 DailyReport JSON
+  docs/data/picks/<YYYY-MM-DD>/summary.json  AlphaSift screen 的汇总（report.json 缺失时兜底）
   docs/data/picks/<YYYY-MM-DD>/runs.json     AlphaSift 各策略 ScreenResult 汇总（可选）
   docs/data/reports/<YYYY-MM-DD>/           DSA 的 reports/ 原样拷贝（HTML 为主）
   docs/data/reports/<YYYY-MM-DD>/dsa.json   extract_dsa.py 解析出的结构化研报（可选）
@@ -102,6 +103,79 @@ def _summarise_picks(report: dict | None) -> dict | None:
     }
 
 
+def _summarise_summary(summary: dict | None, trade_date_fallback: str) -> dict | None:
+    """report.json 缺失时的兜底：把 AlphaSift screen 的 summary.json
+    映射成和 _summarise_picks 一样的形状。
+
+    summary.json 的结构（AlphaSift 实际写出的）：
+      latest.cn[]：每项是一次策略运行，含 strategy / market / date /
+        llm_ranked / picks[]；每个 pick 只有 rank / code / name /
+        industry / price / pe_ratio / pb_ratio / final_score，没有
+        screen_score / risk_level / risk_flags / concepts / ranking_reason，
+        这些字段按 _pick_fields 的约定留空（null/"" /[]）。
+    trade_date 优先取各 run 的 date（都一样，如 2026-11-26），取不到
+    再用 --date 参数。summary 里没有 ai_brief / market_regime /
+    announcement_risks：没有 AI 复核时 ai_brief 写一句原因说明，
+    前端照常显示，其余两项留空。"""
+    if not isinstance(summary, dict):
+        return None
+    latest = summary.get("latest") or {}
+    runs = [r for r in (latest.get("cn") or []) if isinstance(r, dict)]
+    if not runs:
+        return None
+    strategies = []
+    trade_date = None
+    any_llm = False
+    for run in runs:
+        if not trade_date:
+            trade_date = run.get("date") or None
+        llm = bool(run.get("llm_ranked"))
+        any_llm = any_llm or llm
+        picks = []
+        for p in (run.get("picks") or []):
+            if not isinstance(p, dict):
+                continue
+            picks.append(
+                _pick_fields(
+                    {
+                        "rank": p.get("rank"),
+                        "code": p.get("code"),
+                        "name": p.get("name"),
+                        "final_score": p.get("final_score"),
+                        "industry": p.get("industry"),
+                        "llm_ranked": llm,
+                    }
+                )
+            )
+        strategies.append(
+            {
+                "strategy": run.get("strategy", ""),
+                "market": run.get("market", "cn"),
+                "picks": picks,
+            }
+        )
+    if not strategies:
+        return None
+    artifacts = summary.get("artifacts") or {}
+    reason = (artifacts.get("report") or {}).get("reason", "")
+    ai_brief = ""
+    if not any_llm:
+        ai_brief = "纯规则选股：本次未做 AI 复核"
+        if reason == "cn_daily_pack_unavailable":
+            ai_brief += "（每日数据包不可用）。"
+        else:
+            ai_brief += "。"
+    return {
+        "trade_date": trade_date or trade_date_fallback,
+        "stale": False,
+        "stale_reason": "",
+        "ai_brief": ai_brief,
+        "market_regime": {},
+        "announcement_risks": [],
+        "strategies": strategies,
+    }
+
+
 def merge(data_dir: Path, trade_date: str) -> dict:
     """合并当日产物，返回 latest.json 的内容（不含 track/position 等段落，
     那些段落由各自的脚本原地更新——merge 只负责 picks/reports/market/watchlist，
@@ -115,8 +189,20 @@ def merge(data_dir: Path, trade_date: str) -> dict:
         latest = {}
 
     # --- AlphaSift 选股 ---
+    # 优先 report.json（daily-report 的 DailyReport，带 AI 复核）；
+    # 它缺失时（比如每日数据包不可用导致 daily-report 没跑出来）
+    # 兜底读 summary.json（screen 的汇总，纯规则打分）。
     report = load_json(picks_dir / "report.json")
     picks = _summarise_picks(report)
+    if picks is None:
+        summary = load_json(picks_dir / "summary.json")
+        picks = _summarise_summary(summary, trade_date)
+        if picks is not None:
+            log.info(
+                "选股无 report.json，改用 summary.json：%s，%d 个策略",
+                trade_date,
+                len(picks["strategies"]),
+            )
     if picks is not None:
         latest["picks"] = picks
         log.info("已并入选股：%s，%d 个策略", trade_date, len(picks["strategies"]))
