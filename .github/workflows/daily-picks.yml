@@ -6,7 +6,9 @@
 #   - daily-report 不加 --push，不配任何推送 Secret（本平台没有推送）；
 #   - 不发布 AlphaSift 自己的看板；前端是本仓库 docs/ 里统一的页面。
 #
-# 需要的 Secret：GEMINI_API_KEY（可选；没有就纯规则模式，有就加 AI 复核）。
+# 需要的 Secret：DEEPSEEK_API_KEY（可选；没有就纯规则模式，有就加 AI 复核）。
+# 2026-11-27 从 Gemini 切到 DeepSeek：Gemini 当天 503/超时连失败，
+# 选股 AI 复核改走 DeepSeek（deepseek-v4-flash，备选 deepseek-v4-pro）。
 # 绝不要加 NOTIFY_URLS / EMAIL_* / SERVERCHAN_* 等推送类 Secret。
 name: 每日选股（AlphaSift）
 
@@ -95,9 +97,9 @@ jobs:
       - name: 筛选（只跑 cn；有 Key 就加 AI 复核，没有就纯规则）
         working-directory: vendor/alphasift
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          LITELLM_MODEL: ${{ vars.LITELLM_MODEL || 'gemini/gemini-3.8-flash' }}
-          LITELLM_FALLBACK_MODELS: ${{ vars.LITELLM_FALLBACK_MODELS || 'gemini/gemini-4-hydrogen' }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          LITELLM_MODEL: ${{ vars.DEEPSEEK_MODEL || 'deepseek/deepseek-v4-flash' }}
+          LITELLM_FALLBACK_MODELS: ${{ vars.DEEPSEEK_FALLBACK_MODELS || 'deepseek/deepseek-v4-pro' }}
           LLM_CANDIDATE_CONTEXT_ENABLED: 'true'
           ALPHASIFT_PACK_DIR: ${{ github.workspace }}/pack
         run: |
@@ -122,9 +124,9 @@ jobs:
       - name: 生成日报 JSON/HTML（不推送）
         working-directory: vendor/alphasift
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          LITELLM_MODEL: ${{ vars.LITELLM_MODEL || 'gemini/gemini-3.8-flash' }}
-          LITELLM_FALLBACK_MODELS: ${{ vars.LITELLM_FALLBACK_MODELS || 'gemini/gemini-4-hydrogen' }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          LITELLM_MODEL: ${{ vars.DEEPSEEK_MODEL || 'deepseek/deepseek-v4-flash' }}
+          LITELLM_FALLBACK_MODELS: ${{ vars.DEEPSEEK_FALLBACK_MODELS || 'deepseek/deepseek-v4-pro' }}
         run: |
           # 注意：这里故意不加 --push，也没有 NOTIFY_URLS / EMAIL_* 等变量。
           # 本平台没有推送，报告只写进仓库，前端页面上看。
