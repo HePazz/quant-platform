@@ -103,6 +103,72 @@ def _summarise_picks(report: dict | None) -> dict | None:
     }
 
 
+# 策略中文名与选股逻辑短语（取自上游 AlphaSift strategies/README.md 的官方名称与说明；
+# 前端 app.js 里也有一份同样的中文名映射，改名时两处一起改）。
+STRATEGY_CN = {
+    "balanced_alpha": "均衡多因子",
+    "blue_chip_income": "蓝筹收益质量",
+    "capital_heat": "资金热度",
+    "dual_low": "双低选股",
+    "low_volatility_quality": "低波质量",
+    "momentum_quality": "趋势质量",
+    "oversold_reversal": "超跌反转",
+    "quality_value": "稳健价值",
+    "shrink_pullback": "缩量回踩",
+    "volume_breakout": "放量突破",
+}
+STRATEGY_PHRASE = {
+    "balanced_alpha": "多因子综合",
+    "blue_chip_income": "蓝筹红利",
+    "capital_heat": "资金活跃",
+    "dual_low": "低 PE + 低 PB",
+    "low_volatility_quality": "低波防守",
+    "momentum_quality": "趋势 + 质量",
+    "oversold_reversal": "超跌修复",
+    "quality_value": "估值合理",
+    "shrink_pullback": "均线回踩",
+    "volume_breakout": "放量突破",
+}
+
+
+def _rule_risk_level(pe) -> str:
+    """纯规则兜底的风险等级：只按 PE 定，简单透明。
+    PE>=50 高；30-50 中高；15-30 中；<15 低；缺 PE 默认中。
+    有 AI 复核（report.json）时不用它，AI 的 risk_level 优先。"""
+    try:
+        pe = float(pe)
+    except (TypeError, ValueError):
+        return "中"
+    if pe >= 50:
+        return "高"
+    if pe >= 30:
+        return "中高"
+    if pe >= 15:
+        return "中"
+    return "低"
+
+
+def _rule_reason(strategy: str, score, pe, pb) -> str:
+    """纯规则兜底的入选理由：只写能从数据里直接算出来的东西——
+    策略逻辑短语 + 综合评分 + PE/PB，不编基本面结论。
+    有 AI 复核（report.json）时不用它，AI 的 ranking_reason 优先。"""
+    phrase = STRATEGY_PHRASE.get(strategy) or STRATEGY_CN.get(strategy) or strategy
+    score_s = f"{score:.2f}" if isinstance(score, (int, float)) else "—"
+    text = f"{phrase}，综合评分 {score_s} 分"
+    vals = []
+    try:
+        vals.append(f"PE {float(pe):.1f}")
+    except (TypeError, ValueError):
+        pass
+    try:
+        vals.append(f"PB {float(pb):.2f}")
+    except (TypeError, ValueError):
+        pass
+    if vals:
+        text += "；" + "，".join(vals)
+    return text
+
+
 def _summarise_summary(summary: dict | None, trade_date_fallback: str) -> dict | None:
     """report.json 缺失时的兜底：把 AlphaSift screen 的 summary.json
     映射成和 _summarise_picks 一样的形状。
@@ -111,8 +177,11 @@ def _summarise_summary(summary: dict | None, trade_date_fallback: str) -> dict |
       latest.cn[]：每项是一次策略运行，含 strategy / market / date /
         llm_ranked / picks[]；每个 pick 只有 rank / code / name /
         industry / price / pe_ratio / pb_ratio / final_score，没有
-        screen_score / risk_level / risk_flags / concepts / ranking_reason，
-        这些字段按 _pick_fields 的约定留空（null/"" /[]）。
+        screen_score / risk_level / risk_flags / concepts / ranking_reason。
+    其中 risk_level / ranking_reason 不留空，改按规则版填：
+    风险只按 PE 定（见 _rule_risk_level），理由只写策略逻辑 + 评分 +
+    PE/PB（见 _rule_reason）。report.json 一回来（AI 复核产出），
+    merge 优先读它，AI 的值会把规则版覆盖掉。
     trade_date 优先取各 run 的 date（都一样，如 2026-11-26），取不到
     再用 --date 参数。summary 里没有 ai_brief / market_regime /
     announcement_risks：没有 AI 复核时 ai_brief 写一句原因说明，
@@ -135,18 +204,28 @@ def _summarise_summary(summary: dict | None, trade_date_fallback: str) -> dict |
         for p in (run.get("picks") or []):
             if not isinstance(p, dict):
                 continue
-            picks.append(
-                _pick_fields(
-                    {
-                        "rank": p.get("rank"),
-                        "code": p.get("code"),
-                        "name": p.get("name"),
-                        "final_score": p.get("final_score"),
-                        "industry": p.get("industry"),
-                        "llm_ranked": llm,
-                    }
-                )
+            f = _pick_fields(
+                {
+                    "rank": p.get("rank"),
+                    "code": p.get("code"),
+                    "name": p.get("name"),
+                    "final_score": p.get("final_score"),
+                    "industry": p.get("industry"),
+                    "llm_ranked": llm,
+                }
             )
+            # summary.json 里没有 risk_level / ranking_reason，按规则版填，
+            # 不留空；AI 复核的 report.json 回来后走另一条路，会覆盖这里。
+            if not f["risk_level"]:
+                f["risk_level"] = _rule_risk_level(p.get("pe_ratio"))
+            if not f["ranking_reason"]:
+                f["ranking_reason"] = _rule_reason(
+                    run.get("strategy", ""),
+                    f["final_score"],
+                    p.get("pe_ratio"),
+                    p.get("pb_ratio"),
+                )
+            picks.append(f)
         strategies.append(
             {
                 "strategy": run.get("strategy", ""),
@@ -165,6 +244,7 @@ def _summarise_summary(summary: dict | None, trade_date_fallback: str) -> dict |
             ai_brief += "（每日数据包不可用）。"
         else:
             ai_brief += "。"
+        ai_brief += "风险与入选理由为规则版，AI 复核后会被覆盖。"
     return {
         "trade_date": trade_date or trade_date_fallback,
         "stale": False,
