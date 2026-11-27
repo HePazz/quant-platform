@@ -180,10 +180,18 @@ def extract(reports_dir: Path, out_dir: Path, watchlist: list[str]) -> dict:
     reports: dict[str, dict] = {}
     market_review = ""
     if out_dir.is_dir():
+        # 注意：out_dir 里可能已有上一次运行写出的 dsa.json（本脚本自己
+        # 的输出），它不是上游报告——必须跳过，否则 _looks_like_report
+        # 会从它的 watchlist 里抓到第一只代码，造出一只有名无实的空
+        # 研报（2026-11-27 实测：002242 空占位就是这么来的）。
         for path in sorted(out_dir.glob("*.json")):
+            if path.name == "dsa.json":
+                continue
             data = load_json(path)
             if data is None:
                 continue
+            if isinstance(data, dict) and "reports" in data and "market_review" in data:
+                continue  # 同上：本脚本自己的输出格式，不是上游报告
             candidates = data if isinstance(data, list) else [data]
             for item in candidates:
                 parsed = _looks_like_report(item)
