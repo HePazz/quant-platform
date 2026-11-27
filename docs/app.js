@@ -10,6 +10,21 @@
   var LS_OWNER = 'qp_owner';
   var LS_REPO = 'qp_repo';
 
+  /* 策略英文 key → 中文名（取自上游 AlphaSift strategies/README.md 的官方名称；
+   * 新策略不在表里时回退显示原 key）。 */
+  var STRATEGY_NAMES = {
+    balanced_alpha: '均衡多因子',
+    blue_chip_income: '蓝筹收益质量',
+    capital_heat: '资金热度',
+    dual_low: '双低选股',
+    low_volatility_quality: '低波质量',
+    momentum_quality: '趋势质量',
+    oversold_reversal: '超跌反转',
+    quality_value: '稳健价值',
+    shrink_pullback: '缩量回踩',
+    volume_breakout: '放量突破',
+  };
+
   var state = {
     owner: localStorage.getItem(LS_OWNER) || 'HePazz',
     repo: localStorage.getItem(LS_REPO) || 'quant-platform',
@@ -82,7 +97,7 @@
             esc(p.name) + '</td><td>' + esc(p.final_score) + '</td><td>' + esc(p.industry || '') +
             '</td><td>' + esc(p.risk_level || '') + '</td><td>' + esc(p.ranking_reason || '') + '</td></tr>';
         }).join('');
-        return '<h3>' + esc(s.strategy) + '（' + (s.picks || []).length + ' 只）</h3>' +
+        return '<h3>' + esc(STRATEGY_NAMES[s.strategy] || s.strategy) + '（' + (s.picks || []).length + ' 只）</h3>' +
           '<table><thead><tr><th>#</th><th>代码 / 名称</th><th>得分</th><th>行业</th><th>风险</th><th>入选理由</th></tr></thead><tbody>' +
           rows + '</tbody></table>';
       }).join('');
