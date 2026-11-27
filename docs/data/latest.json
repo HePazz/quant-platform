@@ -1,19 +1,23 @@
 {
   "backtest": {
+    "trade_date": "2026-11-27",
+    "observations": 0,
+    "cost_round_trip_pct": 0.96,
     "cumulative_net_pct": null,
     "max_drawdown_pct": null,
-    "note": "示例数据：没有可回测的历史选股，暂无结果。",
-    "observations": 0,
-    "sharpe": null
+    "sharpe": null,
+    "mean_return_pct": null,
+    "note": "没有任何已实现收益数据，回测暂无结果。等 track-record 积累后再看。"
   },
   "factors": {
+    "trade_date": "2026-11-27",
+    "observations": 0,
     "ic": null,
     "icir": null,
-    "note": "示例数据：0 条带未来收益的样本，少于 20 条，不下结论。等 track-record 积累几周后再看。",
-    "observations": 0,
-    "verdict": "样本不足"
+    "verdict": "样本不足",
+    "note": "只有 0 条带未来收益的样本，少于 20 条，不下结论。等 track-record 积累几周后再看。"
   },
-  "generated_at": "2026-11-27T10:55:41+08:00",
+  "generated_at": "2026-11-27T11:11:06+08:00",
   "market": {
     "review": "🎯 大盘复盘\n2026-11-27 大盘复盘\n今日A股市场整体呈现小幅上涨态势，优先观察指数承接、成交额变化和板块持续性。\n一、盘面总览\n- 盘面信号：54/100（震荡，需观察）\n- 信号依据：主要指数平均涨跌幅 +1.01%\n- 操作建议：信号分化，控制仓位并等待量价确认。\n二、指数结构\n指数 最新 涨跌幅 开盘 最高 最低 振幅 成交额(亿)\n上证指数 3484.15 🟢 +0.21% 3482.38 3487.28 3467.41 0.57% 2983\n深证成指 10216.00 🟢 +1.31% 10121.14 10242.48 10075.83 1.65% 3607\n创业板指 2237.12 🟢 +2.16% 2202.82 2246.29 2199.23 2.15% 1728\n科创50 1201.73 🟢 +2.71% 1177.48 1205.25 1174.13 2.66% 383\n上证50 2744.93 🔴 -0.32% 2755.75 2755.75 2738.79 0.62% 440\n沪深300 3900.40 🔴 -0.00% 3909.08 3909.08 3883.80 0.65% 1649\n三、板块主线\n行业板块领涨 Top 5\n排名 行业板块 涨跌幅\n1 房屋建筑业 +6.98%\n2 计算机、通信和其他电子设备制造业 +5.88%\n3 仪器仪表制造业 +4.68%\n4 食品制造业 +4.40%\n5 机动车、电子产品和日用产品修理业 +4.28%\n行业板块领跌 Top 5\n排名 行业板块 涨跌幅\n1 渔业 -5.43%\n2 新闻和出版业 -2.15%\n3 农业 -1.92%\n4 煤炭开采和洗选业 -1.58%\n5 邮政业 -1.35%\n四、资金与情绪\n- 结合成交额和涨跌家数看，当前更适合等待确认，避免仅凭单一热点追高。\n五、消息催化\n- 暂无可用新闻时，应降低对题材持续性的确定性判断。\n六、策略框架\n- 趋势结构: 判断市场处于上升、震荡还是防守阶段。\n- 资金情绪: 识别短线风险偏好与情绪温度。\n- 主线板块: 提炼可交易主线与规避方向。\n七、风险提示\n- 市场有风险，投资需谨慎。以上数据仅供参考，不构成投资建议。"
   },
@@ -620,8 +624,379 @@
     ]
   },
   "position": {
-    "note": "示例数据：跟踪数据积累后才有仓位建议。",
-    "positions": {}
+    "trade_date": "2026-11-27",
+    "positions": {
+      "002008": {
+        "strategy": "balanced_alpha",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "002249": {
+        "strategy": "balanced_alpha",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "002245": {
+        "strategy": "balanced_alpha",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "300438": {
+        "strategy": "balanced_alpha",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "002407": {
+        "strategy": "balanced_alpha",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "601166": {
+        "strategy": "blue_chip_income",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "601668": {
+        "strategy": "blue_chip_income",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "000651": {
+        "strategy": "blue_chip_income",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "601600": {
+        "strategy": "blue_chip_income",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "600150": {
+        "strategy": "blue_chip_income",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "600498": {
+        "strategy": "capital_heat",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "002716": {
+        "strategy": "capital_heat",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "603360": {
+        "strategy": "capital_heat",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "688535": {
+        "strategy": "capital_heat",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "300136": {
+        "strategy": "capital_heat",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "601997": {
+        "strategy": "dual_low",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "002432": {
+        "strategy": "dual_low",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "600741": {
+        "strategy": "dual_low",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "601117": {
+        "strategy": "dual_low",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "002466": {
+        "strategy": "dual_low",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "600600": {
+        "strategy": "shrink_pullback",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "600886": {
+        "strategy": "low_volatility_quality",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "000100": {
+        "strategy": "quality_value",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "601000": {
+        "strategy": "low_volatility_quality",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "000538": {
+        "strategy": "low_volatility_quality",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "603236": {
+        "strategy": "momentum_quality",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "002048": {
+        "strategy": "oversold_reversal",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "000963": {
+        "strategy": "oversold_reversal",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "000949": {
+        "strategy": "oversold_reversal",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "603345": {
+        "strategy": "quality_value",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "300037": {
+        "strategy": "oversold_reversal",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "601216": {
+        "strategy": "quality_value",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "600398": {
+        "strategy": "quality_value",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "601939": {
+        "strategy": "shrink_pullback",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "600887": {
+        "strategy": "shrink_pullback",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "600941": {
+        "strategy": "shrink_pullback",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      },
+      "600177": {
+        "strategy": "shrink_pullback",
+        "suggested_pct": 0.0,
+        "win_rate": 0.45,
+        "payoff_ratio": 1.0,
+        "source": "先验默认值（无历史）",
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "note": "半凯利为 0：期望为负，建议不下注"
+      }
+    }
   },
   "reports": {
     "002242": {
@@ -642,30 +1017,337 @@
     }
   },
   "risk": {
+    "trade_date": "2026-11-27",
+    "per_stock": {
+      "002008": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "002249": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "002245": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "300438": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "002407": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "601166": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "601668": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "000651": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "601600": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "600150": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "600498": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "002716": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "603360": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "688535": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "300136": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "601997": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "002432": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "600741": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "601117": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "002466": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "600600": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "600886": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "000100": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "601000": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "000538": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "603236": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "002048": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "000963": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "000949": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "603345": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "300037": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "601216": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "600398": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "601939": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "600887": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "600941": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      },
+      "600177": {
+        "stop_loss_pct": 8.0,
+        "trailing_take_profit_pct": 5.0,
+        "reference_price": null,
+        "stop_loss_price": null,
+        "take_profit_trigger_price": null
+      }
+    },
     "account_checks": [
       {
-        "action": "账户从高点回撤 15% 就停手，全部检查一遍再决定",
+        "line": "账户回撤",
         "limit_pct": 15.0,
-        "line": "账户回撤"
+        "action": "账户从高点回撤 15% 就停手，全部检查一遍再决定"
       },
       {
-        "action": "当天亏到账户 2% 就收手，不加仓、不报复交易",
+        "line": "日内亏损",
         "limit_pct": 2.0,
-        "line": "日内亏损"
+        "action": "当天亏到账户 2% 就收手，不加仓、不报复交易"
       },
       {
-        "action": "单只股浮亏到成本 5% 就走，不补仓摊平",
+        "line": "单只最大亏损",
         "limit_pct": 5.0,
-        "line": "单只最大亏损"
+        "action": "单只股浮亏到成本 5% 就走，不补仓摊平"
       }
-    ]
+    ],
+    "note": "百分比线是硬性的；绝对价位只有拿到入场参考价时才算，没有就不编。"
   },
   "sample": false,
   "schema_version": 1,
   "track_record": {
-    "history": [],
-    "note": "示例数据：选股跑过、且到 T+5 后才有验收数字。",
-    "strategy_stats": {}
+    "trade_date": "2026-11-27",
+    "days": 1,
+    "history": [
+      {
+        "date": "2026-11-27",
+        "track_comparison": [],
+        "integrity": {
+          "algorithm": "sha256",
+          "runs_count": 10,
+          "runs_sha256": "808ee2ea1b863ee4ec5e9b59199656d4e502900bba50acdba2dd43e3acfe7d6e",
+          "files": {
+            "evaluation.json": "a3624433e78e4bdfe0cbf37654e7d9a07fb3c8c7e43a40f4e183cda1db65db10",
+            "days/2026-11-26.json": "f98fb890a7fc1d9e23bbd10abe221e1eeafd383b8c29512a8ab3e027181a45d7"
+          },
+          "manifest_path": "site/manifest.sha256"
+        },
+        "artifacts": {
+          "patterns": {
+            "exists": false,
+            "path": "site/patterns.json",
+            "trade_date": null,
+            "expected_trade_date": null,
+            "pack_is_stale": false,
+            "has_replay": false,
+            "reason": "cn_daily_pack_unavailable"
+          },
+          "report": {
+            "exists": false,
+            "path": "site/report.json",
+            "trade_date": null,
+            "expected_trade_date": null,
+            "pack_is_stale": false,
+            "reason": "cn_daily_pack_unavailable"
+          },
+          "daily_report_html": {
+            "exists": false,
+            "path": "site/daily_report.html",
+            "trade_date": null,
+            "expected_trade_date": null,
+            "pack_is_stale": false,
+            "reason": "cn_daily_pack_unavailable"
+          }
+        }
+      }
+    ],
+    "strategy_stats": {},
+    "note": "T+5/T+10/T+20 按 AlphaSift 口径（next_open 入场，扣除一字涨停）验收；没到期的记待验收。刚搭起来时历史为空，属正常。"
   },
   "trade_date": "2026-11-27",
   "watchlist": [
