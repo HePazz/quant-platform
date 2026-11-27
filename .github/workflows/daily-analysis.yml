@@ -8,6 +8,10 @@
 #   - 模型：2026-11-27 由 Gemini 切到 DeepSeek（Gemini 免费版当天连失败 3 次，
 #     503 过载 / 调用挂起超时）。上游文档：只填 DEEPSEEK_API_KEY 时默认用
 #     deepseek-v4-flash；这里再显式指定渠道 + 模型，避免和残留的 Gemini 配置抢。
+#   - 2026-11-27 13:18 补记：第一次 DeepSeek 运行三只全报 Authentication Fails。
+#     上游渠道模式的模板用的是 LLM_DEEPSEEK_API_KEY / LLM_DEEPSEEK_MODELS，
+#     只传 DEEPSEEK_API_KEY 可能进不了渠道——所以两个名字都传同一个 Secret，
+#     覆盖两种读法。
 #
 # 需要的 Secret：STOCK_LIST（必填，逗号分隔，如 002242,600519,000625）、
 #   DEEPSEEK_API_KEY（必填，没有它分析跑不起来；platform.deepseek.com 创建，
@@ -94,6 +98,8 @@ jobs:
         env:
           STOCK_LIST: ${{ secrets.STOCK_LIST }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          LLM_DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          LLM_DEEPSEEK_MODELS: 'deepseek-v4-flash'
           LLM_CHANNELS: 'deepseek'
           LITELLM_MODEL: ${{ vars.DEEPSEEK_MODEL || 'deepseek/deepseek-v4-flash' }}
           REPORT_TYPE: ${{ vars.REPORT_TYPE || 'simple' }}
