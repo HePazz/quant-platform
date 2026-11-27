@@ -34,10 +34,22 @@
     </div>
   </section>
 
+  <section class="card" id="sec-auction">
+    <h2>开盘复核 <span class="muted" id="auction-date"></span></h2>
+    <p class="muted">每天 09:21 拉集合竞价，复核昨晚选股在当前竞价下还值不值得入；约 09:23 出结果，留两分钟竞价时间。结论按当时竞价状态算，不是 09:25 的最终开盘价。</p>
+    <div id="auction-box"></div>
+  </section>
+
   <section class="card" id="sec-reports">
     <h2>自选股研报 <span class="muted" id="reports-date"></span></h2>
-    <p class="muted">DSA 对自选股的深度研报（Gemini）。点标题看完整 HTML 报告。</p>
+    <p class="muted">DSA 对自选股的深度研报（DeepSeek）。点标题看完整 HTML 报告。</p>
     <div id="reports-list"></div>
+  </section>
+
+  <section class="card" id="sec-intraday">
+    <h2>尾盘提醒 <span class="muted" id="intraday-date"></span></h2>
+    <p class="muted">每天 14:30 拉自选股盘中价，对照昨晚研报建议，提醒收盘前动手。</p>
+    <div id="intraday-box"></div>
   </section>
 
   <section class="card" id="sec-track">

@@ -31,6 +31,7 @@
     pat: localStorage.getItem(LS_PAT) || '',
     data: null,
     watchlist: [],
+    watchlistNames: {},
   };
 
   function $(id) { return document.getElementById(id); }
@@ -62,6 +63,7 @@
   function render(data) {
     state.data = data;
     state.watchlist = (data.watchlist || []).slice();
+    state.watchlistNames = data.watchlist_names || {};
     $('sample-banner').hidden = !data.sample;
     var gen = data.generated_at ? new Date(data.generated_at) : null;
     setStatus(
@@ -69,7 +71,9 @@
       (gen ? '更新于 ' + gen.toLocaleString('zh-CN', { hour12: false }) : '暂无数据')
     );
     renderPicks(data.picks);
+    renderAuction(data.auction);
     renderReports(data.reports, data.trade_date);
+    renderIntraday(data.intraday);
     renderTrack(data.track_record);
     renderMarket(data.market);
     renderPosition(data.position, data.risk);
@@ -110,6 +114,63 @@
     if (picks && picks.stale) {
       $('picks-note').textContent = '注意：数据包是旧的（' + esc(picks.stale_reason || 'stale') + '），今天的结果可能不全。';
     }
+  }
+
+  function renderAuction(auction) {
+    $('auction-date').textContent = auction && auction.date ? '· ' + auction.date : '';
+    var box = $('auction-box');
+    if (!auction) {
+      box.innerHTML = '<p class="muted">暂无竞价复核（交易日 09:21 才跑）。</p>';
+      return;
+    }
+    if (auction.market_open === false) {
+      box.innerHTML = '<p class="muted">今日休市，无竞价复核。</p>';
+      return;
+    }
+    var html = '';
+    if (auction.note) html += '<p class="brief">' + esc(auction.note) + '</p>';
+    if (auction.summary) html += '<p>' + esc(auction.summary) + '</p>';
+    if (auction.market_regime && auction.market_regime.note) {
+      html += '<p class="muted">' + esc(auction.market_regime.note) + '</p>';
+    }
+    var picks = auction.picks || [];
+    if (!picks.length) {
+      html += '<p class="muted">今日无竞价复核数据。</p>';
+    } else {
+      html += picks.map(function (p) {
+        return '<div class="report"><h3>' + esc(p.code) + ' ' + esc(p.name || '') + '</h3>' +
+          (p.verdict ? '<p><b>结论：</b>' + esc(p.verdict) + '</p>' : '') +
+          (p.reason ? '<p>' + esc(p.reason) + '</p>' : '') + '</div>';
+      }).join('');
+    }
+    box.innerHTML = html;
+  }
+
+  function renderIntraday(intraday) {
+    $('intraday-date').textContent = intraday && intraday.date ? '· ' + intraday.date : '';
+    var box = $('intraday-box');
+    if (!intraday) {
+      box.innerHTML = '<p class="muted">暂无尾盘提醒（交易日 14:30 才跑）。</p>';
+      return;
+    }
+    if (intraday.market_open === false) {
+      box.innerHTML = '<p class="muted">今日休市，无尾盘检查。</p>';
+      return;
+    }
+    var html = '';
+    if (intraday.summary) html += '<p>' + esc(intraday.summary) + '</p>';
+    var stocks = intraday.stocks || [];
+    if (!stocks.length) {
+      html += '<p class="muted">今日无尾盘检查数据。</p>';
+    } else {
+      html += stocks.map(function (s) {
+        var flags = (s.flags || []).length
+          ? ' <span class="score">' + esc(s.flags.join('、')) + '</span>' : '';
+        return '<div class="report"><h3>' + esc(s.code) + ' ' + esc(s.name || '') + flags + '</h3>' +
+          (s.reminder ? '<p>' + esc(s.reminder) + '</p>' : '') + '</div>';
+      }).join('');
+    }
+    box.innerHTML = html;
   }
 
   function renderReports(reports, tradeDate) {
@@ -163,11 +224,20 @@
     var box = $('position-list');
     var positions = (position && position.positions) || {};
     var codes = Object.keys(positions);
+    // 仓位表本身只存代码，名字从当日选股里找；找不到的只显示代码
+    var names = {};
+    var strategies = ((state.data && state.data.picks) || {}).strategies || [];
+    strategies.forEach(function (s) {
+      (s.picks || []).forEach(function (p) {
+        if (p.code && p.name && !names[p.code]) names[p.code] = p.name;
+      });
+    });
     box.innerHTML = codes.length
       ? '<table><thead><tr><th>代码</th><th>建议仓位</th><th>止损</th><th>跟随止盈</th><th>依据</th></tr></thead><tbody>' +
         codes.map(function (code) {
           var p = positions[code];
-          return '<tr><td><b>' + esc(code) + '</b></td><td>' + esc(p.suggested_pct) + '%</td><td>-' +
+          var label = names[code] ? code + ' ' + names[code] : code;
+          return '<tr><td><b>' + esc(label) + '</b></td><td>' + esc(p.suggested_pct) + '%</td><td>-' +
             esc(p.stop_loss_pct) + '%</td><td>+' + esc(p.trailing_take_profit_pct) + '%</td><td>' +
             esc(p.note || p.source || '') + '</td></tr>';
         }).join('') + '</tbody></table>'
@@ -203,7 +273,9 @@
     var box = $('watchlist-list');
     box.innerHTML = state.watchlist.length
       ? state.watchlist.map(function (code, i) {
-          return '<span class="chip">' + esc(code) +
+          var name = state.watchlistNames[code] || '';
+          var label = name ? code + ' ' + name : code;
+          return '<span class="chip">' + esc(label) +
             ' <button type="button" data-i="' + i + '" class="chip-x" title="移除">×</button></span>';
         }).join('')
       : '<p class="muted">自选股为空。</p>';
