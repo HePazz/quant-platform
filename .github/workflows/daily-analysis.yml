@@ -150,6 +150,23 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/data
           if git diff --cached --quiet; then echo "没有数据变化"; exit 0; fi
-          git pull --rebase origin "${GITHUB_REF_NAME}" || true
           git commit -m "data(analysis): ${{ steps.date.outputs.date }} 研报更新"
-          git push origin "HEAD:${GITHUB_REF_NAME}" || { git pull --rebase origin "${GITHUB_REF_NAME}"; git push origin "HEAD:${GITHUB_REF_NAME}"; }
+          # 推送；远程若已领先（另一趟先提交了），变基后重试。冲突的只会
+          # 是 merge 生成的三个文件（days/<日期>.json、history.json、
+          # latest.json），它们由 merge_data.py 从源数据全量生成——取远程
+          # 版、变基完成后再重跑一次 merge，重新生成一份正确的，amend
+          # 进提交后推送。源数据文件（reports/、picks/ 下的各日文件）
+          # 每趟各写各的，不会冲突。（2026-11-27 DSA #8 教训：add 之后
+          # 的 pull --rebase 永远是空操作，兜底 rebase 会在三个 JSON
+          # 上冲突停住，导致分析结果丢了。）
+          if ! git push origin "HEAD:${GITHUB_REF_NAME}"; then
+            git pull --rebase origin "${GITHUB_REF_NAME}" || true
+            git checkout --theirs docs/data/days docs/data/history.json docs/data/latest.json 2>/dev/null || true
+            git add docs/data/days docs/data/history.json docs/data/latest.json 2>/dev/null || true
+            GIT_EDITOR=true git rebase --continue 2>/dev/null || true
+            git rebase --abort 2>/dev/null || true
+            python scripts/merge_data.py --date "${{ steps.date.outputs.date }}"
+            git add docs/data
+            git commit --amend --no-edit
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
