@@ -13,67 +13,632 @@
     "observations": 0,
     "verdict": "样本不足"
   },
-  "generated_at": "2026-11-27T10:21:57+08:00",
+  "generated_at": "2026-11-27T10:55:41+08:00",
   "market": {
-    "review": "示例数据：首次运行后这里会显示 DSA 的大盘复盘。"
+    "review": "🎯 大盘复盘\n2026-11-27 大盘复盘\n今日A股市场整体呈现小幅上涨态势，优先观察指数承接、成交额变化和板块持续性。\n一、盘面总览\n- 盘面信号：54/100（震荡，需观察）\n- 信号依据：主要指数平均涨跌幅 +1.01%\n- 操作建议：信号分化，控制仓位并等待量价确认。\n二、指数结构\n指数 最新 涨跌幅 开盘 最高 最低 振幅 成交额(亿)\n上证指数 3484.15 🟢 +0.21% 3482.38 3487.28 3467.41 0.57% 2983\n深证成指 10216.00 🟢 +1.31% 10121.14 10242.48 10075.83 1.65% 3607\n创业板指 2237.12 🟢 +2.16% 2202.82 2246.29 2199.23 2.15% 1728\n科创50 1201.73 🟢 +2.71% 1177.48 1205.25 1174.13 2.66% 383\n上证50 2744.93 🔴 -0.32% 2755.75 2755.75 2738.79 0.62% 440\n沪深300 3900.40 🔴 -0.00% 3909.08 3909.08 3883.80 0.65% 1649\n三、板块主线\n行业板块领涨 Top 5\n排名 行业板块 涨跌幅\n1 房屋建筑业 +6.98%\n2 计算机、通信和其他电子设备制造业 +5.88%\n3 仪器仪表制造业 +4.68%\n4 食品制造业 +4.40%\n5 机动车、电子产品和日用产品修理业 +4.28%\n行业板块领跌 Top 5\n排名 行业板块 涨跌幅\n1 渔业 -5.43%\n2 新闻和出版业 -2.15%\n3 农业 -1.92%\n4 煤炭开采和洗选业 -1.58%\n5 邮政业 -1.35%\n四、资金与情绪\n- 结合成交额和涨跌家数看，当前更适合等待确认，避免仅凭单一热点追高。\n五、消息催化\n- 暂无可用新闻时，应降低对题材持续性的确定性判断。\n六、策略框架\n- 趋势结构: 判断市场处于上升、震荡还是防守阶段。\n- 资金情绪: 识别短线风险偏好与情绪温度。\n- 主线板块: 提炼可交易主线与规避方向。\n七、风险提示\n- 市场有风险，投资需谨慎。以上数据仅供参考，不构成投资建议。"
   },
   "picks": {
-    "ai_brief": "示例：这是仓库自带的示例数据，不是真实选股结果。第一次定时任务跑完后会被真实数据替换。",
-    "announcement_risks": [],
-    "market_regime": {},
+    "trade_date": "2026-11-26",
     "stale": false,
     "stale_reason": "",
+    "ai_brief": "纯规则选股：本次未做 AI 复核（每日数据包不可用）。",
+    "market_regime": {},
+    "announcement_risks": [],
     "strategies": [
       {
+        "strategy": "balanced_alpha",
         "market": "cn",
         "picks": [
           {
-            "code": "601997",
-            "concepts": [],
-            "final_score": 78,
-            "industry": "银行",
-            "llm_ranked": false,
-            "name": "贵阳银行",
             "rank": 1,
-            "ranking_reason": "示例数据：低估值 + 低波动入选。",
+            "code": "002008",
+            "name": "大族激光",
+            "final_score": 81.991,
+            "screen_score": null,
+            "risk_level": "",
             "risk_flags": [],
-            "risk_level": "中",
-            "screen_score": 80
+            "industry": "电子设备制造",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 2,
+            "code": "002249",
+            "name": "大洋电机",
+            "final_score": 78.7738,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "电机",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 3,
+            "code": "002245",
+            "name": "蔚蓝锂芯",
+            "final_score": 76.2297,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "其他电气设备",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 4,
+            "code": "300438",
+            "name": "鹏辉能源",
+            "final_score": 74.394,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "电源设备",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 5,
+            "code": "002407",
+            "name": "多氟多",
+            "final_score": 74.0685,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "化学新材料",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
           }
-        ],
-        "strategy": "dual_low"
+        ]
+      },
+      {
+        "strategy": "blue_chip_income",
+        "market": "cn",
+        "picks": [
+          {
+            "rank": 1,
+            "code": "601166",
+            "name": "兴业银行",
+            "final_score": 84.7918,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "银行",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 2,
+            "code": "601668",
+            "name": "中国建筑",
+            "final_score": 80.257,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "建筑施工",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 3,
+            "code": "000651",
+            "name": "格力电器",
+            "final_score": 67.1151,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "白色家电",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 4,
+            "code": "601600",
+            "name": "中国铝业",
+            "final_score": 65.5534,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "基本金属",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 5,
+            "code": "600150",
+            "name": "中国船舶",
+            "final_score": 62.5422,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "船舶与海洋装备",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          }
+        ]
+      },
+      {
+        "strategy": "capital_heat",
+        "market": "cn",
+        "picks": [
+          {
+            "rank": 1,
+            "code": "600498",
+            "name": "烽火通信",
+            "final_score": 75.0428,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "通信设备",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 2,
+            "code": "002716",
+            "name": "湖南白银",
+            "final_score": 71.3944,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "稀有金属",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 3,
+            "code": "603360",
+            "name": "百傲化学",
+            "final_score": 69.1186,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "化学制品",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 4,
+            "code": "688535",
+            "name": "华海诚科",
+            "final_score": 68.9059,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "化学新材料",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 5,
+            "code": "300136",
+            "name": "信维通信",
+            "final_score": 68.3874,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "电子设备制造",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          }
+        ]
+      },
+      {
+        "strategy": "dual_low",
+        "market": "cn",
+        "picks": [
+          {
+            "rank": 1,
+            "code": "601997",
+            "name": "贵阳银行",
+            "final_score": 81.9814,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "银行",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 2,
+            "code": "002432",
+            "name": "九安医疗",
+            "final_score": 81.3309,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "医疗器械",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 3,
+            "code": "600741",
+            "name": "华域汽车",
+            "final_score": 80.081,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "汽车",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 4,
+            "code": "601117",
+            "name": "中国化学",
+            "final_score": 78.9084,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "建筑施工",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 5,
+            "code": "002466",
+            "name": "天齐锂业",
+            "final_score": 73.4969,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "稀有金属",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          }
+        ]
+      },
+      {
+        "strategy": "low_volatility_quality",
+        "market": "cn",
+        "picks": [
+          {
+            "rank": 1,
+            "code": "600600",
+            "name": "青岛啤酒",
+            "final_score": 74.0853,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "饮料",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 2,
+            "code": "600886",
+            "name": "国投电力",
+            "final_score": 70.5331,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "电力",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 3,
+            "code": "000100",
+            "name": "TCL科技",
+            "final_score": 68.275,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "电子元件",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 4,
+            "code": "601000",
+            "name": "唐山港",
+            "final_score": 66.8584,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "港口航运",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 5,
+            "code": "000538",
+            "name": "云南白药",
+            "final_score": 57.6475,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "中药生产",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          }
+        ]
+      },
+      {
+        "strategy": "momentum_quality",
+        "market": "cn",
+        "picks": [
+          {
+            "rank": 1,
+            "code": "603236",
+            "name": "移远通信",
+            "final_score": 78.3707,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "通信设备",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          }
+        ]
+      },
+      {
+        "strategy": "oversold_reversal",
+        "market": "cn",
+        "picks": [
+          {
+            "rank": 1,
+            "code": "002048",
+            "name": "宁波华翔",
+            "final_score": 89.6121,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "汽车",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 2,
+            "code": "000963",
+            "name": "华东医药",
+            "final_score": 88.4691,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "医药商业",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 3,
+            "code": "000949",
+            "name": "新乡化纤",
+            "final_score": 85.9917,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "合成纤维及树脂",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 4,
+            "code": "603345",
+            "name": "安井食品",
+            "final_score": 85.4729,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "食品",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 5,
+            "code": "300037",
+            "name": "新宙邦",
+            "final_score": 85.3902,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "化学制品",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          }
+        ]
+      },
+      {
+        "strategy": "quality_value",
+        "market": "cn",
+        "picks": [
+          {
+            "rank": 1,
+            "code": "000100",
+            "name": "TCL科技",
+            "final_score": 73.816,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "电子元件",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 2,
+            "code": "600600",
+            "name": "青岛啤酒",
+            "final_score": 72.1148,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "饮料",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 3,
+            "code": "601216",
+            "name": "君正集团",
+            "final_score": 70.4437,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "化学原料",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 4,
+            "code": "600398",
+            "name": "海澜之家",
+            "final_score": 67.2099,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "服装家纺",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 5,
+            "code": "603345",
+            "name": "安井食品",
+            "final_score": 66.8142,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "食品",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          }
+        ]
+      },
+      {
+        "strategy": "shrink_pullback",
+        "market": "cn",
+        "picks": [
+          {
+            "rank": 1,
+            "code": "601939",
+            "name": "建设银行",
+            "final_score": 80.466,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "银行",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 2,
+            "code": "600887",
+            "name": "伊利股份",
+            "final_score": 80.227,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "食品",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 3,
+            "code": "600941",
+            "name": "中国移动",
+            "final_score": 72.6259,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "通信运营",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 4,
+            "code": "600600",
+            "name": "青岛啤酒",
+            "final_score": 70.9149,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "饮料",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          },
+          {
+            "rank": 5,
+            "code": "600177",
+            "name": "雅戈尔",
+            "final_score": 66.468,
+            "screen_score": null,
+            "risk_level": "",
+            "risk_flags": [],
+            "industry": "服装家纺",
+            "concepts": [],
+            "ranking_reason": "",
+            "llm_ranked": false
+          }
+        ]
+      },
+      {
+        "strategy": "volume_breakout",
+        "market": "cn",
+        "picks": []
       }
-    ],
-    "trade_date": "2026-11-27"
+    ]
   },
   "position": {
     "note": "示例数据：跟踪数据积累后才有仓位建议。",
     "positions": {}
   },
   "reports": {
-    "000625": {
-      "advice": "示例数据：首次运行后这里会显示 DSA 的研报结论。",
-      "code": "000625",
-      "html": null,
-      "name": "长安汽车",
-      "score": null,
-      "summary": "示例数据。"
-    },
     "002242": {
-      "advice": "示例数据：首次运行后这里会显示 DSA 的研报结论。",
       "code": "002242",
-      "html": null,
-      "name": "九阳股份",
+      "name": "",
       "score": null,
-      "summary": "示例数据。"
+      "advice": "",
+      "summary": "",
+      "html": null
     },
-    "600519": {
-      "advice": "示例数据：首次运行后这里会显示 DSA 的研报结论。",
-      "code": "600519",
-      "html": null,
-      "name": "贵州茅台",
-      "score": null,
-      "summary": "示例数据。"
+    "000625": {
+      "code": "000625",
+      "name": "长安汽车",
+      "score": 32,
+      "advice": "减仓/看空",
+      "summary": "空头排列且套牢盘极重，空仓严禁抄底，持仓趁反抽减仓",
+      "html": null
     }
   },
   "risk": {
