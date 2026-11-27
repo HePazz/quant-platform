@@ -77,11 +77,16 @@ jobs:
             cn-daily-pack-
 
       - name: 构建 A 股数据包（250 日，没有缓存时才全量构建）
+        env:
+          # pack build / pack info 不接受 --pack-dir 参数（该版本只认
+          # ALPHASIFT_PACK_DIR 环境变量）；之前传 --pack-dir 导致参数
+          # 解析 1 秒就退出，根本没开始拉数据，数据包一直建不起来。
+          ALPHASIFT_PACK_DIR: ${{ github.workspace }}/pack
         run: |
           if [ ! -f pack/manifest.json ]; then
-            alphasift pack build --days 250 --pack-dir pack || echo "::warning::数据包构建失败，本次改走逐只拉取"
+            alphasift pack build --days 250 || echo "::warning::数据包构建失败，本次改走逐只拉取"
           else
-            alphasift pack info --pack-dir pack || echo "::warning::数据包校验失败"
+            alphasift pack info || echo "::warning::数据包校验失败"
           fi
 
       - name: 保存数据包缓存
