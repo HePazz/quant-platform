@@ -1,13 +1,18 @@
 # 每日分析（DSA）：工作日 18:00 分析自选股，写进 docs/data/。
 #
 # 上游做法的改动点（相对 ZhuLinsen/daily_stock_analysis 的 00-daily-analysis.yml）：
-#   - 只传本平台要用的几个变量（STOCK_LIST、GEMINI_API_KEY、GEMINI_MODEL 等），
+#   - 只传本平台要用的几个变量（STOCK_LIST、DEEPSEEK_API_KEY 等），
 #     不传上游那几百个可选变量；尤其不传任何通知类变量；
 #   - main.py 必须加 --no-notify（双保险：就算以后有人误配了通知变量也不推送）；
 #   - 报告不只留 Artifacts，还要拷贝进 docs/data/reports/<日期>/ 供前端读。
+#   - 模型：2026-11-27 由 Gemini 切到 DeepSeek（Gemini 免费版当天连失败 3 次，
+#     503 过载 / 调用挂起超时）。上游文档：只填 DEEPSEEK_API_KEY 时默认用
+#     deepseek-v4-flash；这里再显式指定渠道 + 模型，避免和残留的 Gemini 配置抢。
 #
 # 需要的 Secret：STOCK_LIST（必填，逗号分隔，如 002242,600519,000625）、
-#   GEMINI_API_KEY（必填，没有它分析跑不起来）。
+#   DEEPSEEK_API_KEY（必填，没有它分析跑不起来；platform.deepseek.com 创建，
+#   注意 API 是预付费按量扣费，余额为 0 时调用报 402）。
+# GEMINI_API_KEY 仍留在仓库 Secrets 里（选股工作流还在用），但本工作流不再传它。
 # 绝不要加任何推送类 Secret。本平台没有推送。
 name: 每日分析（DSA）
 
@@ -79,8 +84,8 @@ jobs:
             echo "::error::没配 STOCK_LIST Secret。去 Settings → Secrets and variables → Actions 里加，值如 002242,600519,000625"
             exit 1
           fi
-          if [ -z "${{ secrets.GEMINI_API_KEY }}" ]; then
-            echo "::error::没配 GEMINI_API_KEY Secret。去 AI Studio 复制后贴到 Secrets 里"
+          if [ -z "${{ secrets.DEEPSEEK_API_KEY }}" ]; then
+            echo "::error::没配 DEEPSEEK_API_KEY Secret。去 platform.deepseek.com 复制后贴到 Secrets 里（注意先充值，余额为 0 会报 402）"
             exit 1
           fi
 
@@ -88,10 +93,9 @@ jobs:
         working-directory: vendor/dsa
         env:
           STOCK_LIST: ${{ secrets.STOCK_LIST }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-3.8-flash' }}
-          GEMINI_MODEL_FALLBACK: ${{ vars.GEMINI_MODEL_FALLBACK || 'gemini-4-hydrogen' }}
-          GEMINI_REQUEST_DELAY: '3.0'
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          LLM_CHANNELS: 'deepseek'
+          LITELLM_MODEL: ${{ vars.DEEPSEEK_MODEL || 'deepseek/deepseek-v4-flash' }}
           REPORT_TYPE: ${{ vars.REPORT_TYPE || 'simple' }}
           MARKET_REVIEW_ENABLED: 'true'
           MARKET_REVIEW_REGION: 'cn'
