@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-27",
+  "generated_at": "2026-11-27T14:29:50+08:00",
+  "market_open": true,
+  "report_date": "2026-11-27",
+  "stocks": [
+    {
+      "code": "002242",
+      "name": "九阳股份",
+      "price": 40.39,
+      "change_pct": -3.6,
+      "quote_time": "14:29",
+      "last_advice": "",
+      "last_score": null,
+      "last_summary": "",
+      "reminder": "暂无研报建议；今日下跌-3.60%，现价 40.39 元。今日下跌超 3%，注意波动。",
+      "flags": [
+        "今日下跌超 3%"
+      ],
+      "error": ""
+    },
+    {
+      "code": "600519",
+      "name": "贵州茅台",
+      "price": 1478.0,
+      "change_pct": 0.61,
+      "quote_time": "14:29",
+      "last_advice": "持有/看多",
+      "last_score": 59,
+      "last_summary": "持有观察：资金流数据缺失，买入结论缺少资金面确认，先按观察处理。",
+      "reminder": "昨晚研报：持有/看多（59 分）；今日上涨+0.61%，现价 1478.0 元。",
+      "flags": [],
+      "error": ""
+    },
+    {
+      "code": "000625",
+      "name": "长安汽车",
+      "price": 6.47,
+      "change_pct": 3.19,
+      "quote_time": "14:29",
+      "last_advice": "减仓/看空",
+      "last_score": 35,
+      "last_summary": "空头排列未改，反弹宜减仓，空仓勿追",
+      "reminder": "昨晚研报：减仓/看空（35 分）；今日上涨+3.19%，现价 6.47 元。上涨是减仓窗口。今日上涨超 3%，注意波动。",
+      "flags": [
+        "今日上涨超 3%"
+      ],
+      "error": ""
+    }
+  ],
+  "summary": "今日 3 只自选股；1 只昨晚建议减仓且今日上涨，收盘前可按研报执行减仓；2 只波动超 3%；1 只暂无研报。"
+}
