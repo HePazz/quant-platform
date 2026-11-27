@@ -1,0 +1,770 @@
+{
+  "strategy": "dual_low",
+  "market": "cn",
+  "strategy_version": "1.3",
+  "strategy_category": "value",
+  "snapshot_count": 5578,
+  "after_filter_count": 180,
+  "picks": [
+    {
+      "rank": 1,
+      "code": "601128",
+      "name": "常熟银行",
+      "final_score": 81.515,
+      "screen_score": 78.52498611111113,
+      "llm_score": 76.0,
+      "ranking_reason": "流动性95与稳定性77.5双高，换手2.76%属健康区间，无追高迹象",
+      "risk_summary": "小微客群集中度高，经济下行时不良暴露弹性大",
+      "price": 6.23,
+      "change_pct": -0.16,
+      "amount": 624992761.0,
+      "total_mv": 22728167343.0,
+      "turnover_rate": 2.76,
+      "volume_ratio": 1.62,
+      "pe_ratio": 5.06336113,
+      "pb_ratio": 0.67122499,
+      "industry": "银行",
+      "concepts": "",
+      "industry_rank": null,
+      "industry_change_pct": null,
+      "industry_heat_score": null,
+      "concept_heat_score": null,
+      "board_heat_score": null,
+      "board_heat_latest_score": null,
+      "board_heat_trend_score": null,
+      "board_heat_persistence_score": null,
+      "board_heat_cooling_score": null,
+      "board_heat_observations": null,
+      "board_heat_state": "",
+      "board_heat_summary": "",
+      "change_60d": null,
+      "signal_score": null,
+      "ma_bullish": null,
+      "price_above_ma20": null,
+      "macd_status": "",
+      "rsi_status": "",
+      "breakout_20d_pct": null,
+      "range_20d_pct": null,
+      "volume_ratio_20d": null,
+      "body_pct": null,
+      "pullback_to_ma20_pct": null,
+      "consolidation_days_20d": null,
+      "volatility_20d_pct": null,
+      "max_drawdown_20d_pct": null,
+      "atr_20_pct": null,
+      "daily_quality_score": null,
+      "daily_quality_flags": "",
+      "daily_source": "",
+      "factor_scores": {
+        "value": 81.8819,
+        "liquidity": 95.0,
+        "momentum": 55.98,
+        "reversal": 63.08,
+        "activity": 82.9832,
+        "stability": 77.52,
+        "size": 70.0,
+        "theme_heat": 50.0,
+        "topic_alignment": 50.0
+      },
+      "llm_confidence": 0.68,
+      "llm_sector": "银行",
+      "llm_theme": "小微农商行高成长＋成交活跃度适中",
+      "llm_tags": [
+        "价值",
+        "流动性",
+        "成长",
+        "sector:银行",
+        "theme:小微农商行高成长＋成交活跃度适中",
+        "style_fit:兼顾低估值与 Liquidity 的均衡型价值"
+      ],
+      "llm_catalysts": [
+        "三季报息差企稳",
+        "小微投放季节性回暖"
+      ],
+      "llm_risks": [],
+      "llm_thesis": "PE5.06、PB0.67，流动性因子95为银行内最优，量比1.62未过热，小微贷款定价能力强",
+      "llm_style_fit": "兼顾低估值与 Liquidity 的均衡型价值",
+      "llm_watch_items": [
+        "不良生成率",
+        "量比是否骤升"
+      ],
+      "llm_invalidators": [
+        "单日换手骤升破位或小微不良加速"
+      ],
+      "risk_score": 0.0,
+      "risk_level": "low",
+      "risk_penalty": 0.0,
+      "risk_flags": [],
+      "excluded_by_risk": false,
+      "portfolio_penalty": 0.0,
+      "portfolio_flags": [],
+      "post_analysis_status": {
+        "scorecard": "completed"
+      },
+      "post_analysis_summaries": {
+        "scorecard": "本地后置评分: value_quality"
+      },
+      "post_analysis_score_deltas": {
+        "scorecard": 4.0
+      },
+      "post_analysis_results": {
+        "scorecard": {
+          "risk_flags": [],
+          "tags": [
+            "value_quality"
+          ]
+        }
+      },
+      "post_analysis_tags": [
+        "value_quality"
+      ],
+      "dsa_context": {},
+      "dsa_news": [],
+      "dsa_analysis_summary": "",
+      "deep_analysis_status": "not_requested",
+      "deep_analysis_query_id": "",
+      "deep_analysis_summary": "",
+      "deep_analysis_error": "",
+      "deep_analysis_result": null,
+      "deep_analysis_signal_score": null,
+      "deep_analysis_sentiment_score": null,
+      "deep_analysis_operation_advice": "",
+      "deep_analysis_trend_prediction": "",
+      "deep_analysis_risk_flags": [],
+      "topic_alignment_status": "unassessed",
+      "topic_alignment_role": "none",
+      "topic_alignment_reason": "缺少题材或热点路线标签，无法评估对齐",
+      "matched_topics": [],
+      "unmatched_topics": []
+    },
+    {
+      "rank": 2,
+      "code": "600741",
+      "name": "华域汽车",
+      "final_score": 77.3853,
+      "screen_score": 74.30887361111111,
+      "llm_score": 72.0,
+      "ranking_reason": "非银方向中容量与稳定性最优，量能温和适合承接低估值修复",
+      "risk_summary": "下游整车价格战传导至零部件，反转因子44偏弱",
+      "price": 15.48,
+      "change_pct": 1.18,
+      "amount": 291502160.0,
+      "total_mv": 48804167272.0,
+      "turnover_rate": 0.6,
+      "volume_ratio": 0.95,
+      "pe_ratio": 7.13498192,
+      "pb_ratio": 0.71557189,
+      "industry": "汽车",
+      "concepts": "",
+      "industry_rank": null,
+      "industry_change_pct": null,
+      "industry_heat_score": null,
+      "concept_heat_score": null,
+      "board_heat_score": null,
+      "board_heat_latest_score": null,
+      "board_heat_trend_score": null,
+      "board_heat_persistence_score": null,
+      "board_heat_cooling_score": null,
+      "board_heat_observations": null,
+      "board_heat_state": "",
+      "board_heat_summary": "",
+      "change_60d": null,
+      "signal_score": null,
+      "ma_bullish": null,
+      "price_above_ma20": null,
+      "macd_status": "",
+      "rsi_status": "",
+      "breakout_20d_pct": null,
+      "range_20d_pct": null,
+      "volume_ratio_20d": null,
+      "body_pct": null,
+      "pullback_to_ma20_pct": null,
+      "consolidation_days_20d": null,
+      "volatility_20d_pct": null,
+      "max_drawdown_20d_pct": null,
+      "atr_20_pct": null,
+      "daily_quality_score": null,
+      "daily_quality_flags": "",
+      "daily_source": "",
+      "factor_scores": {
+        "value": 77.2111,
+        "liquidity": 75.0,
+        "momentum": 60.335,
+        "reversal": 44.22,
+        "activity": 81.4506,
+        "stability": 74.46,
+        "size": 97.2222,
+        "theme_heat": 50.0,
+        "topic_alignment": 50.0
+      },
+      "llm_confidence": 0.62,
+      "llm_sector": "汽车",
+      "llm_theme": "汽零龙头低估值＋高分红",
+      "llm_tags": [
+        "价值",
+        "防守",
+        "分红",
+        "sector:汽车",
+        "theme:汽零龙头低估值＋高分红",
+        "style_fit:大盘价值+分红，作为银行替代的分散配置"
+      ],
+      "llm_catalysts": [
+        "大客户新车型放量",
+        "分红方案"
+      ],
+      "llm_risks": [],
+      "llm_thesis": "PE7.13、PB0.72，市值容量97.2为池内最高，量比0.95无过热，现金流与分红稳定",
+      "llm_style_fit": "大盘价值+分红，作为银行替代的分散配置",
+      "llm_watch_items": [
+        "毛利率变化",
+        "整车排产数据"
+      ],
+      "llm_invalidators": [
+        "毛利率持续下滑或订单份额流失"
+      ],
+      "risk_score": 0.0,
+      "risk_level": "low",
+      "risk_penalty": 0.0,
+      "risk_flags": [],
+      "excluded_by_risk": false,
+      "portfolio_penalty": 0.0,
+      "portfolio_flags": [],
+      "post_analysis_status": {
+        "scorecard": "completed"
+      },
+      "post_analysis_summaries": {
+        "scorecard": "本地后置评分: value_quality"
+      },
+      "post_analysis_score_deltas": {
+        "scorecard": 4.0
+      },
+      "post_analysis_results": {
+        "scorecard": {
+          "risk_flags": [],
+          "tags": [
+            "value_quality"
+          ]
+        }
+      },
+      "post_analysis_tags": [
+        "value_quality"
+      ],
+      "dsa_context": {},
+      "dsa_news": [],
+      "dsa_analysis_summary": "",
+      "deep_analysis_status": "not_requested",
+      "deep_analysis_query_id": "",
+      "deep_analysis_summary": "",
+      "deep_analysis_error": "",
+      "deep_analysis_result": null,
+      "deep_analysis_signal_score": null,
+      "deep_analysis_sentiment_score": null,
+      "deep_analysis_operation_advice": "",
+      "deep_analysis_trend_prediction": "",
+      "deep_analysis_risk_flags": [],
+      "topic_alignment_status": "unassessed",
+      "topic_alignment_role": "none",
+      "topic_alignment_reason": "缺少题材或热点路线标签，无法评估对齐",
+      "matched_topics": [],
+      "unmatched_topics": []
+    },
+    {
+      "rank": 3,
+      "code": "601117",
+      "name": "中国化学",
+      "final_score": 76.1245,
+      "screen_score": 73.540875,
+      "llm_score": 75.0,
+      "ranking_reason": "在银行扎堆的候选池中提供行业分散，且估值与放量方向一致",
+      "risk_summary": "反转因子仅5.0说明已脱离低位，短期涨幅累积后有回撤压力",
+      "price": 7.02,
+      "change_pct": 3.39,
+      "amount": 445211907.0,
+      "total_mv": 42861035847.0,
+      "turnover_rate": 1.06,
+      "volume_ratio": 1.58,
+      "pe_ratio": 6.56563681,
+      "pb_ratio": 0.60384169,
+      "industry": "建筑施工",
+      "concepts": "",
+      "industry_rank": null,
+      "industry_change_pct": null,
+      "industry_heat_score": null,
+      "concept_heat_score": null,
+      "board_heat_score": null,
+      "board_heat_latest_score": null,
+      "board_heat_trend_score": null,
+      "board_heat_persistence_score": null,
+      "board_heat_cooling_score": null,
+      "board_heat_observations": null,
+      "board_heat_state": "",
+      "board_heat_summary": "",
+      "change_60d": null,
+      "signal_score": null,
+      "ma_bullish": null,
+      "price_above_ma20": null,
+      "macd_status": "",
+      "rsi_status": "",
+      "breakout_20d_pct": null,
+      "range_20d_pct": null,
+      "volume_ratio_20d": null,
+      "body_pct": null,
+      "pullback_to_ma20_pct": null,
+      "consolidation_days_20d": null,
+      "volatility_20d_pct": null,
+      "max_drawdown_20d_pct": null,
+      "atr_20_pct": null,
+      "daily_quality_score": null,
+      "daily_quality_flags": "",
+      "daily_source": "",
+      "factor_scores": {
+        "value": 81.7042,
+        "liquidity": 88.3333,
+        "momentum": 57.1045,
+        "reversal": 5.0,
+        "activity": 82.5168,
+        "stability": 67.83,
+        "size": 92.7778,
+        "theme_heat": 50.0,
+        "topic_alignment": 50.0
+      },
+      "llm_confidence": 0.66,
+      "llm_sector": "建筑施工",
+      "llm_theme": "化工工程订单＋PB不足0.6的央企修复",
+      "llm_tags": [
+        "价值",
+        "事件",
+        "趋势",
+        "sector:建筑施工",
+        "theme:化工工程订单＋PB不足0.6的央企修复",
+        "style_fit:低估值央企＋订单催化的进攻型价值"
+      ],
+      "llm_catalysts": [
+        "海外大额合同中标",
+        "化工实业投资"
+      ],
+      "llm_risks": [
+        "短期涨幅偏高"
+      ],
+      "llm_thesis": "PE6.57、PB0.60，涨3.39%伴随量比1.58放量，非银方向分散银行集中风险",
+      "llm_style_fit": "低估值央企＋订单催化的进攻型价值",
+      "llm_watch_items": [
+        "新签订单增速",
+        "成交量能否延续"
+      ],
+      "llm_invalidators": [
+        "放量后回落破位或订单不及预期"
+      ],
+      "risk_score": 10.0,
+      "risk_level": "low",
+      "risk_penalty": 1.2,
+      "risk_flags": [
+        "短期涨幅偏高"
+      ],
+      "excluded_by_risk": false,
+      "portfolio_penalty": 0.0,
+      "portfolio_flags": [],
+      "post_analysis_status": {
+        "scorecard": "completed"
+      },
+      "post_analysis_summaries": {
+        "scorecard": "本地后置评分: value_quality；风险: 短期涨幅偏高"
+      },
+      "post_analysis_score_deltas": {
+        "scorecard": 3.2
+      },
+      "post_analysis_results": {
+        "scorecard": {
+          "risk_flags": [
+            "短期涨幅偏高"
+          ],
+          "tags": [
+            "value_quality"
+          ]
+        }
+      },
+      "post_analysis_tags": [
+        "value_quality"
+      ],
+      "dsa_context": {},
+      "dsa_news": [],
+      "dsa_analysis_summary": "",
+      "deep_analysis_status": "not_requested",
+      "deep_analysis_query_id": "",
+      "deep_analysis_summary": "",
+      "deep_analysis_error": "",
+      "deep_analysis_result": null,
+      "deep_analysis_signal_score": null,
+      "deep_analysis_sentiment_score": null,
+      "deep_analysis_operation_advice": "",
+      "deep_analysis_trend_prediction": "",
+      "deep_analysis_risk_flags": [],
+      "topic_alignment_status": "unassessed",
+      "topic_alignment_role": "none",
+      "topic_alignment_reason": "缺少题材或热点路线标签，无法评估对齐",
+      "matched_topics": [],
+      "unmatched_topics": []
+    },
+    {
+      "rank": 4,
+      "code": "601233",
+      "name": "桐昆股份",
+      "final_score": 65.1715,
+      "screen_score": 69.61919861111112,
+      "llm_score": 66.0,
+      "ranking_reason": "资金关注度最高，但PB过1与反转5.0显示已在阶段高位，降一档",
+      "risk_summary": "化纤价格与油价波动大，短线追高风险显著",
+      "price": 20.11,
+      "change_pct": 3.18,
+      "amount": 897577916.0,
+      "total_mv": 47898243744.0,
+      "turnover_rate": 1.96,
+      "volume_ratio": 1.91,
+      "pe_ratio": 6.48512982,
+      "pb_ratio": 1.0658646,
+      "industry": "合成纤维及树脂",
+      "concepts": "",
+      "industry_rank": null,
+      "industry_change_pct": null,
+      "industry_heat_score": null,
+      "concept_heat_score": null,
+      "board_heat_score": null,
+      "board_heat_latest_score": null,
+      "board_heat_trend_score": null,
+      "board_heat_persistence_score": null,
+      "board_heat_cooling_score": null,
+      "board_heat_observations": null,
+      "board_heat_state": "",
+      "board_heat_summary": "",
+      "change_60d": null,
+      "signal_score": null,
+      "ma_bullish": null,
+      "price_above_ma20": null,
+      "macd_status": "",
+      "rsi_status": "",
+      "breakout_20d_pct": null,
+      "range_20d_pct": null,
+      "volume_ratio_20d": null,
+      "body_pct": null,
+      "pullback_to_ma20_pct": null,
+      "consolidation_days_20d": null,
+      "volatility_20d_pct": null,
+      "max_drawdown_20d_pct": null,
+      "atr_20_pct": null,
+      "daily_quality_score": null,
+      "daily_quality_flags": "",
+      "daily_source": "",
+      "factor_scores": {
+        "value": 63.6014,
+        "liquidity": 99.4444,
+        "momentum": 58.879,
+        "reversal": 5.0,
+        "activity": 84.2594,
+        "stability": 68.46,
+        "size": 96.1111,
+        "theme_heat": 50.0,
+        "topic_alignment": 50.0
+      },
+      "llm_confidence": 0.55,
+      "llm_sector": "化工",
+      "llm_theme": "涤纶长丝景气＋极高流动性",
+      "llm_tags": [
+        "趋势",
+        "周期",
+        "sector:化工",
+        "theme:涤纶长丝景气＋极高流动性",
+        "style_fit:偏动量，非低估修复首选"
+      ],
+      "llm_catalysts": [
+        "长丝价格上调",
+        "行业减产"
+      ],
+      "llm_risks": [
+        "PB偏高",
+        "追高风险"
+      ],
+      "llm_thesis": "流动性99.4、成交额近9亿，量比1.91，PE6.49但PB1.07偏高",
+      "llm_style_fit": "偏动量，非低估修复首选",
+      "llm_watch_items": [
+        "产销与价差",
+        "量比回落情况"
+      ],
+      "llm_invalidators": [
+        "长丝价差收窄或放量下跌"
+      ],
+      "risk_score": 20.0,
+      "risk_level": "low",
+      "risk_penalty": 2.4,
+      "risk_flags": [
+        "PB偏高",
+        "追高风险"
+      ],
+      "excluded_by_risk": false,
+      "portfolio_penalty": 0.0,
+      "portfolio_flags": [],
+      "post_analysis_status": {
+        "scorecard": "completed"
+      },
+      "post_analysis_summaries": {
+        "scorecard": "本地后置评分: 未发现额外加分项；风险: PB偏高、追高风险"
+      },
+      "post_analysis_score_deltas": {
+        "scorecard": -0.6
+      },
+      "post_analysis_results": {
+        "scorecard": {
+          "risk_flags": [
+            "PB偏高",
+            "追高风险"
+          ],
+          "tags": []
+        }
+      },
+      "post_analysis_tags": [],
+      "dsa_context": {},
+      "dsa_news": [],
+      "dsa_analysis_summary": "",
+      "deep_analysis_status": "not_requested",
+      "deep_analysis_query_id": "",
+      "deep_analysis_summary": "",
+      "deep_analysis_error": "",
+      "deep_analysis_result": null,
+      "deep_analysis_signal_score": null,
+      "deep_analysis_sentiment_score": null,
+      "deep_analysis_operation_advice": "",
+      "deep_analysis_trend_prediction": "",
+      "deep_analysis_risk_flags": [],
+      "topic_alignment_status": "unassessed",
+      "topic_alignment_role": "none",
+      "topic_alignment_reason": "缺少题材或热点路线标签，无法评估对齐",
+      "matched_topics": [],
+      "unmatched_topics": []
+    },
+    {
+      "rank": 5,
+      "code": "601717",
+      "name": "中创智领",
+      "final_score": 57.1501,
+      "screen_score": 67.91677777777778,
+      "llm_score": 51.0,
+      "ranking_reason": "仅有排名与涨幅信息，缺乏可审计催化",
+      "risk_summary": "煤机需求与下游资本开支周期，信息不足",
+      "price": 15.66,
+      "change_pct": 1.23,
+      "amount": 323476475.0,
+      "total_mv": 27959362904.0,
+      "turnover_rate": 1.36,
+      "volume_ratio": 1.12,
+      "pe_ratio": 8.98048921,
+      "pb_ratio": 1.0796438,
+      "industry": "专用设备",
+      "concepts": "",
+      "industry_rank": null,
+      "industry_change_pct": null,
+      "industry_heat_score": null,
+      "concept_heat_score": null,
+      "board_heat_score": null,
+      "board_heat_latest_score": null,
+      "board_heat_trend_score": null,
+      "board_heat_persistence_score": null,
+      "board_heat_cooling_score": null,
+      "board_heat_observations": null,
+      "board_heat_state": "",
+      "board_heat_summary": "",
+      "change_60d": null,
+      "signal_score": null,
+      "ma_bullish": null,
+      "price_above_ma20": null,
+      "macd_status": "",
+      "rsi_status": "",
+      "breakout_20d_pct": null,
+      "range_20d_pct": null,
+      "volume_ratio_20d": null,
+      "body_pct": null,
+      "pullback_to_ma20_pct": null,
+      "consolidation_days_20d": null,
+      "volatility_20d_pct": null,
+      "max_drawdown_20d_pct": null,
+      "atr_20_pct": null,
+      "daily_quality_score": null,
+      "daily_quality_flags": "",
+      "daily_source": "",
+      "factor_scores": {
+        "value": 59.1736,
+        "liquidity": 80.0,
+        "momentum": 60.4975,
+        "reversal": 43.17,
+        "activity": 84.958,
+        "stability": 74.31,
+        "size": 76.6667,
+        "theme_heat": 50.0,
+        "topic_alignment": 50.0
+      },
+      "llm_confidence": 0.36,
+      "llm_sector": "专用设备",
+      "llm_theme": "煤机装备估值修复",
+      "llm_tags": [
+        "价值",
+        "sector:专用设备",
+        "theme:煤机装备估值修复",
+        "style_fit:信息不足，仅列为观察"
+      ],
+      "llm_catalysts": [
+        "煤企设备更新"
+      ],
+      "llm_risks": [
+        "信息不足"
+      ],
+      "llm_thesis": "涨1.23%，装备制造低估值+分红",
+      "llm_style_fit": "信息不足，仅列为观察",
+      "llm_watch_items": [
+        "订单",
+        "分红率"
+      ],
+      "llm_invalidators": [
+        "下游资本开支下滑"
+      ],
+      "risk_score": 22.5,
+      "risk_level": "low",
+      "risk_penalty": 2.7,
+      "risk_flags": [
+        "low_llm_confidence",
+        "信息不足"
+      ],
+      "excluded_by_risk": false,
+      "portfolio_penalty": 0.0,
+      "portfolio_flags": [],
+      "post_analysis_status": {
+        "scorecard": "completed"
+      },
+      "post_analysis_summaries": {
+        "scorecard": "本地后置评分: 未发现额外加分项；风险: low_llm_confidence、信息不足"
+      },
+      "post_analysis_score_deltas": {
+        "scorecard": -1.3
+      },
+      "post_analysis_results": {
+        "scorecard": {
+          "risk_flags": [
+            "low_llm_confidence",
+            "信息不足"
+          ],
+          "tags": []
+        }
+      },
+      "post_analysis_tags": [],
+      "dsa_context": {},
+      "dsa_news": [],
+      "dsa_analysis_summary": "",
+      "deep_analysis_status": "not_requested",
+      "deep_analysis_query_id": "",
+      "deep_analysis_summary": "",
+      "deep_analysis_error": "",
+      "deep_analysis_result": null,
+      "deep_analysis_signal_score": null,
+      "deep_analysis_sentiment_score": null,
+      "deep_analysis_operation_advice": "",
+      "deep_analysis_trend_prediction": "",
+      "deep_analysis_risk_flags": [],
+      "topic_alignment_status": "unassessed",
+      "topic_alignment_role": "none",
+      "topic_alignment_reason": "缺少题材或热点路线标签，无法评估对齐",
+      "matched_topics": [],
+      "unmatched_topics": []
+    }
+  ],
+  "run_id": "b9d7a1866ed8-ai",
+  "track": "ai",
+  "llm_ranked": true,
+  "llm_market_view": "全市场普涨(中位+6.9%)而候选池近乎持平(+0.46%)、量比>=2为0，属低估值防守池被动滞涨，适合做相对排序而非追势",
+  "llm_selection_logic": "一看公告与资金是否干净（贵阳银行超大单净流入、长沙银行主力净流出8.4%降权）；二看低PE/PB与分红稳定度；三看非银分散与催化（中国化学、华域、物产中大）以对冲14只银行的同质集中",
+  "llm_portfolio_risk": "银行占比14/30、逻辑高度同质，行业层面已出现主力资金连续撤离银行报道，若板块资金继续流出则名单整体弹性不足；建筑施工与基本金属股短期涨幅偏高有回撤风险",
+  "llm_coverage": 1.0,
+  "llm_parse_errors": [],
+  "degradation": [
+    "Candidate context collected rows=12",
+    "LLM context truncated: trimmed=candidate_collected_context",
+    "LLM ranking prompt truncated: trimmed=candidate_details"
+  ],
+  "snapshot_source": "em_datacenter",
+  "source_errors": [],
+  "deep_analysis_requested": false,
+  "post_analyzers": [
+    "scorecard"
+  ],
+  "daily_enriched": false,
+  "daily_enrich_count": 0,
+  "risk_enabled": true,
+  "portfolio_diversity_enabled": true,
+  "portfolio_concentration_notes": [
+    "Portfolio concentration bucket=金融: penalized=15, codes=601997:银行(-4.0),601577:银行(-8.0),601665:银行(-12.0),002966:银行(-12.0),002807:银行(-12.0),+10 more",
+    "Portfolio concentration bucket=基建航运: penalized=5, codes=600704:物流(-4.0),000498:基础建设(-8.0),600970:建筑施工(-12.0),600820:基础建设(-12.0),600502:建筑施工(-12.0)",
+    "Portfolio concentration bucket=周期资源: penalized=3, codes=601677:基本金属(-4.0),600595:基本金属(-8.0),600219:基本金属(-12.0)",
+    "Portfolio hard cap bucket=金融: max=1, deferred=601997,601577,601665,002966,002807,603323,601963,600928,002839,002948,601187,601528,600908,000623,000415",
+    "Portfolio hard cap bucket=基建航运: max=1, deferred=600704,000498,600970,600820,600502",
+    "Portfolio hard cap bucket=周期资源: max=1, deferred=601677,600595,600219"
+  ],
+  "saved_path": "/home/runner/work/quant-platform/quant-platform/track/data/runs/b9d7a1866ed8-ai.json",
+  "created_at": "2026-11-27T11:18:47.982066+00:00",
+  "portfolio_topic_exposure": {
+    "专用设备": {
+      "count": 1,
+      "share_pct": 20.0,
+      "codes": [
+        "601717"
+      ],
+      "overconcentrated": false
+    },
+    "周期资源": {
+      "count": 1,
+      "share_pct": 20.0,
+      "codes": [
+        "601233"
+      ],
+      "overconcentrated": false
+    },
+    "基建航运": {
+      "count": 1,
+      "share_pct": 20.0,
+      "codes": [
+        "601117"
+      ],
+      "overconcentrated": false
+    },
+    "汽车": {
+      "count": 1,
+      "share_pct": 20.0,
+      "codes": [
+        "600741"
+      ],
+      "overconcentrated": false
+    },
+    "金融": {
+      "count": 1,
+      "share_pct": 20.0,
+      "codes": [
+        "601128"
+      ],
+      "overconcentrated": false
+    }
+  },
+  "overconcentrated_topics": [],
+  "replacement_candidates": [
+    {
+      "code": "000786",
+      "name": "北新建材",
+      "bucket": "地产链",
+      "sector": "建材",
+      "final_score": 58.0409
+    },
+    {
+      "code": "000719",
+      "name": "中原传媒",
+      "bucket": "平面媒体",
+      "sector": "平面媒体",
+      "final_score": 55.0373
+    }
+  ],
+  "daily_source_counts": {},
+  "daily_quality_flag_counts": {}
+}

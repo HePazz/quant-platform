@@ -1,0 +1,785 @@
+{
+  "strategy": "oversold_reversal",
+  "market": "cn",
+  "strategy_version": "1.1",
+  "strategy_category": "reversal",
+  "snapshot_count": 5578,
+  "after_filter_count": 36,
+  "picks": [
+    {
+      "rank": 1,
+      "code": "601077",
+      "name": "渝农商行",
+      "final_score": 83.3,
+      "screen_score": 81.83340555555556,
+      "llm_score": 72.0,
+      "ranking_reason": "反转98.96、PB0.56，唯一主力净流入（+1.03%、超大单+5.26%）且公告仅独董与关联交易，无雷。",
+      "risk_summary": "净息差压力与大行下沉挤压，区域集中度高。",
+      "price": 7.05,
+      "change_pct": -3.42,
+      "amount": 812655917.0,
+      "total_mv": 80066850000.0,
+      "turnover_rate": 1.3,
+      "volume_ratio": 1.8,
+      "pe_ratio": 6.17396936,
+      "pb_ratio": 0.55606559,
+      "industry": "银行",
+      "concepts": "",
+      "industry_rank": null,
+      "industry_change_pct": null,
+      "industry_heat_score": null,
+      "concept_heat_score": null,
+      "board_heat_score": null,
+      "board_heat_latest_score": null,
+      "board_heat_trend_score": null,
+      "board_heat_persistence_score": null,
+      "board_heat_cooling_score": null,
+      "board_heat_observations": null,
+      "board_heat_state": "",
+      "board_heat_summary": "",
+      "change_60d": null,
+      "signal_score": null,
+      "ma_bullish": null,
+      "price_above_ma20": null,
+      "macd_status": "",
+      "rsi_status": "",
+      "breakout_20d_pct": null,
+      "range_20d_pct": null,
+      "volume_ratio_20d": null,
+      "body_pct": null,
+      "pullback_to_ma20_pct": null,
+      "consolidation_days_20d": null,
+      "volatility_20d_pct": null,
+      "max_drawdown_20d_pct": null,
+      "atr_20_pct": null,
+      "daily_quality_score": null,
+      "daily_quality_flags": "",
+      "daily_source": "",
+      "factor_scores": {
+        "value": 80.4097,
+        "liquidity": 61.1111,
+        "momentum": 45.385,
+        "reversal": 98.96,
+        "activity": 80.5975,
+        "stability": 67.74,
+        "size": 75.0,
+        "theme_heat": 50.0,
+        "topic_alignment": 50.0
+      },
+      "llm_confidence": 0.72,
+      "llm_sector": "银行",
+      "llm_theme": "农商行+政策贴息",
+      "llm_tags": [
+        "价值",
+        "事件",
+        "防守",
+        "sector:银行",
+        "theme:农商行+政策贴息",
+        "style_fit:低估值+事件催化+资金流入，最契合本次相对排序口径。"
+      ],
+      "llm_catalysts": [
+        "首批贴息资金落地",
+        "120亿担保合作"
+      ],
+      "llm_risks": [],
+      "llm_thesis": "贴息资金到账惠及37家中小微、与三峡担保120亿合作，事件偏正面且资金净流入。",
+      "llm_style_fit": "低估值+事件催化+资金流入，最契合本次相对排序口径。",
+      "llm_watch_items": [
+        "主力资金连续性",
+        "贴息贷款投放进度"
+      ],
+      "llm_invalidators": [
+        "主力转为大额净流出",
+        "小微不良率抬升"
+      ],
+      "risk_score": 0.0,
+      "risk_level": "low",
+      "risk_penalty": 0.0,
+      "risk_flags": [],
+      "excluded_by_risk": false,
+      "portfolio_penalty": 0.0,
+      "portfolio_flags": [],
+      "post_analysis_status": {
+        "scorecard": "completed"
+      },
+      "post_analysis_summaries": {
+        "scorecard": "本地后置评分: value_quality、controlled_reversal"
+      },
+      "post_analysis_score_deltas": {
+        "scorecard": 5.4
+      },
+      "post_analysis_results": {
+        "scorecard": {
+          "risk_flags": [],
+          "tags": [
+            "value_quality",
+            "controlled_reversal"
+          ]
+        }
+      },
+      "post_analysis_tags": [
+        "value_quality",
+        "controlled_reversal"
+      ],
+      "dsa_context": {},
+      "dsa_news": [],
+      "dsa_analysis_summary": "",
+      "deep_analysis_status": "not_requested",
+      "deep_analysis_query_id": "",
+      "deep_analysis_summary": "",
+      "deep_analysis_error": "",
+      "deep_analysis_result": null,
+      "deep_analysis_signal_score": null,
+      "deep_analysis_sentiment_score": null,
+      "deep_analysis_operation_advice": "",
+      "deep_analysis_trend_prediction": "",
+      "deep_analysis_risk_flags": [],
+      "topic_alignment_status": "unassessed",
+      "topic_alignment_role": "none",
+      "topic_alignment_reason": "缺少题材或热点路线标签，无法评估对齐",
+      "matched_topics": [],
+      "unmatched_topics": []
+    },
+    {
+      "rank": 2,
+      "code": "600887",
+      "name": "伊利股份",
+      "final_score": 71.2046,
+      "screen_score": 75.84094666666668,
+      "llm_score": 58.0,
+      "ranking_reason": "流动性最优支撑修复，但PE20.8、价值仅27.8，估值不便宜。",
+      "risk_summary": "原奶价格与需求复苏偏弱，估值弹性有限。",
+      "price": 32.63,
+      "change_pct": -2.39,
+      "amount": 3928240680.0,
+      "total_mv": 206396518564.0,
+      "turnover_rate": 1.91,
+      "volume_ratio": 1.52,
+      "pe_ratio": 20.75831879,
+      "pb_ratio": 3.63119681,
+      "industry": "食品",
+      "concepts": "",
+      "industry_rank": null,
+      "industry_change_pct": null,
+      "industry_heat_score": null,
+      "concept_heat_score": null,
+      "board_heat_score": null,
+      "board_heat_latest_score": null,
+      "board_heat_trend_score": null,
+      "board_heat_persistence_score": null,
+      "board_heat_cooling_score": null,
+      "board_heat_observations": null,
+      "board_heat_state": "",
+      "board_heat_summary": "",
+      "change_60d": null,
+      "signal_score": null,
+      "ma_bullish": null,
+      "price_above_ma20": null,
+      "macd_status": "",
+      "rsi_status": "",
+      "breakout_20d_pct": null,
+      "range_20d_pct": null,
+      "volume_ratio_20d": null,
+      "body_pct": null,
+      "pullback_to_ma20_pct": null,
+      "consolidation_days_20d": null,
+      "volatility_20d_pct": null,
+      "max_drawdown_20d_pct": null,
+      "atr_20_pct": null,
+      "daily_quality_score": null,
+      "daily_quality_flags": "",
+      "daily_source": "",
+      "factor_scores": {
+        "value": 27.7917,
+        "liquidity": 100.0,
+        "momentum": 48.7325,
+        "reversal": 85.57,
+        "activity": 83.338,
+        "stability": 70.83,
+        "size": 88.8889,
+        "theme_heat": 50.0,
+        "topic_alignment": 50.0
+      },
+      "llm_confidence": 0.55,
+      "llm_sector": "食品",
+      "llm_theme": "消费龙头防御",
+      "llm_tags": [
+        "防守",
+        "流动性",
+        "sector:食品",
+        "theme:消费龙头防御",
+        "style_fit:流动性优先但价值拖累，排序居中。"
+      ],
+      "llm_catalysts": [
+        "旺季动销数据"
+      ],
+      "llm_risks": [],
+      "llm_thesis": "流动性因子100、成交39亿为池内最大，跌2.39%属可控。",
+      "llm_style_fit": "流动性优先但价值拖累，排序居中。",
+      "llm_watch_items": [
+        "季度收入增速"
+      ],
+      "llm_invalidators": [
+        "动销同比转负"
+      ],
+      "risk_score": 0.0,
+      "risk_level": "low",
+      "risk_penalty": 0.0,
+      "risk_flags": [],
+      "excluded_by_risk": false,
+      "portfolio_penalty": 0.0,
+      "portfolio_flags": [],
+      "post_analysis_status": {
+        "scorecard": "completed"
+      },
+      "post_analysis_summaries": {
+        "scorecard": "本地后置评分: controlled_reversal"
+      },
+      "post_analysis_score_deltas": {
+        "scorecard": 2.5
+      },
+      "post_analysis_results": {
+        "scorecard": {
+          "risk_flags": [],
+          "tags": [
+            "controlled_reversal"
+          ]
+        }
+      },
+      "post_analysis_tags": [
+        "controlled_reversal"
+      ],
+      "dsa_context": {},
+      "dsa_news": [],
+      "dsa_analysis_summary": "",
+      "deep_analysis_status": "not_requested",
+      "deep_analysis_query_id": "",
+      "deep_analysis_summary": "",
+      "deep_analysis_error": "",
+      "deep_analysis_result": null,
+      "deep_analysis_signal_score": null,
+      "deep_analysis_sentiment_score": null,
+      "deep_analysis_operation_advice": "",
+      "deep_analysis_trend_prediction": "",
+      "deep_analysis_risk_flags": [],
+      "topic_alignment_status": "unassessed",
+      "topic_alignment_role": "none",
+      "topic_alignment_reason": "缺少题材或热点路线标签，无法评估对齐",
+      "matched_topics": [],
+      "unmatched_topics": []
+    },
+    {
+      "rank": 3,
+      "code": "601766",
+      "name": "中国中车",
+      "final_score": 71.0376,
+      "screen_score": 74.22940777777778,
+      "llm_score": 60.0,
+      "ranking_reason": "非银行业的分散选择，动量与稳定性优于多数银行候选。",
+      "risk_summary": "订单交付节奏与铁路投资周期波动。",
+      "price": 6.66,
+      "change_pct": -1.48,
+      "amount": 1696929478.0,
+      "total_mv": 191134434826.0,
+      "turnover_rate": 1.05,
+      "volume_ratio": 1.48,
+      "pe_ratio": 14.10731785,
+      "pb_ratio": 1.08747245,
+      "industry": "铁路设备",
+      "concepts": "",
+      "industry_rank": null,
+      "industry_change_pct": null,
+      "industry_heat_score": null,
+      "concept_heat_score": null,
+      "board_heat_score": null,
+      "board_heat_latest_score": null,
+      "board_heat_trend_score": null,
+      "board_heat_persistence_score": null,
+      "board_heat_cooling_score": null,
+      "board_heat_observations": null,
+      "board_heat_state": "",
+      "board_heat_summary": "",
+      "change_60d": null,
+      "signal_score": null,
+      "ma_bullish": null,
+      "price_above_ma20": null,
+      "macd_status": "",
+      "rsi_status": "",
+      "breakout_20d_pct": null,
+      "range_20d_pct": null,
+      "volume_ratio_20d": null,
+      "body_pct": null,
+      "pullback_to_ma20_pct": null,
+      "consolidation_days_20d": null,
+      "volatility_20d_pct": null,
+      "max_drawdown_20d_pct": null,
+      "atr_20_pct": null,
+      "daily_quality_score": null,
+      "daily_quality_flags": "",
+      "daily_source": "",
+      "factor_scores": {
+        "value": 60.7361,
+        "liquidity": 86.1111,
+        "momentum": 51.69,
+        "reversal": 73.74,
+        "activity": 80.0605,
+        "stability": 73.56,
+        "size": 83.3333,
+        "theme_heat": 50.0,
+        "topic_alignment": 50.0
+      },
+      "llm_confidence": 0.6,
+      "llm_sector": "铁路设备",
+      "llm_theme": "装备制造防守",
+      "llm_tags": [
+        "价值",
+        "防守",
+        "趋势",
+        "sector:铁路设备",
+        "theme:装备制造防守",
+        "style_fit:提供行业分散，降低名单银行集中度。"
+      ],
+      "llm_catalysts": [
+        "设备更新招标"
+      ],
+      "llm_risks": [],
+      "llm_thesis": "PE14.1、PB1.09，动量51.7居前，跌1.48%抗跌且成交17亿。",
+      "llm_style_fit": "提供行业分散，降低名单银行集中度。",
+      "llm_watch_items": [
+        "新签订单公告"
+      ],
+      "llm_invalidators": [
+        "订单增速转负"
+      ],
+      "risk_score": 0.0,
+      "risk_level": "low",
+      "risk_penalty": 0.0,
+      "risk_flags": [],
+      "excluded_by_risk": false,
+      "portfolio_penalty": 0.0,
+      "portfolio_flags": [],
+      "post_analysis_status": {
+        "scorecard": "completed"
+      },
+      "post_analysis_summaries": {
+        "scorecard": "本地后置评分: controlled_reversal"
+      },
+      "post_analysis_score_deltas": {
+        "scorecard": 2.5
+      },
+      "post_analysis_results": {
+        "scorecard": {
+          "risk_flags": [],
+          "tags": [
+            "controlled_reversal"
+          ]
+        }
+      },
+      "post_analysis_tags": [
+        "controlled_reversal"
+      ],
+      "dsa_context": {},
+      "dsa_news": [],
+      "dsa_analysis_summary": "",
+      "deep_analysis_status": "not_requested",
+      "deep_analysis_query_id": "",
+      "deep_analysis_summary": "",
+      "deep_analysis_error": "",
+      "deep_analysis_result": null,
+      "deep_analysis_signal_score": null,
+      "deep_analysis_sentiment_score": null,
+      "deep_analysis_operation_advice": "",
+      "deep_analysis_trend_prediction": "",
+      "deep_analysis_risk_flags": [],
+      "topic_alignment_status": "unassessed",
+      "topic_alignment_role": "none",
+      "topic_alignment_reason": "缺少题材或热点路线标签，无法评估对齐",
+      "matched_topics": [],
+      "unmatched_topics": []
+    },
+    {
+      "rank": 4,
+      "code": "600941",
+      "name": "中国移动",
+      "final_score": 67.1621,
+      "screen_score": 80.43684222222223,
+      "llm_score": 46.0,
+      "ranking_reason": "PE17.9、价值仅48.0，估值端无优势，跌幅又居前，优先度下降。",
+      "risk_summary": "高股息资产被资金切换抛售，回撤可能延续。",
+      "price": 105.49,
+      "change_pct": -3.82,
+      "amount": 2219727695.0,
+      "total_mv": 2289370460416.0,
+      "turnover_rate": 2.32,
+      "volume_ratio": 1.6,
+      "pe_ratio": 17.89409458,
+      "pb_ratio": 1.63996193,
+      "industry": "通信运营",
+      "concepts": "",
+      "industry_rank": null,
+      "industry_change_pct": null,
+      "industry_heat_score": null,
+      "concept_heat_score": null,
+      "board_heat_score": null,
+      "board_heat_latest_score": null,
+      "board_heat_trend_score": null,
+      "board_heat_persistence_score": null,
+      "board_heat_cooling_score": null,
+      "board_heat_observations": null,
+      "board_heat_state": "",
+      "board_heat_summary": "",
+      "change_60d": null,
+      "signal_score": null,
+      "ma_bullish": null,
+      "price_above_ma20": null,
+      "macd_status": "",
+      "rsi_status": "",
+      "breakout_20d_pct": null,
+      "range_20d_pct": null,
+      "volume_ratio_20d": null,
+      "body_pct": null,
+      "pullback_to_ma20_pct": null,
+      "consolidation_days_20d": null,
+      "volatility_20d_pct": null,
+      "max_drawdown_20d_pct": null,
+      "atr_20_pct": null,
+      "daily_quality_score": null,
+      "daily_quality_flags": "",
+      "daily_source": "",
+      "factor_scores": {
+        "value": 48.0139,
+        "liquidity": 88.8889,
+        "momentum": 44.085,
+        "reversal": 95.84,
+        "activity": 85.177,
+        "stability": 66.54,
+        "size": 97.2222,
+        "theme_heat": 50.0,
+        "topic_alignment": 50.0
+      },
+      "llm_confidence": 0.5,
+      "llm_sector": "通信运营",
+      "llm_theme": "运营商防御",
+      "llm_tags": [
+        "防守",
+        "sector:通信运营",
+        "theme:运营商防御",
+        "style_fit:反转强但估值缺乏保护，中下游。"
+      ],
+      "llm_catalysts": [
+        "算力资本开支落地"
+      ],
+      "llm_risks": [
+        "估值不便宜"
+      ],
+      "llm_thesis": "市值容量97.2、反转95.8，跌幅3.82%属超跌。",
+      "llm_style_fit": "反转强但估值缺乏保护，中下游。",
+      "llm_watch_items": [
+        "主力资金流向"
+      ],
+      "llm_invalidators": [
+        "成交额缩量下跌"
+      ],
+      "risk_score": 10.0,
+      "risk_level": "low",
+      "risk_penalty": 1.2,
+      "risk_flags": [
+        "估值不便宜"
+      ],
+      "excluded_by_risk": false,
+      "portfolio_penalty": 0.0,
+      "portfolio_flags": [],
+      "post_analysis_status": {
+        "scorecard": "completed"
+      },
+      "post_analysis_summaries": {
+        "scorecard": "本地后置评分: controlled_reversal；风险: 估值不便宜"
+      },
+      "post_analysis_score_deltas": {
+        "scorecard": 1.7
+      },
+      "post_analysis_results": {
+        "scorecard": {
+          "risk_flags": [
+            "估值不便宜"
+          ],
+          "tags": [
+            "controlled_reversal"
+          ]
+        }
+      },
+      "post_analysis_tags": [
+        "controlled_reversal"
+      ],
+      "dsa_context": {},
+      "dsa_news": [],
+      "dsa_analysis_summary": "",
+      "deep_analysis_status": "not_requested",
+      "deep_analysis_query_id": "",
+      "deep_analysis_summary": "",
+      "deep_analysis_error": "",
+      "deep_analysis_result": null,
+      "deep_analysis_signal_score": null,
+      "deep_analysis_sentiment_score": null,
+      "deep_analysis_operation_advice": "",
+      "deep_analysis_trend_prediction": "",
+      "deep_analysis_risk_flags": [],
+      "topic_alignment_status": "unassessed",
+      "topic_alignment_role": "none",
+      "topic_alignment_reason": "缺少题材或热点路线标签，无法评估对齐",
+      "matched_topics": [],
+      "unmatched_topics": []
+    },
+    {
+      "rank": 5,
+      "code": "600060",
+      "name": "海信视像",
+      "final_score": 63.0961,
+      "screen_score": 70.99356416666667,
+      "llm_score": 50.0,
+      "ranking_reason": "反转强但流动性仅38.9、成交5.09亿，支撑力不足。",
+      "risk_summary": "面板价格波动侵蚀毛利。",
+      "price": 26.45,
+      "change_pct": -2.79,
+      "amount": 509485297.0,
+      "total_mv": 34516516118.0,
+      "turnover_rate": 1.48,
+      "volume_ratio": 1.77,
+      "pe_ratio": 12.92994263,
+      "pb_ratio": 1.55299932,
+      "industry": "视听器材",
+      "concepts": "",
+      "industry_rank": null,
+      "industry_change_pct": null,
+      "industry_heat_score": null,
+      "concept_heat_score": null,
+      "board_heat_score": null,
+      "board_heat_latest_score": null,
+      "board_heat_trend_score": null,
+      "board_heat_persistence_score": null,
+      "board_heat_cooling_score": null,
+      "board_heat_observations": null,
+      "board_heat_state": "",
+      "board_heat_summary": "",
+      "change_60d": null,
+      "signal_score": null,
+      "ma_bullish": null,
+      "price_above_ma20": null,
+      "macd_status": "",
+      "rsi_status": "",
+      "breakout_20d_pct": null,
+      "range_20d_pct": null,
+      "volume_ratio_20d": null,
+      "body_pct": null,
+      "pullback_to_ma20_pct": null,
+      "consolidation_days_20d": null,
+      "volatility_20d_pct": null,
+      "max_drawdown_20d_pct": null,
+      "atr_20_pct": null,
+      "daily_quality_score": null,
+      "daily_quality_flags": "",
+      "daily_source": "",
+      "factor_scores": {
+        "value": 55.4792,
+        "liquidity": 38.8889,
+        "momentum": 47.4325,
+        "reversal": 90.77,
+        "activity": 81.3816,
+        "stability": 69.63,
+        "size": 63.8889,
+        "theme_heat": 50.0,
+        "topic_alignment": 50.0
+      },
+      "llm_confidence": 0.5,
+      "llm_sector": "视听器材",
+      "llm_theme": "面板成本改善",
+      "llm_tags": [
+        "反转",
+        "防守",
+        "sector:视听器材",
+        "theme:面板成本改善",
+        "style_fit:反转强而流动性弱，居中下游。"
+      ],
+      "llm_catalysts": [
+        "面板价格企稳"
+      ],
+      "llm_risks": [
+        "流动性偏薄"
+      ],
+      "llm_thesis": "反转90.8、量比1.77，跌2.79%。",
+      "llm_style_fit": "反转强而流动性弱，居中下游。",
+      "llm_watch_items": [
+        "面板价格"
+      ],
+      "llm_invalidators": [
+        "成交额跌破5亿"
+      ],
+      "risk_score": 10.0,
+      "risk_level": "low",
+      "risk_penalty": 1.2,
+      "risk_flags": [
+        "流动性偏薄"
+      ],
+      "excluded_by_risk": false,
+      "portfolio_penalty": 0.0,
+      "portfolio_flags": [],
+      "post_analysis_status": {
+        "scorecard": "completed"
+      },
+      "post_analysis_summaries": {
+        "scorecard": "本地后置评分: controlled_reversal；风险: 流动性偏薄"
+      },
+      "post_analysis_score_deltas": {
+        "scorecard": 1.7
+      },
+      "post_analysis_results": {
+        "scorecard": {
+          "risk_flags": [
+            "流动性偏薄"
+          ],
+          "tags": [
+            "controlled_reversal"
+          ]
+        }
+      },
+      "post_analysis_tags": [
+        "controlled_reversal"
+      ],
+      "dsa_context": {},
+      "dsa_news": [],
+      "dsa_analysis_summary": "",
+      "deep_analysis_status": "not_requested",
+      "deep_analysis_query_id": "",
+      "deep_analysis_summary": "",
+      "deep_analysis_error": "",
+      "deep_analysis_result": null,
+      "deep_analysis_signal_score": null,
+      "deep_analysis_sentiment_score": null,
+      "deep_analysis_operation_advice": "",
+      "deep_analysis_trend_prediction": "",
+      "deep_analysis_risk_flags": [],
+      "topic_alignment_status": "unassessed",
+      "topic_alignment_role": "none",
+      "topic_alignment_reason": "缺少题材或热点路线标签，无法评估对齐",
+      "matched_topics": [],
+      "unmatched_topics": []
+    }
+  ],
+  "run_id": "c48fcb555641-ai",
+  "track": "ai",
+  "llm_ranked": true,
+  "llm_market_view": "全市场普涨（中位+6.91%），候选池30只全数下跌（中位-2.42%），低波防守资产短期被资金抛弃，属相对弱势而非基本面崩坏，适合做超跌修复的相对排序。",
+  "llm_selection_logic": "一看情报是否干净（交通银行不良挂牌+主力净流出2.56亿直接降权，渝农商行有贴息到账与120亿担保合作、资金净流入而加分）；二看反转+流动性能否支撑修复（无锡银行、江阴银行、平安银行跌幅可控且成交额未塌陷）；三看估值与换手是否过热（国芳集团PE75、换手14.4%、家家悦放量8.27%换手被视为高位透支）。",
+  "llm_portfolio_risk": "银行占比10/30，若板块整体资金持续流出则名单内多数同步回撤；同时候选池逆全市场普涨下跌，存在继续跑输的风格错配风险。",
+  "llm_coverage": 1.0,
+  "llm_parse_errors": [],
+  "degradation": [
+    "Candidate context collected rows=12",
+    "LLM context truncated: trimmed=candidate_collected_context",
+    "LLM ranking prompt truncated: trimmed=candidate_details"
+  ],
+  "snapshot_source": "em_datacenter",
+  "source_errors": [],
+  "deep_analysis_requested": false,
+  "post_analyzers": [
+    "scorecard"
+  ],
+  "daily_enriched": false,
+  "daily_enrich_count": 0,
+  "risk_enabled": true,
+  "portfolio_diversity_enabled": true,
+  "portfolio_concentration_notes": [
+    "Portfolio concentration bucket=金融: penalized=9, codes=000001:银行(-4.5),601169:银行(-9.0),600926:银行(-13.5),601939:银行(-13.5),002966:银行(-13.5),+4 more",
+    "Portfolio concentration bucket=消费: penalized=8, codes=600690:白电(-4.5),603345:食品(-9.0),002293:服装家纺(-13.5),002959:小家电(-13.5),603708:零售(-13.5),+3 more",
+    "Portfolio concentration bucket=平面媒体: penalized=1, codes=000719:平面媒体(-4.5)",
+    "Portfolio concentration bucket=基建航运: penalized=1, codes=601188:公路铁路(-4.5)",
+    "Portfolio hard cap bucket=金融: max=1, deferred=000001,601169,600926,601939,002966,002807,601665,600908,601328",
+    "Portfolio hard cap bucket=消费: max=1, deferred=600690,603345,002293,002959,603708,002275,600838,601086",
+    "Portfolio hard cap bucket=平面媒体: max=1, deferred=000719",
+    "Portfolio hard cap bucket=基建航运: max=1, deferred=601188"
+  ],
+  "saved_path": "/home/runner/work/quant-platform/quant-platform/track/data/runs/c48fcb555641-ai.json",
+  "created_at": "2026-11-27T11:22:30.855328+00:00",
+  "portfolio_topic_exposure": {
+    "基建航运": {
+      "count": 1,
+      "share_pct": 20.0,
+      "codes": [
+        "601766"
+      ],
+      "overconcentrated": false
+    },
+    "消费": {
+      "count": 1,
+      "share_pct": 20.0,
+      "codes": [
+        "600887"
+      ],
+      "overconcentrated": false
+    },
+    "视听器材": {
+      "count": 1,
+      "share_pct": 20.0,
+      "codes": [
+        "600060"
+      ],
+      "overconcentrated": false
+    },
+    "通信运营": {
+      "count": 1,
+      "share_pct": 20.0,
+      "codes": [
+        "600941"
+      ],
+      "overconcentrated": false
+    },
+    "金融": {
+      "count": 1,
+      "share_pct": 20.0,
+      "codes": [
+        "601077"
+      ],
+      "overconcentrated": false
+    }
+  },
+  "overconcentrated_topics": [],
+  "replacement_candidates": [
+    {
+      "code": "600066",
+      "name": "宇通客车",
+      "bucket": "汽车",
+      "sector": "汽车",
+      "final_score": 60.7084
+    },
+    {
+      "code": "601811",
+      "name": "新华文轩",
+      "bucket": "教育",
+      "sector": "教育",
+      "final_score": 58.1614
+    },
+    {
+      "code": "603706",
+      "name": "东方环宇",
+      "bucket": "公用事业",
+      "sector": "燃气",
+      "final_score": 56.9026
+    },
+    {
+      "code": "001328",
+      "name": "登康口腔",
+      "bucket": "化学制品",
+      "sector": "化学制品",
+      "final_score": 53.318
+    },
+    {
+      "code": "605577",
+      "name": "龙版传媒",
+      "bucket": "平面媒体",
+      "sector": "平面媒体",
+      "final_score": 52.9832
+    }
+  ],
+  "daily_source_counts": {},
+  "daily_quality_flag_counts": {}
+}

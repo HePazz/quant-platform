@@ -1,0 +1,631 @@
+{
+  "strategy": "momentum_quality",
+  "market": "cn",
+  "strategy_version": "1.3",
+  "strategy_category": "framework",
+  "snapshot_count": 5578,
+  "after_filter_count": 4,
+  "picks": [
+    {
+      "rank": 1,
+      "code": "300893",
+      "name": "松原安全",
+      "final_score": 73.9979,
+      "screen_score": 70.99647349600001,
+      "llm_score": 75.0,
+      "ranking_reason": "动量85.5、价值67.9均为池内第一，回购增持事件确定性高于其余候选",
+      "risk_summary": "前十大机构持股比例季度下滑4.22个百分点，机构在减；回购前期拖到期限过半才实施，执行力度待观察",
+      "price": 17.95,
+      "change_pct": 4.18,
+      "amount": 378197375.33,
+      "total_mv": 8512979960.0,
+      "turnover_rate": 8.63,
+      "volume_ratio": 1.09,
+      "pe_ratio": 26.8576779,
+      "pb_ratio": 3.83242924,
+      "industry": "汽车",
+      "concepts": "",
+      "industry_rank": null,
+      "industry_change_pct": null,
+      "industry_heat_score": null,
+      "concept_heat_score": null,
+      "board_heat_score": null,
+      "board_heat_latest_score": null,
+      "board_heat_trend_score": null,
+      "board_heat_persistence_score": null,
+      "board_heat_cooling_score": null,
+      "board_heat_observations": null,
+      "board_heat_state": "",
+      "board_heat_summary": "",
+      "change_60d": 24.7394,
+      "signal_score": 94.6588,
+      "ma_bullish": true,
+      "price_above_ma20": true,
+      "macd_status": "bullish",
+      "rsi_status": "neutral",
+      "breakout_20d_pct": 0.5602,
+      "range_20d_pct": 29.3785,
+      "volume_ratio_20d": 1.6164,
+      "body_pct": 4.1788,
+      "pullback_to_ma20_pct": 13.446,
+      "consolidation_days_20d": 2,
+      "volatility_20d_pct": 58.2984,
+      "max_drawdown_20d_pct": -7.1159,
+      "atr_20_pct": 5.4875,
+      "daily_quality_score": 100.0,
+      "daily_quality_flags": "",
+      "daily_source": "tencent",
+      "factor_scores": {
+        "value": 67.875,
+        "liquidity": 50.0,
+        "momentum": 85.4677,
+        "reversal": 5.0,
+        "activity": 67.7204,
+        "stability": 64.8348,
+        "size": 50.0,
+        "theme_heat": 50.0,
+        "topic_alignment": 50.0
+      },
+      "llm_confidence": 0.68,
+      "llm_sector": "汽车零部件",
+      "llm_theme": "回购落地+中线企稳",
+      "llm_tags": [
+        "事件",
+        "趋势",
+        "价值",
+        "sector:汽车零部件",
+        "theme:回购落地+中线企稳",
+        "style_fit:符合趋势已确认但未极端追涨（突破20日仅0.56%），基本面有估值支撑"
+      ],
+      "llm_catalysts": [
+        "回购持续实施",
+        "半年线突破确认"
+      ],
+      "llm_risks": [
+        "机构持股下降"
+      ],
+      "llm_thesis": "首次实施回购落地兑现承诺，动量与价值因子双高，主力资金近零流出",
+      "llm_style_fit": "符合趋势已确认但未极端追涨（突破20日仅0.56%），基本面有估值支撑",
+      "llm_watch_items": [
+        "回购实施进度公告",
+        "主力资金是否转净流入"
+      ],
+      "llm_invalidators": [
+        "回购再度停滞或规模缩水"
+      ],
+      "risk_score": 10.0,
+      "risk_level": "low",
+      "risk_penalty": 1.2,
+      "risk_flags": [
+        "机构持股下降"
+      ],
+      "excluded_by_risk": false,
+      "portfolio_penalty": 0.0,
+      "portfolio_flags": [],
+      "post_analysis_status": {
+        "scorecard": "completed"
+      },
+      "post_analysis_summaries": {
+        "scorecard": "本地后置评分: capital_confirmed；风险: 机构持股下降"
+      },
+      "post_analysis_score_deltas": {
+        "scorecard": 2.6
+      },
+      "post_analysis_results": {
+        "scorecard": {
+          "risk_flags": [
+            "机构持股下降"
+          ],
+          "tags": [
+            "capital_confirmed"
+          ]
+        }
+      },
+      "post_analysis_tags": [
+        "capital_confirmed"
+      ],
+      "dsa_context": {},
+      "dsa_news": [],
+      "dsa_analysis_summary": "",
+      "deep_analysis_status": "not_requested",
+      "deep_analysis_query_id": "",
+      "deep_analysis_summary": "",
+      "deep_analysis_error": "",
+      "deep_analysis_result": null,
+      "deep_analysis_signal_score": null,
+      "deep_analysis_sentiment_score": null,
+      "deep_analysis_operation_advice": "",
+      "deep_analysis_trend_prediction": "",
+      "deep_analysis_risk_flags": [],
+      "topic_alignment_status": "unassessed",
+      "topic_alignment_role": "none",
+      "topic_alignment_reason": "缺少题材或热点路线标签，无法评估对齐",
+      "matched_topics": [],
+      "unmatched_topics": []
+    },
+    {
+      "rank": 2,
+      "code": "002226",
+      "name": "江南化工",
+      "final_score": 71.0061,
+      "screen_score": 74.676903444,
+      "llm_score": 67.0,
+      "ranking_reason": "信号分91.3、活跃度池内第一，但PE 36.6缺乏价值支撑，主力净流出1.19%与大单流出相抵",
+      "risk_summary": "单日龙虎榜上榜显示游资博弈色彩，超大单流入而大单流出结构不稳，60日已涨15%存回吐压力",
+      "price": 5.89,
+      "change_pct": 3.33,
+      "amount": 941380638.68,
+      "total_mv": 15602155616.0,
+      "turnover_rate": 6.14,
+      "volume_ratio": 2.87,
+      "pe_ratio": 36.6050949,
+      "pb_ratio": 1.60891376,
+      "industry": "化学制品",
+      "concepts": "",
+      "industry_rank": null,
+      "industry_change_pct": null,
+      "industry_heat_score": null,
+      "concept_heat_score": null,
+      "board_heat_score": null,
+      "board_heat_latest_score": null,
+      "board_heat_trend_score": null,
+      "board_heat_persistence_score": null,
+      "board_heat_cooling_score": null,
+      "board_heat_observations": null,
+      "board_heat_state": "",
+      "board_heat_summary": "",
+      "change_60d": 15.0391,
+      "signal_score": 91.2637,
+      "ma_bullish": true,
+      "price_above_ma20": true,
+      "macd_status": "bullish",
+      "rsi_status": "neutral",
+      "breakout_20d_pct": 3.3333,
+      "range_20d_pct": 25.1046,
+      "volume_ratio_20d": 4.0365,
+      "body_pct": 1.7271,
+      "pullback_to_ma20_pct": 12.2974,
+      "consolidation_days_20d": 0,
+      "volatility_20d_pct": 58.8631,
+      "max_drawdown_20d_pct": -6.6055,
+      "atr_20_pct": 3.9049,
+      "daily_quality_score": 100.0,
+      "daily_quality_flags": "",
+      "daily_source": "tencent",
+      "factor_scores": {
+        "value": 63.5625,
+        "liquidity": 75.0,
+        "momentum": 80.8444,
+        "reversal": 5.0,
+        "activity": 78.6809,
+        "stability": 66.7232,
+        "size": 75.0,
+        "theme_heat": 50.0,
+        "topic_alignment": 50.0
+      },
+      "llm_confidence": 0.6,
+      "llm_sector": "化学制品",
+      "llm_theme": "民爆化工活跃突破",
+      "llm_tags": [
+        "趋势",
+        "流动性",
+        "sector:化学制品",
+        "theme:民爆化工活跃突破",
+        "style_fit:趋势与活跃度契合，但基本面质量偏弱，宜轻仓跟踪"
+      ],
+      "llm_catalysts": [
+        "民爆/化工品价格改善",
+        "量能延续放大"
+      ],
+      "llm_risks": [
+        "游资博弈",
+        "资金分歧"
+      ],
+      "llm_thesis": "活跃度78.7与量比2.87居前，站上五日均线且突破20日新高，公告仅常规股东会与续聘会计师",
+      "llm_style_fit": "趋势与活跃度契合，但基本面质量偏弱，宜轻仓跟踪",
+      "llm_watch_items": [
+        "龙虎榜席位变化",
+        "主力资金能否转正"
+      ],
+      "llm_invalidators": [
+        "放量滞涨或跌破5日均线"
+      ],
+      "risk_score": 20.0,
+      "risk_level": "low",
+      "risk_penalty": 2.4,
+      "risk_flags": [
+        "游资博弈",
+        "资金分歧"
+      ],
+      "excluded_by_risk": false,
+      "portfolio_penalty": 0.0,
+      "portfolio_flags": [],
+      "post_analysis_status": {
+        "scorecard": "completed"
+      },
+      "post_analysis_summaries": {
+        "scorecard": "本地后置评分: capital_confirmed；风险: 游资博弈、资金分歧"
+      },
+      "post_analysis_score_deltas": {
+        "scorecard": 1.8
+      },
+      "post_analysis_results": {
+        "scorecard": {
+          "risk_flags": [
+            "游资博弈",
+            "资金分歧"
+          ],
+          "tags": [
+            "capital_confirmed"
+          ]
+        }
+      },
+      "post_analysis_tags": [
+        "capital_confirmed"
+      ],
+      "dsa_context": {},
+      "dsa_news": [],
+      "dsa_analysis_summary": "",
+      "deep_analysis_status": "not_requested",
+      "deep_analysis_query_id": "",
+      "deep_analysis_summary": "",
+      "deep_analysis_error": "",
+      "deep_analysis_result": null,
+      "deep_analysis_signal_score": null,
+      "deep_analysis_sentiment_score": null,
+      "deep_analysis_operation_advice": "",
+      "deep_analysis_trend_prediction": "",
+      "deep_analysis_risk_flags": [],
+      "topic_alignment_status": "unassessed",
+      "topic_alignment_role": "none",
+      "topic_alignment_reason": "缺少题材或热点路线标签，无法评估对齐",
+      "matched_topics": [],
+      "unmatched_topics": []
+    },
+    {
+      "rank": 3,
+      "code": "301606",
+      "name": "绿联科技",
+      "final_score": 68.2637,
+      "screen_score": 67.43957618,
+      "llm_score": 71.0,
+      "ranking_reason": "稳定性70.1、市值容量100为池内最高，回撤仅6.9%、反转因子15.7最抗跌",
+      "risk_summary": "PB 6.88偏高、流动性因子仅25，主力净流出4.3%居池内最高，突破20日为负显示动能未接续",
+      "price": 63.68,
+      "change_pct": 2.54,
+      "amount": 352508092.8,
+      "total_mv": 26421456446.0,
+      "turnover_rate": 3.41,
+      "volume_ratio": 1.05,
+      "pe_ratio": 28.07577728,
+      "pb_ratio": 6.87851138,
+      "industry": "消费电子设备",
+      "concepts": "",
+      "industry_rank": null,
+      "industry_change_pct": null,
+      "industry_heat_score": null,
+      "concept_heat_score": null,
+      "board_heat_score": null,
+      "board_heat_latest_score": null,
+      "board_heat_trend_score": null,
+      "board_heat_persistence_score": null,
+      "board_heat_cooling_score": null,
+      "board_heat_observations": null,
+      "board_heat_state": "",
+      "board_heat_summary": "",
+      "change_60d": 20.812,
+      "signal_score": 93.2842,
+      "ma_bullish": true,
+      "price_above_ma20": true,
+      "macd_status": "bullish",
+      "rsi_status": "neutral",
+      "breakout_20d_pct": -3.163,
+      "range_20d_pct": 33.6585,
+      "volume_ratio_20d": 0.9413,
+      "body_pct": 2.5443,
+      "pullback_to_ma20_pct": 6.8878,
+      "consolidation_days_20d": 7,
+      "volatility_20d_pct": 57.0665,
+      "max_drawdown_20d_pct": -8.0937,
+      "atr_20_pct": 5.5897,
+      "daily_quality_score": 100.0,
+      "daily_quality_flags": "",
+      "daily_source": "tencent",
+      "factor_scores": {
+        "value": 47.6875,
+        "liquidity": 25.0,
+        "momentum": 81.827,
+        "reversal": 15.66,
+        "activity": 78.4829,
+        "stability": 70.1442,
+        "size": 100.0,
+        "theme_heat": 50.0,
+        "topic_alignment": 50.0
+      },
+      "llm_confidence": 0.63,
+      "llm_sector": "消费电子",
+      "llm_theme": "完成回购+回踩整固",
+      "llm_tags": [
+        "事件",
+        "防守",
+        "价值",
+        "sector:消费电子",
+        "theme:完成回购+回踩整固",
+        "style_fit:回调不追高的稳健型趋势标的，适合分批而非追涨"
+      ],
+      "llm_catalysts": [
+        "年线突破后放量",
+        "子公司土地项目进展"
+      ],
+      "llm_risks": [
+        "流动性偏弱",
+        "估值偏高"
+      ],
+      "llm_thesis": "回购已完成且最高成交价64.91高于现价63.68，稳定性与市值容量双优，整固7日未破位",
+      "llm_style_fit": "回调不追高的稳健型趋势标的，适合分批而非追涨",
+      "llm_watch_items": [
+        "回购股份后续处理",
+        "换手率能否回升"
+      ],
+      "llm_invalidators": [
+        "跌破20日均线且量能萎缩"
+      ],
+      "risk_score": 20.0,
+      "risk_level": "low",
+      "risk_penalty": 2.4,
+      "risk_flags": [
+        "流动性偏弱",
+        "估值偏高"
+      ],
+      "excluded_by_risk": false,
+      "portfolio_penalty": 0.0,
+      "portfolio_flags": [],
+      "post_analysis_status": {
+        "scorecard": "completed"
+      },
+      "post_analysis_summaries": {
+        "scorecard": "本地后置评分: capital_confirmed；风险: 流动性偏弱、估值偏高"
+      },
+      "post_analysis_score_deltas": {
+        "scorecard": 1.8
+      },
+      "post_analysis_results": {
+        "scorecard": {
+          "risk_flags": [
+            "流动性偏弱",
+            "估值偏高"
+          ],
+          "tags": [
+            "capital_confirmed"
+          ]
+        }
+      },
+      "post_analysis_tags": [
+        "capital_confirmed"
+      ],
+      "dsa_context": {},
+      "dsa_news": [],
+      "dsa_analysis_summary": "",
+      "deep_analysis_status": "not_requested",
+      "deep_analysis_query_id": "",
+      "deep_analysis_summary": "",
+      "deep_analysis_error": "",
+      "deep_analysis_result": null,
+      "deep_analysis_signal_score": null,
+      "deep_analysis_sentiment_score": null,
+      "deep_analysis_operation_advice": "",
+      "deep_analysis_trend_prediction": "",
+      "deep_analysis_risk_flags": [],
+      "topic_alignment_status": "unassessed",
+      "topic_alignment_role": "none",
+      "topic_alignment_reason": "缺少题材或热点路线标签，无法评估对齐",
+      "matched_topics": [],
+      "unmatched_topics": []
+    },
+    {
+      "rank": 4,
+      "code": "600814",
+      "name": "杭州解百",
+      "final_score": 38.9278,
+      "screen_score": 68.046372704,
+      "llm_score": 32.0,
+      "ranking_reason": "三日连发异动与风险提示公告、RSI超买、换手21%、大单净流出3.81%，属高位蹭热点透支",
+      "risk_summary": "公司自查式风险提示+交易异常波动公告叠加，换手21%与主力净流出3858万指向接盘风险，稳定性仅26.2",
+      "price": 9.53,
+      "change_pct": 3.7,
+      "amount": 1438505746.0,
+      "total_mv": 7005299039.0,
+      "turnover_rate": 21.1,
+      "volume_ratio": 2.99,
+      "pe_ratio": 29.36669779,
+      "pb_ratio": 1.82099167,
+      "industry": "零售",
+      "concepts": "",
+      "industry_rank": null,
+      "industry_change_pct": null,
+      "industry_heat_score": null,
+      "concept_heat_score": null,
+      "board_heat_score": null,
+      "board_heat_latest_score": null,
+      "board_heat_trend_score": null,
+      "board_heat_persistence_score": null,
+      "board_heat_cooling_score": null,
+      "board_heat_observations": null,
+      "board_heat_state": "",
+      "board_heat_summary": "",
+      "change_60d": 41.0181,
+      "signal_score": 80.0,
+      "ma_bullish": true,
+      "price_above_ma20": true,
+      "macd_status": "bullish",
+      "rsi_status": "overbought",
+      "breakout_20d_pct": 3.6997,
+      "range_20d_pct": 63.6661,
+      "volume_ratio_20d": 5.7017,
+      "body_pct": 4.0393,
+      "pullback_to_ma20_pct": 29.5453,
+      "consolidation_days_20d": 0,
+      "volatility_20d_pct": 83.96,
+      "max_drawdown_20d_pct": -15.8389,
+      "atr_20_pct": 4.9423,
+      "daily_quality_score": 100.0,
+      "daily_quality_flags": "",
+      "daily_source": "tencent",
+      "factor_scores": {
+        "value": 61.25,
+        "liquidity": 100.0,
+        "momentum": 84.5171,
+        "reversal": 5.0,
+        "activity": 41.2904,
+        "stability": 26.1613,
+        "size": 25.0,
+        "theme_heat": 50.0,
+        "topic_alignment": 50.0
+      },
+      "llm_confidence": 0.8,
+      "llm_sector": "零售",
+      "llm_theme": "连板炒作透支",
+      "llm_tags": [
+        "事件",
+        "sector:零售",
+        "theme:连板炒作透支",
+        "style_fit:与‘不追极端追涨’原则冲突，仅保留观察不参与"
+      ],
+      "llm_catalysts": [],
+      "llm_risks": [
+        "异动风险提示",
+        "高位炒作透支",
+        "大单出逃"
+      ],
+      "llm_thesis": "无基本面催化的3连涨停题材博弈，不具可持续趋势逻辑",
+      "llm_style_fit": "与‘不追极端追涨’原则冲突，仅保留观察不参与",
+      "llm_watch_items": [
+        "是否被交易所问询或停牌核查",
+        "封板资金撤退速度"
+      ],
+      "llm_invalidators": [
+        "题材熄火后连续跌停"
+      ],
+      "risk_score": 67.5,
+      "risk_level": "high",
+      "risk_penalty": 8.1,
+      "risk_flags": [
+        "high_turnover",
+        "rsi_overbought",
+        "异动风险提示",
+        "高位炒作透支",
+        "大单出逃",
+        "portfolio_sector_concentration:消费"
+      ],
+      "excluded_by_risk": false,
+      "portfolio_penalty": 5.0,
+      "portfolio_flags": [
+        "portfolio_sector_concentration:消费",
+        "portfolio_sector_cap:消费"
+      ],
+      "post_analysis_status": {
+        "scorecard": "completed"
+      },
+      "post_analysis_summaries": {
+        "scorecard": "本地后置评分: 未发现额外加分项；风险: 异动风险提示、高位炒作透支、大单出逃"
+      },
+      "post_analysis_score_deltas": {
+        "scorecard": -1.6
+      },
+      "post_analysis_results": {
+        "scorecard": {
+          "risk_flags": [
+            "异动风险提示",
+            "高位炒作透支",
+            "大单出逃"
+          ],
+          "tags": []
+        }
+      },
+      "post_analysis_tags": [],
+      "dsa_context": {},
+      "dsa_news": [],
+      "dsa_analysis_summary": "",
+      "deep_analysis_status": "not_requested",
+      "deep_analysis_query_id": "",
+      "deep_analysis_summary": "",
+      "deep_analysis_error": "",
+      "deep_analysis_result": null,
+      "deep_analysis_signal_score": null,
+      "deep_analysis_sentiment_score": null,
+      "deep_analysis_operation_advice": "",
+      "deep_analysis_trend_prediction": "",
+      "deep_analysis_risk_flags": [],
+      "topic_alignment_status": "unassessed",
+      "topic_alignment_role": "none",
+      "topic_alignment_reason": "缺少题材或热点路线标签，无法评估对齐",
+      "matched_topics": [],
+      "unmatched_topics": []
+    }
+  ],
+  "run_id": "f57277d134f0-ai",
+  "track": "ai",
+  "llm_ranked": true,
+  "llm_market_view": "全市场96.5%上涨、中位涨幅6.91%属普涨过热，候选池中位仅3.52%弱于大盘，宜选未极端追涨、公告干净者",
+  "llm_selection_logic": "先按公告雷区一票降权（杭州解百异动+风险提示）；再比回购类正向事件与动量/稳定性匹配；最后看资金流是否配合而非大单出逃",
+  "llm_portfolio_risk": "四只分属化学制品、汽车、零售、消费电子，行业分散但均为中小市值趋势股，普涨后同步回撤风险高，且主题热度字段均为中性50，缺产业主线共振",
+  "llm_coverage": 1.0,
+  "llm_parse_errors": [],
+  "degradation": [
+    "Daily K-line quality flags: short_history_lt60=1",
+    "Candidate context collected rows=4"
+  ],
+  "snapshot_source": "em_datacenter",
+  "source_errors": [],
+  "deep_analysis_requested": false,
+  "post_analyzers": [
+    "scorecard"
+  ],
+  "daily_enriched": true,
+  "daily_enrich_count": 100,
+  "risk_enabled": true,
+  "portfolio_diversity_enabled": true,
+  "portfolio_concentration_notes": [
+    "Portfolio concentration bucket=消费: penalized=1, codes=600814:零售(-5.0)",
+    "Portfolio hard cap bucket=消费: max=1, deferred=600814"
+  ],
+  "saved_path": "/home/runner/work/quant-platform/quant-platform/track/data/runs/f57277d134f0-ai.json",
+  "created_at": "2026-11-27T11:21:49.644999+00:00",
+  "portfolio_topic_exposure": {
+    "消费": {
+      "count": 2,
+      "share_pct": 50.0,
+      "codes": [
+        "301606",
+        "600814"
+      ],
+      "overconcentrated": true
+    },
+    "周期资源": {
+      "count": 1,
+      "share_pct": 25.0,
+      "codes": [
+        "002226"
+      ],
+      "overconcentrated": false
+    },
+    "汽车零部件": {
+      "count": 1,
+      "share_pct": 25.0,
+      "codes": [
+        "300893"
+      ],
+      "overconcentrated": false
+    }
+  },
+  "overconcentrated_topics": [
+    "消费"
+  ],
+  "replacement_candidates": [],
+  "daily_source_counts": {
+    "tencent": 100
+  },
+  "daily_quality_flag_counts": {
+    "short_history_lt60": 1
+  }
+}

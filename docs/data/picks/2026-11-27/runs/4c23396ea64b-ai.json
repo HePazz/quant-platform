@@ -1,0 +1,794 @@
+{
+  "strategy": "shrink_pullback",
+  "market": "cn",
+  "strategy_version": "1.1",
+  "strategy_category": "trend",
+  "snapshot_count": 5578,
+  "after_filter_count": 15,
+  "picks": [
+    {
+      "rank": 1,
+      "code": "000001",
+      "name": "平安银行",
+      "final_score": 79.1275,
+      "screen_score": 79.545911472,
+      "llm_score": 72.0,
+      "ranking_reason": "回踩MA20仅1.68%、reversal 84，且有增持事件标签，负面最少",
+      "risk_summary": "主力净流出10.11%，银行板块整体资金流出",
+      "price": 12.23,
+      "change_pct": -1.77,
+      "amount": 2605535116.6,
+      "total_mv": 237334379562.0,
+      "turnover_rate": 1.09,
+      "volume_ratio": 1.12,
+      "pe_ratio": 5.45847239,
+      "pb_ratio": 0.49786843,
+      "industry": "银行",
+      "concepts": "",
+      "industry_rank": null,
+      "industry_change_pct": null,
+      "industry_heat_score": null,
+      "concept_heat_score": null,
+      "board_heat_score": null,
+      "board_heat_latest_score": null,
+      "board_heat_trend_score": null,
+      "board_heat_persistence_score": null,
+      "board_heat_cooling_score": null,
+      "board_heat_observations": null,
+      "board_heat_state": "",
+      "board_heat_summary": "",
+      "change_60d": 7.8388,
+      "signal_score": 88.7436,
+      "ma_bullish": true,
+      "price_above_ma20": true,
+      "macd_status": "bullish",
+      "rsi_status": "neutral",
+      "breakout_20d_pct": -2.2382,
+      "range_20d_pct": 9.5447,
+      "volume_ratio_20d": 1.3078,
+      "body_pct": -1.7671,
+      "pullback_to_ma20_pct": 1.6836,
+      "consolidation_days_20d": 20,
+      "volatility_20d_pct": 19.151,
+      "max_drawdown_20d_pct": -2.1138,
+      "atr_20_pct": 2.0973,
+      "daily_quality_score": 100.0,
+      "daily_quality_flags": "",
+      "daily_source": "tencent",
+      "factor_scores": {
+        "value": 84.375,
+        "liquidity": 93.3333,
+        "momentum": 71.3124,
+        "reversal": 84.01,
+        "activity": 82.0045,
+        "stability": 77.3392,
+        "size": 86.6667,
+        "theme_heat": 50.0,
+        "topic_alignment": 50.0
+      },
+      "llm_confidence": 0.7,
+      "llm_sector": "银行",
+      "llm_theme": "低估值+外资增持",
+      "llm_tags": [
+        "价值",
+        "防守",
+        "事件",
+        "sector:银行",
+        "theme:低估值+外资增持",
+        "style_fit:缩量回踩与低估值匹配，但动量偏弱"
+      ],
+      "llm_catalysts": [
+        "外资继续增持",
+        "二级资本债补充完成"
+      ],
+      "llm_risks": [
+        "板块资金流出"
+      ],
+      "llm_thesis": "北上资金增持超4.7亿股且机构持仓66.67%，缩量浅回踩，趋势未破",
+      "llm_style_fit": "缩量回踩与低估值匹配，但动量偏弱",
+      "llm_watch_items": [
+        "主力资金净流入是否转正"
+      ],
+      "llm_invalidators": [
+        "跌破MA20且放量"
+      ],
+      "risk_score": 10.0,
+      "risk_level": "low",
+      "risk_penalty": 1.2,
+      "risk_flags": [
+        "板块资金流出"
+      ],
+      "excluded_by_risk": false,
+      "portfolio_penalty": 0.0,
+      "portfolio_flags": [],
+      "post_analysis_status": {
+        "scorecard": "completed"
+      },
+      "post_analysis_summaries": {
+        "scorecard": "本地后置评分: value_quality、controlled_reversal；风险: 板块资金流出"
+      },
+      "post_analysis_score_deltas": {
+        "scorecard": 3.8
+      },
+      "post_analysis_results": {
+        "scorecard": {
+          "risk_flags": [
+            "板块资金流出"
+          ],
+          "tags": [
+            "value_quality",
+            "controlled_reversal"
+          ]
+        }
+      },
+      "post_analysis_tags": [
+        "value_quality",
+        "controlled_reversal"
+      ],
+      "dsa_context": {},
+      "dsa_news": [],
+      "dsa_analysis_summary": "",
+      "deep_analysis_status": "not_requested",
+      "deep_analysis_query_id": "",
+      "deep_analysis_summary": "",
+      "deep_analysis_error": "",
+      "deep_analysis_result": null,
+      "deep_analysis_signal_score": null,
+      "deep_analysis_sentiment_score": null,
+      "deep_analysis_operation_advice": "",
+      "deep_analysis_trend_prediction": "",
+      "deep_analysis_risk_flags": [],
+      "topic_alignment_status": "unassessed",
+      "topic_alignment_role": "none",
+      "topic_alignment_reason": "缺少题材或热点路线标签，无法评估对齐",
+      "matched_topics": [],
+      "unmatched_topics": []
+    },
+    {
+      "rank": 2,
+      "code": "600690",
+      "name": "海尔智家",
+      "final_score": 69.9008,
+      "screen_score": 71.00125695599999,
+      "llm_score": 64.0,
+      "ranking_reason": "反转因子89.9，回踩极浅，趋势结构最完整",
+      "risk_summary": "当日跌2.22%且breakout-4.92%，短线动能转弱",
+      "price": 22.05,
+      "change_pct": -2.22,
+      "amount": 1511875465.0,
+      "total_mv": 205032766516.0,
+      "turnover_rate": 1.12,
+      "volume_ratio": 1.19,
+      "pe_ratio": 11.93524572,
+      "pb_ratio": 1.66601774,
+      "industry": "白色家电",
+      "concepts": "",
+      "industry_rank": null,
+      "industry_change_pct": null,
+      "industry_heat_score": null,
+      "concept_heat_score": null,
+      "board_heat_score": null,
+      "board_heat_latest_score": null,
+      "board_heat_trend_score": null,
+      "board_heat_persistence_score": null,
+      "board_heat_cooling_score": null,
+      "board_heat_observations": null,
+      "board_heat_state": "",
+      "board_heat_summary": "",
+      "change_60d": 4.4034,
+      "signal_score": 87.5412,
+      "ma_bullish": true,
+      "price_above_ma20": true,
+      "macd_status": "bullish",
+      "rsi_status": "neutral",
+      "breakout_20d_pct": -4.9159,
+      "range_20d_pct": 13.2324,
+      "volume_ratio_20d": 1.2359,
+      "body_pct": -2.2606,
+      "pullback_to_ma20_pct": 0.8023,
+      "consolidation_days_20d": 9,
+      "volatility_20d_pct": 28.5955,
+      "max_drawdown_20d_pct": -4.7516,
+      "atr_20_pct": 2.5374,
+      "daily_quality_score": 100.0,
+      "daily_quality_flags": "",
+      "daily_source": "tencent",
+      "factor_scores": {
+        "value": 49.075,
+        "liquidity": 60.0,
+        "momentum": 69.2915,
+        "reversal": 89.86,
+        "activity": 81.7949,
+        "stability": 75.8449,
+        "size": 80.0,
+        "theme_heat": 50.0,
+        "topic_alignment": 50.0
+      },
+      "llm_confidence": 0.6,
+      "llm_sector": "白色家电",
+      "llm_theme": "家电白马修复",
+      "llm_tags": [
+        "价值",
+        "防守",
+        "sector:白色家电",
+        "theme:家电白马修复",
+        "style_fit:缩量回踩型，波动可控"
+      ],
+      "llm_catalysts": [
+        "以旧换新补贴"
+      ],
+      "llm_risks": [],
+      "llm_thesis": "回踩MA20仅0.80%、reversal 89.9，PE 11.9估值中性偏低",
+      "llm_style_fit": "缩量回踩型，波动可控",
+      "llm_watch_items": [
+        "量比是否回落至1以下"
+      ],
+      "llm_invalidators": [
+        "跌破MA20超3%"
+      ],
+      "risk_score": 0.0,
+      "risk_level": "low",
+      "risk_penalty": 0.0,
+      "risk_flags": [],
+      "excluded_by_risk": false,
+      "portfolio_penalty": 0.0,
+      "portfolio_flags": [],
+      "post_analysis_status": {
+        "scorecard": "completed"
+      },
+      "post_analysis_summaries": {
+        "scorecard": "本地后置评分: controlled_reversal"
+      },
+      "post_analysis_score_deltas": {
+        "scorecard": 1.7
+      },
+      "post_analysis_results": {
+        "scorecard": {
+          "risk_flags": [],
+          "tags": [
+            "controlled_reversal"
+          ]
+        }
+      },
+      "post_analysis_tags": [
+        "controlled_reversal"
+      ],
+      "dsa_context": {},
+      "dsa_news": [],
+      "dsa_analysis_summary": "",
+      "deep_analysis_status": "not_requested",
+      "deep_analysis_query_id": "",
+      "deep_analysis_summary": "",
+      "deep_analysis_error": "",
+      "deep_analysis_result": null,
+      "deep_analysis_signal_score": null,
+      "deep_analysis_sentiment_score": null,
+      "deep_analysis_operation_advice": "",
+      "deep_analysis_trend_prediction": "",
+      "deep_analysis_risk_flags": [],
+      "topic_alignment_status": "unassessed",
+      "topic_alignment_role": "none",
+      "topic_alignment_reason": "缺少题材或热点路线标签，无法评估对齐",
+      "matched_topics": [],
+      "unmatched_topics": []
+    },
+    {
+      "rank": 3,
+      "code": "601766",
+      "name": "中国中车",
+      "final_score": 68.9775,
+      "screen_score": 73.79584549866667,
+      "llm_score": 59.0,
+      "ranking_reason": "量比1.48为池内偏高，回调伴随放量，不符合缩量洗盘",
+      "risk_summary": "放量回调存出货嫌疑，value 50中性",
+      "price": 6.66,
+      "change_pct": -1.48,
+      "amount": 1696929478.0,
+      "total_mv": 191134434826.0,
+      "turnover_rate": 1.05,
+      "volume_ratio": 1.48,
+      "pe_ratio": 14.10731785,
+      "pb_ratio": 1.08747245,
+      "industry": "铁路设备",
+      "concepts": "",
+      "industry_rank": null,
+      "industry_change_pct": null,
+      "industry_heat_score": null,
+      "concept_heat_score": null,
+      "board_heat_score": null,
+      "board_heat_latest_score": null,
+      "board_heat_trend_score": null,
+      "board_heat_persistence_score": null,
+      "board_heat_cooling_score": null,
+      "board_heat_observations": null,
+      "board_heat_state": "",
+      "board_heat_summary": "",
+      "change_60d": 9.1803,
+      "signal_score": 89.2131,
+      "ma_bullish": true,
+      "price_above_ma20": true,
+      "macd_status": "bullish",
+      "rsi_status": "neutral",
+      "breakout_20d_pct": -1.7699,
+      "range_20d_pct": 8.8283,
+      "volume_ratio_20d": 1.4169,
+      "body_pct": -1.7699,
+      "pullback_to_ma20_pct": 1.6018,
+      "consolidation_days_20d": 20,
+      "volatility_20d_pct": 27.5417,
+      "max_drawdown_20d_pct": -4.2748,
+      "atr_20_pct": 2.6051,
+      "daily_quality_score": 100.0,
+      "daily_quality_flags": "",
+      "daily_source": "tencent",
+      "factor_scores": {
+        "value": 50.3083,
+        "liquidity": 73.3333,
+        "momentum": 72.1872,
+        "reversal": 80.24,
+        "activity": 80.227,
+        "stability": 78.2656,
+        "size": 73.3333,
+        "theme_heat": 50.0,
+        "topic_alignment": 50.0
+      },
+      "llm_confidence": 0.55,
+      "llm_sector": "铁路设备",
+      "llm_theme": "轨交装备",
+      "llm_tags": [
+        "价值",
+        "趋势",
+        "sector:铁路设备",
+        "theme:轨交装备",
+        "style_fit:量能特征与缩量回踩不符"
+      ],
+      "llm_catalysts": [
+        "动车组招标"
+      ],
+      "llm_risks": [
+        "放量回调"
+      ],
+      "llm_thesis": "趋势bullish、回踩1.60%，PB 1.09估值合理",
+      "llm_style_fit": "量能特征与缩量回踩不符",
+      "llm_watch_items": [
+        "量比能否回落"
+      ],
+      "llm_invalidators": [
+        "持续放量下跌"
+      ],
+      "risk_score": 10.0,
+      "risk_level": "low",
+      "risk_penalty": 1.2,
+      "risk_flags": [
+        "放量回调"
+      ],
+      "excluded_by_risk": false,
+      "portfolio_penalty": 0.0,
+      "portfolio_flags": [],
+      "post_analysis_status": {
+        "scorecard": "completed"
+      },
+      "post_analysis_summaries": {
+        "scorecard": "本地后置评分: capital_confirmed、controlled_reversal；风险: 放量回调"
+      },
+      "post_analysis_score_deltas": {
+        "scorecard": 2.3
+      },
+      "post_analysis_results": {
+        "scorecard": {
+          "risk_flags": [
+            "放量回调"
+          ],
+          "tags": [
+            "capital_confirmed",
+            "controlled_reversal"
+          ]
+        }
+      },
+      "post_analysis_tags": [
+        "capital_confirmed",
+        "controlled_reversal"
+      ],
+      "dsa_context": {},
+      "dsa_news": [],
+      "dsa_analysis_summary": "",
+      "deep_analysis_status": "not_requested",
+      "deep_analysis_query_id": "",
+      "deep_analysis_summary": "",
+      "deep_analysis_error": "",
+      "deep_analysis_result": null,
+      "deep_analysis_signal_score": null,
+      "deep_analysis_sentiment_score": null,
+      "deep_analysis_operation_advice": "",
+      "deep_analysis_trend_prediction": "",
+      "deep_analysis_risk_flags": [],
+      "topic_alignment_status": "unassessed",
+      "topic_alignment_role": "none",
+      "topic_alignment_reason": "缺少题材或热点路线标签，无法评估对齐",
+      "matched_topics": [],
+      "unmatched_topics": []
+    },
+    {
+      "rank": 4,
+      "code": "600312",
+      "name": "平高电气",
+      "final_score": 65.0079,
+      "screen_score": 64.51317515200002,
+      "llm_score": 66.0,
+      "ranking_reason": "回踩4.03%不破位且当日逆势走强，momentum第一",
+      "risk_summary": "PE 22.4、value仅22.8，估值贵且反转因子弱",
+      "price": 22.56,
+      "change_pct": 2.04,
+      "amount": 526927269.0,
+      "total_mv": 30612144731.0,
+      "turnover_rate": 1.75,
+      "volume_ratio": 1.0,
+      "pe_ratio": 22.36522993,
+      "pb_ratio": 2.56049626,
+      "industry": "输变电设备",
+      "concepts": "",
+      "industry_rank": null,
+      "industry_change_pct": null,
+      "industry_heat_score": null,
+      "concept_heat_score": null,
+      "board_heat_score": null,
+      "board_heat_latest_score": null,
+      "board_heat_trend_score": null,
+      "board_heat_persistence_score": null,
+      "board_heat_cooling_score": null,
+      "board_heat_observations": null,
+      "board_heat_state": "",
+      "board_heat_summary": "",
+      "change_60d": 14.1238,
+      "signal_score": 90.9433,
+      "ma_bullish": true,
+      "price_above_ma20": true,
+      "macd_status": "bullish",
+      "rsi_status": "neutral",
+      "breakout_20d_pct": -0.9223,
+      "range_20d_pct": 11.782,
+      "volume_ratio_20d": 1.0429,
+      "body_pct": 2.0814,
+      "pullback_to_ma20_pct": 4.0255,
+      "consolidation_days_20d": 19,
+      "volatility_20d_pct": 31.7526,
+      "max_drawdown_20d_pct": -5.7904,
+      "atr_20_pct": 3.699,
+      "daily_quality_score": 100.0,
+      "daily_quality_flags": "",
+      "daily_source": "tencent",
+      "factor_scores": {
+        "value": 22.775,
+        "liquidity": 26.6667,
+        "momentum": 78.7568,
+        "reversal": 26.16,
+        "activity": 84.925,
+        "stability": 76.7932,
+        "size": 20.0,
+        "theme_heat": 50.0,
+        "topic_alignment": 50.0
+      },
+      "llm_confidence": 0.62,
+      "llm_sector": "输变电设备",
+      "llm_theme": "电网投资+特高压",
+      "llm_tags": [
+        "趋势",
+        "主题",
+        "sector:输变电设备",
+        "theme:电网投资+特高压",
+        "style_fit:缩量整理+相对强势，契合回踩策略"
+      ],
+      "llm_catalysts": [
+        "电网招标落地"
+      ],
+      "llm_risks": [
+        "估值偏高"
+      ],
+      "llm_thesis": "19日横盘整理、缩量1.0、当日涨2.04%相对强势，动量因子78.8居首",
+      "llm_style_fit": "缩量整理+相对强势，契合回踩策略",
+      "llm_watch_items": [
+        "订单/中标公告"
+      ],
+      "llm_invalidators": [
+        "放量跌破整理箱体"
+      ],
+      "risk_score": 10.0,
+      "risk_level": "low",
+      "risk_penalty": 1.2,
+      "risk_flags": [
+        "估值偏高"
+      ],
+      "excluded_by_risk": false,
+      "portfolio_penalty": 0.0,
+      "portfolio_flags": [],
+      "post_analysis_status": {
+        "scorecard": "completed"
+      },
+      "post_analysis_summaries": {
+        "scorecard": "本地后置评分: capital_confirmed；风险: 估值偏高"
+      },
+      "post_analysis_score_deltas": {
+        "scorecard": 1.1
+      },
+      "post_analysis_results": {
+        "scorecard": {
+          "risk_flags": [
+            "估值偏高"
+          ],
+          "tags": [
+            "capital_confirmed"
+          ]
+        }
+      },
+      "post_analysis_tags": [
+        "capital_confirmed"
+      ],
+      "dsa_context": {},
+      "dsa_news": [],
+      "dsa_analysis_summary": "",
+      "deep_analysis_status": "not_requested",
+      "deep_analysis_query_id": "",
+      "deep_analysis_summary": "",
+      "deep_analysis_error": "",
+      "deep_analysis_result": null,
+      "deep_analysis_signal_score": null,
+      "deep_analysis_sentiment_score": null,
+      "deep_analysis_operation_advice": "",
+      "deep_analysis_trend_prediction": "",
+      "deep_analysis_risk_flags": [],
+      "topic_alignment_status": "unassessed",
+      "topic_alignment_role": "none",
+      "topic_alignment_reason": "缺少题材或热点路线标签，无法评估对齐",
+      "matched_topics": [],
+      "unmatched_topics": []
+    },
+    {
+      "rank": 5,
+      "code": "002422",
+      "name": "科伦药业",
+      "final_score": 61.7122,
+      "screen_score": 64.35359486666668,
+      "llm_score": 58.0,
+      "ranking_reason": "医药相对独立，但PE 36.4且reversal仅26，估值与位置均不便宜",
+      "risk_summary": "高估值，20日振幅19%波动大",
+      "price": 45.05,
+      "change_pct": 2.04,
+      "amount": 732933000.06,
+      "total_mv": 71664693420.0,
+      "turnover_rate": 1.27,
+      "volume_ratio": 1.11,
+      "pe_ratio": 36.40949325,
+      "pb_ratio": 2.75708124,
+      "industry": "化学制药",
+      "concepts": "",
+      "industry_rank": null,
+      "industry_change_pct": null,
+      "industry_heat_score": null,
+      "concept_heat_score": null,
+      "board_heat_score": null,
+      "board_heat_latest_score": null,
+      "board_heat_trend_score": null,
+      "board_heat_persistence_score": null,
+      "board_heat_cooling_score": null,
+      "board_heat_observations": null,
+      "board_heat_state": "",
+      "board_heat_summary": "",
+      "change_60d": 6.87,
+      "signal_score": 88.4045,
+      "ma_bullish": true,
+      "price_above_ma20": true,
+      "macd_status": "bullish",
+      "rsi_status": "neutral",
+      "breakout_20d_pct": -2.214,
+      "range_20d_pct": 18.9824,
+      "volume_ratio_20d": 1.1404,
+      "body_pct": 2.3398,
+      "pullback_to_ma20_pct": 4.843,
+      "consolidation_days_20d": 11,
+      "volatility_20d_pct": 42.4411,
+      "max_drawdown_20d_pct": -9.9934,
+      "atr_20_pct": 4.3696,
+      "daily_quality_score": 100.0,
+      "daily_quality_flags": "",
+      "daily_source": "tencent",
+      "factor_scores": {
+        "value": 15.0083,
+        "liquidity": 40.0,
+        "momentum": 76.1672,
+        "reversal": 26.16,
+        "activity": 82.6979,
+        "stability": 75.39,
+        "size": 40.0,
+        "theme_heat": 50.0,
+        "topic_alignment": 50.0
+      },
+      "llm_confidence": 0.54,
+      "llm_sector": "医药",
+      "llm_theme": "创新药管线",
+      "llm_tags": [
+        "主题",
+        "成长",
+        "sector:医药",
+        "theme:创新药管线",
+        "style_fit:主题弹性型，非典型洗盘"
+      ],
+      "llm_catalysts": [
+        "创新药获批"
+      ],
+      "llm_risks": [
+        "高估值"
+      ],
+      "llm_thesis": "当日涨2.04%、body 2.34%，缩量回踩4.84%",
+      "llm_style_fit": "主题弹性型，非典型洗盘",
+      "llm_watch_items": [
+        "管线进展公告"
+      ],
+      "llm_invalidators": [
+        "放量破MA20"
+      ],
+      "risk_score": 10.0,
+      "risk_level": "low",
+      "risk_penalty": 1.2,
+      "risk_flags": [
+        "高估值"
+      ],
+      "excluded_by_risk": false,
+      "portfolio_penalty": 0.0,
+      "portfolio_flags": [],
+      "post_analysis_status": {
+        "scorecard": "completed"
+      },
+      "post_analysis_summaries": {
+        "scorecard": "本地后置评分: capital_confirmed；风险: 高估值"
+      },
+      "post_analysis_score_deltas": {
+        "scorecard": 1.1
+      },
+      "post_analysis_results": {
+        "scorecard": {
+          "risk_flags": [
+            "高估值"
+          ],
+          "tags": [
+            "capital_confirmed"
+          ]
+        }
+      },
+      "post_analysis_tags": [
+        "capital_confirmed"
+      ],
+      "dsa_context": {},
+      "dsa_news": [],
+      "dsa_analysis_summary": "",
+      "deep_analysis_status": "not_requested",
+      "deep_analysis_query_id": "",
+      "deep_analysis_summary": "",
+      "deep_analysis_error": "",
+      "deep_analysis_result": null,
+      "deep_analysis_signal_score": null,
+      "deep_analysis_sentiment_score": null,
+      "deep_analysis_operation_advice": "",
+      "deep_analysis_trend_prediction": "",
+      "deep_analysis_risk_flags": [],
+      "topic_alignment_status": "unassessed",
+      "topic_alignment_role": "none",
+      "topic_alignment_reason": "缺少题材或热点路线标签，无法评估对齐",
+      "matched_topics": [],
+      "unmatched_topics": []
+    }
+  ],
+  "run_id": "4c23396ea64b-ai",
+  "track": "ai",
+  "llm_ranked": true,
+  "llm_market_view": "全市场中位涨幅6.9%，而候选池中位涨幅0.0%，银行股明显跑输，策略宜优先选择缩量回踩且无负面消息的非银行标的。",
+  "llm_selection_logic": "①先排除重大负面消息及放量出货嫌疑；②比较缩量程度、回踩MA20幅度与趋势是否完好；③结合主力资金净流出占比与当日相对强弱。",
+  "llm_portfolio_risk": "银行股占比过高，5只银行股逻辑高度同质（同受息差与不良处置压制）；若资金持续从权重股流向全市场题材，整体组合将同步走弱。",
+  "llm_coverage": 1.0,
+  "llm_parse_errors": [],
+  "degradation": [
+    "Daily K-line quality flags: fallback_errors=1",
+    "Daily K-line source ordering: daily source order adjusted by health: sina,akshare,baostock,tencent",
+    "Candidate context collected rows=12",
+    "LLM context truncated: trimmed=candidate_collected_context"
+  ],
+  "snapshot_source": "em_datacenter",
+  "source_errors": [],
+  "deep_analysis_requested": false,
+  "post_analyzers": [
+    "scorecard"
+  ],
+  "daily_enriched": true,
+  "daily_enrich_count": 100,
+  "risk_enabled": true,
+  "portfolio_diversity_enabled": true,
+  "portfolio_concentration_notes": [
+    "Portfolio concentration bucket=金融: penalized=4, codes=601939:银行(-4.5),601916:银行(-9.0),601169:银行(-13.5),601328:银行(-13.5)",
+    "Portfolio concentration bucket=消费: penalized=1, codes=600600:饮料(-4.5)",
+    "Portfolio concentration bucket=新能源: penalized=1, codes=000400:输变电设备(-4.5)",
+    "Portfolio hard cap bucket=金融: max=1, deferred=601939,601916,601169,601328",
+    "Portfolio hard cap bucket=消费: max=1, deferred=600600",
+    "Portfolio hard cap bucket=新能源: max=1, deferred=000400"
+  ],
+  "saved_path": "/home/runner/work/quant-platform/quant-platform/track/data/runs/4c23396ea64b-ai.json",
+  "created_at": "2026-11-27T11:23:44.511590+00:00",
+  "portfolio_topic_exposure": {
+    "医药": {
+      "count": 1,
+      "share_pct": 20.0,
+      "codes": [
+        "002422"
+      ],
+      "overconcentrated": false
+    },
+    "基建航运": {
+      "count": 1,
+      "share_pct": 20.0,
+      "codes": [
+        "601766"
+      ],
+      "overconcentrated": false
+    },
+    "新能源": {
+      "count": 1,
+      "share_pct": 20.0,
+      "codes": [
+        "600312"
+      ],
+      "overconcentrated": false
+    },
+    "消费": {
+      "count": 1,
+      "share_pct": 20.0,
+      "codes": [
+        "600690"
+      ],
+      "overconcentrated": false
+    },
+    "金融": {
+      "count": 1,
+      "share_pct": 20.0,
+      "codes": [
+        "000001"
+      ],
+      "overconcentrated": false
+    }
+  },
+  "overconcentrated_topics": [],
+  "replacement_candidates": [
+    {
+      "code": "601717",
+      "name": "中创智领",
+      "bucket": "专用设备",
+      "sector": "专用设备",
+      "final_score": 59.6447
+    },
+    {
+      "code": "000100",
+      "name": "TCL科技",
+      "bucket": "科技电子",
+      "sector": "电子元件",
+      "final_score": 59.3609
+    },
+    {
+      "code": "600177",
+      "name": "雅戈尔",
+      "bucket": "服装家纺",
+      "sector": "服装家纺",
+      "final_score": 57.0498
+    },
+    {
+      "code": "688169",
+      "name": "石头科技",
+      "bucket": "机器人",
+      "sector": "机器人",
+      "final_score": 54.8756
+    }
+  ],
+  "daily_source_counts": {
+    "tencent": 85,
+    "sina": 15
+  },
+  "daily_quality_flag_counts": {
+    "fallback_errors": 1
+  }
+}
