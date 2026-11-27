@@ -107,6 +107,9 @@ jobs:
           MARKET_REVIEW_REGION: 'cn'
           LOG_LEVEL: INFO
           MAX_WORKERS: '1'
+          # 002242 取数慢（Efinance 失败走 Akshare 备用）会吃满默认 300 秒，
+          # 结果算出来也被流水线以超时丢弃；放宽到 600 秒（上游默认 300，0 为不限时）。
+          PER_STOCK_TIMEOUT_SECONDS: '600'
         run: |
           mkdir -p data logs reports
           # --no-notify 是硬要求：本平台没有任何推送。
