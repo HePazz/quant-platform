@@ -23,6 +23,9 @@ latest.json 的 schema（schema_version=1）：
     "trade_date": "2026-11-27",
     "sample": false,               # true 表示这是仓库自带的示例数据，还没跑过
     "watchlist": ["002242", ...],  # 当日分析用的自选股（由分析 job 写入）
+    "watchlist_names": {"002242": "九阳股份", ...},  # 自选股中文名（研报/选股/行情配出来）
+    "intraday": {...},             # 14:30 尾盘检查（没有就是 null）
+    "auction": {...},              # 09:21 竞价复核（没有就是 null）
     "picks": {                     # AlphaSift DailyReport 的精简版
       "trade_date": ..., "stale": bool, "ai_brief": "...",
       "market_regime": {...}, "announcement_risks": [...],
@@ -49,6 +52,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import urllib.request
 from pathlib import Path
 
 from common import load_json, now_cst_iso, repo_root, save_json, setup_logging, today_cst
@@ -167,6 +171,77 @@ def _rule_reason(strategy: str, score, pe, pb) -> str:
     if vals:
         text += "；" + "，".join(vals)
     return text
+
+
+def _quote_names(codes: list[str]) -> dict[str, str]:
+    """从行情拉自选股的中文名（兜底用：研报/选股里没有名字时才调）。
+
+    先试新浪（快），不行再试腾讯。两个返回的都是 GBK 编码：
+    新浪 `hq_str_sz002242="九阳股份,42.82,..."`，名字是逗号前第一段；
+    腾讯 `v_sz002242="51~九阳股份~002242~..."`，名字是 ~ 分隔的第 2 段。
+    拉不到或解析失败就返回空，不让合并炸掉。"""
+    missing = [c for c in codes if c]
+    if not missing:
+        return {}
+    prefixed_sina = ",".join(("sh" if c.startswith("6") else "sz") + c for c in missing)
+    out: dict[str, str] = {}
+    try:
+        req = urllib.request.Request(
+            f"https://hq.sinajs.cn/list={prefixed_sina}",
+            headers={"Referer": "https://finance.sina.com.cn", "User-Agent": "Mozilla/5.0"},
+        )
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            text = resp.read().decode("gbk", errors="ignore")
+        for line in text.splitlines():
+            line = line.strip()
+            if not line.startswith("var hq_str_") or "=" not in line:
+                continue
+            key = line.split("=", 1)[0].removeprefix("var hq_str_").strip()
+            body = line.split("=", 1)[1].strip().strip('";')
+            parts = body.split(",")
+            if len(parts) >= 1 and parts[0] and key[2:] in missing:
+                out[key[2:]] = parts[0]
+    except Exception as exc:  # noqa: BLE001 - 新浪不行就试腾讯
+        log.warning("拉新浪行情取中文名失败：%s", exc)
+    still = [c for c in missing if c not in out]
+    if not still:
+        return out
+    prefixed_tencent = ",".join(("sh" if c.startswith("6") else "sz") + c for c in still)
+    try:
+        req = urllib.request.Request(
+            f"https://qt.gtimg.cn/q={prefixed_tencent}",
+            headers={"User-Agent": "Mozilla/5.0"},
+        )
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            text = resp.read().decode("gbk", errors="ignore")
+        for line in text.splitlines():
+            line = line.strip()
+            if not line.startswith("v_") or "=" not in line:
+                continue
+            body = line.split("=", 1)[1].strip().strip('";')
+            parts = body.split("~")
+            if len(parts) >= 3 and parts[1] and parts[2] in still:
+                out[parts[2]] = parts[1]
+    except Exception as exc:  # noqa: BLE001 - 行情拉不到就留空，前端只显示代码
+        log.warning("拉腾讯行情取中文名失败：%s", exc)
+    return out
+
+
+def _resolve_watchlist_names(latest: dict, codes: list[str]) -> dict[str, str]:
+    """给自选股代码配中文名：先找研报和选股里已有的名字，
+    找不到的再去腾讯行情拉。拉不到的留空，前端只显示代码。"""
+    names: dict[str, str] = {}
+    for rep in (latest.get("reports") or {}).values():
+        if isinstance(rep, dict) and rep.get("code") and rep.get("name"):
+            names[str(rep["code"])] = str(rep["name"])
+    for strat in ((latest.get("picks") or {}).get("strategies") or []):
+        for p in (strat.get("picks") or []):
+            if isinstance(p, dict) and p.get("code") and p.get("name"):
+                names.setdefault(str(p["code"]), str(p["name"]))
+    missing = [c for c in codes if c not in names]
+    if missing:
+        names.update(_quote_names(missing))
+    return {c: names[c] for c in codes if c in names}
 
 
 def _summarise_summary(summary: dict | None, trade_date_fallback: str) -> dict | None:
@@ -306,6 +381,21 @@ def merge(data_dir: Path, trade_date: str) -> dict:
             log.info("研报只有 HTML（%d 个），未解析结构化数据", len(htmls))
         else:
             log.info("当日无研报产物（%s），保留旧值", reports_dir)
+
+    # --- 尾盘检查 / 竞价复核（当日有才并入，没有就是 null）---
+    intra = load_json(data_dir / "intraday" / f"{trade_date}.json")
+    latest["intraday"] = intra if isinstance(intra, dict) else None
+    auction = load_json(data_dir / "auction" / f"{trade_date}.json")
+    latest["auction"] = auction if isinstance(auction, dict) else None
+
+    # --- 自选股中文名 ---
+    # watchlist 是代码数组（上面由 dsa.watchlist 写入，或保留旧值）；
+    # watchlist_names 是给前端显示用的代码→中文名，来源是研报/选股，
+    # 都没有的去腾讯行情拉。拉不到的留空，前端只显示代码。
+    codes = [str(c) for c in (latest.get("watchlist") or []) if c]
+    if codes:
+        latest["watchlist_names"] = _resolve_watchlist_names(latest, codes)
+        log.info("已配自选股中文名：%d 只", len(latest["watchlist_names"]))
 
     latest["schema_version"] = 1
     latest["trade_date"] = trade_date
