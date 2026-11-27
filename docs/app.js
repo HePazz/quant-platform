@@ -9,6 +9,9 @@
   var LS_PAT = 'qp_pat';
   var LS_OWNER = 'qp_owner';
   var LS_REPO = 'qp_repo';
+  // 刚在页面上保存过的自选股：数据文件只在定时运行后才更新，刷新后仍按
+  // 保存的这份显示，避免看起来像没保存成功。等数据追上后自动作废。
+  var LS_WATCHLIST = 'qp_saved_watchlist';
 
   /* 策略英文 key → 中文名（取自上游 AlphaSift strategies/README.md 的官方名称；
    * 新策略不在表里时回退显示原 key）。 */
@@ -64,6 +67,13 @@
     state.data = data;
     state.watchlist = (data.watchlist || []).slice();
     state.watchlistNames = data.watchlist_names || {};
+    try {
+      var saved = JSON.parse(localStorage.getItem(LS_WATCHLIST) || 'null');
+      if (Array.isArray(saved) && saved.length && saved.every(function (c) { return /^\d{6}$/.test(c); })) {
+        if (saved.join(',') === state.watchlist.join(',')) localStorage.removeItem(LS_WATCHLIST);
+        else state.watchlist = saved;
+      }
+    } catch (e) { /* 本地记录坏了就按数据里的名单显示 */ }
     $('sample-banner').hidden = !data.sample;
     var gen = data.generated_at ? new Date(data.generated_at) : null;
     setStatus(
@@ -338,7 +348,8 @@
           });
         });
     }).then(function () {
-      msg.textContent = '已保存到仓库 STOCK_LIST，下次定时运行生效。';
+      try { localStorage.setItem(LS_WATCHLIST, JSON.stringify(state.watchlist)); } catch (e) {}
+      msg.textContent = '已保存到仓库 STOCK_LIST，下次定时运行生效。页面现在显示的就是你刚保存的名单。';
     }).catch(function (e) {
       msg.textContent = '保存失败：' + e.message + '（令牌需要 repo 权限；令牌本身没有被发到别处）';
     });
