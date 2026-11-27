@@ -1,1 +1,111 @@
-{"backtest":{"cumulative_net_pct":null,"max_drawdown_pct":null,"note":"示例数据：没有可回测的历史选股，暂无结果。","observations":0,"sharpe":null},"factors":{"ic":null,"icir":null,"note":"示例数据：0 条带未来收益的样本，少于 20 条，不下结论。等 track-record 积累几周后再看。","observations":0,"verdict":"样本不足"},"generated_at":"2026-11-27T00:00:00+08:00","market":{"review":"示例数据：首次运行后这里会显示 DSA 的大盘复盘。"},"picks":{"ai_brief":"示例：这是仓库自带的示例数据，不是真实选股结果。第一次定时任务跑完后会被真实数据替换。","announcement_risks":[],"market_regime":{},"stale":false,"stale_reason":"","strategies":[{"market":"cn","picks":[{"code":"601997","concepts":[],"final_score":78,"industry":"银行","llm_ranked":false,"name":"贵阳银行","rank":1,"ranking_reason":"示例数据：低估值 + 低波动入选。","risk_flags":[],"risk_level":"中","screen_score":80}],"strategy":"dual_low"}],"trade_date":"2026-11-27"},"position":{"note":"示例数据：跟踪数据积累后才有仓位建议。","positions":{}},"reports":{"000625":{"advice":"示例数据：首次运行后这里会显示 DSA 的研报结论。","code":"000625","html":null,"name":"长安汽车","score":null,"summary":"示例数据。"},"002242":{"advice":"示例数据：首次运行后这里会显示 DSA 的研报结论。","code":"002242","html":null,"name":"九阳股份","score":null,"summary":"示例数据。"},"600519":{"advice":"示例数据：首次运行后这里会显示 DSA 的研报结论。","code":"600519","html":null,"name":"贵州茅台","score":null,"summary":"示例数据。"}},"risk":{"account_checks":[{"action":"账户从高点回撤 15% 就停手，全部检查一遍再决定","limit_pct":15.0,"line":"账户回撤"},{"action":"当天亏到账户 2% 就收手，不加仓、不报复交易","limit_pct":2.0,"line":"日内亏损"},{"action":"单只股浮亏到成本 5% 就走，不补仓摊平","limit_pct":5.0,"line":"单只最大亏损"}]},"sample":true,"schema_version":1,"track_record":{"history":[],"note":"示例数据：选股跑过、且到 T+5 后才有验收数字。","strategy_stats":{}},"trade_date":"2026-11-27","watchlist":["002242","600519","000625"]}
+{
+  "backtest": {
+    "cumulative_net_pct": null,
+    "max_drawdown_pct": null,
+    "note": "示例数据：没有可回测的历史选股，暂无结果。",
+    "observations": 0,
+    "sharpe": null
+  },
+  "factors": {
+    "ic": null,
+    "icir": null,
+    "note": "示例数据：0 条带未来收益的样本，少于 20 条，不下结论。等 track-record 积累几周后再看。",
+    "observations": 0,
+    "verdict": "样本不足"
+  },
+  "generated_at": "2026-11-27T08:09:34+08:00",
+  "market": {
+    "review": "示例数据：首次运行后这里会显示 DSA 的大盘复盘。"
+  },
+  "picks": {
+    "ai_brief": "示例：这是仓库自带的示例数据，不是真实选股结果。第一次定时任务跑完后会被真实数据替换。",
+    "announcement_risks": [],
+    "market_regime": {},
+    "stale": false,
+    "stale_reason": "",
+    "strategies": [
+      {
+        "market": "cn",
+        "picks": [
+          {
+            "code": "601997",
+            "concepts": [],
+            "final_score": 78,
+            "industry": "银行",
+            "llm_ranked": false,
+            "name": "贵阳银行",
+            "rank": 1,
+            "ranking_reason": "示例数据：低估值 + 低波动入选。",
+            "risk_flags": [],
+            "risk_level": "中",
+            "screen_score": 80
+          }
+        ],
+        "strategy": "dual_low"
+      }
+    ],
+    "trade_date": "2026-11-27"
+  },
+  "position": {
+    "note": "示例数据：跟踪数据积累后才有仓位建议。",
+    "positions": {}
+  },
+  "reports": {
+    "000625": {
+      "advice": "示例数据：首次运行后这里会显示 DSA 的研报结论。",
+      "code": "000625",
+      "html": null,
+      "name": "长安汽车",
+      "score": null,
+      "summary": "示例数据。"
+    },
+    "002242": {
+      "advice": "示例数据：首次运行后这里会显示 DSA 的研报结论。",
+      "code": "002242",
+      "html": null,
+      "name": "九阳股份",
+      "score": null,
+      "summary": "示例数据。"
+    },
+    "600519": {
+      "advice": "示例数据：首次运行后这里会显示 DSA 的研报结论。",
+      "code": "600519",
+      "html": null,
+      "name": "贵州茅台",
+      "score": null,
+      "summary": "示例数据。"
+    }
+  },
+  "risk": {
+    "account_checks": [
+      {
+        "action": "账户从高点回撤 15% 就停手，全部检查一遍再决定",
+        "limit_pct": 15.0,
+        "line": "账户回撤"
+      },
+      {
+        "action": "当天亏到账户 2% 就收手，不加仓、不报复交易",
+        "limit_pct": 2.0,
+        "line": "日内亏损"
+      },
+      {
+        "action": "单只股浮亏到成本 5% 就走，不补仓摊平",
+        "limit_pct": 5.0,
+        "line": "单只最大亏损"
+      }
+    ]
+  },
+  "sample": false,
+  "schema_version": 1,
+  "track_record": {
+    "history": [],
+    "note": "示例数据：选股跑过、且到 T+5 后才有验收数字。",
+    "strategy_stats": {}
+  },
+  "trade_date": "2026-11-27",
+  "watchlist": [
+    "002242",
+    "600519",
+    "000625"
+  ]
+}
