@@ -106,8 +106,11 @@
     $('picks-date').textContent = picks && picks.trade_date ? '· ' + picks.trade_date : '';
     var brief = $('ai-brief');
     if (picks && picks.ai_brief) {
-      brief.textContent = picks.ai_brief;
-      brief.hidden = false;
+      // AI 复核的 ai_brief 是对象（{mode, headline, ...}），规则版是字符串。
+      var briefText = typeof picks.ai_brief === 'string' ? picks.ai_brief
+        : (picks.ai_brief.headline || picks.ai_brief.regime_interpretation || '');
+      brief.textContent = briefText;
+      brief.hidden = !briefText;
     } else {
       brief.hidden = true;
     }
@@ -127,7 +130,15 @@
           rows + '</tbody></table>';
       }).join('');
     }
-    var risks = (picks && picks.announcement_risks) || [];
+    // announcement_risks 可能是数组（旧格式），也可能是对象
+    // {checked_count, flagged_count, by_code: {code: {name, announcement_summary, ...}}}（AI 报告格式）。
+    var risksRaw = (picks && picks.announcement_risks) || [];
+    var risks = Array.isArray(risksRaw) ? risksRaw
+      : (risksRaw.by_code ? Object.keys(risksRaw.by_code).map(function (code) {
+          var it = risksRaw.by_code[code] || {};
+          var sum = (it.announcement_summary || '').split('|')[0].trim();
+          return (it.code || code) + ' ' + (it.name || '') + (sum ? '：' + sum : '');
+        }) : []);
     $('announcement-risks').hidden = !risks.length;
     $('risks-list').innerHTML = risks.map(function (r) {
       return '<li>' + esc(typeof r === 'string' ? r : (r.text || r.title || JSON.stringify(r))) + '</li>';
